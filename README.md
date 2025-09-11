@@ -1,6 +1,7 @@
 ## struktur dummy
 
-> /Database  
-> /Web/FE  
-> /Web/BE  
-> /Microservice (optional)  
+/Database  = Mysql  
+/Web/FE  
+/Web/BE    = PHP  
+/Microservice (optional)  
+/Alur (alur aplikasi)  
