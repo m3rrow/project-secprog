@@ -119,7 +119,7 @@ FORM PROFIL (jd kek binusmaya yg bisa milih jd lecturer/student, nah kalo ini bi
 
 
 ADMIN FLOW
-a.	Verifikasi seller baru. (verifnya kek mastiin porto / cv si seller) 
+a.	Verifikasi seller baru. (verifnya kek mastiin porto / cv / ktp si seller biar bisa mastiin dia real ato fake) 
 b.	Kelola data jasa (hapus jika tidak sesuai).
 c.	Kelola order (cancel/refund bila ada masalah).
 d.	Monitoring transaksi & aktivitas user.
