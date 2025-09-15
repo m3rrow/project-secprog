@@ -17,10 +17,10 @@ FORM REGISTER
 	=> Password
 	=> Confirm Password
 	=> Nomor HP
-	=> Alamat
 - Dropdown/Radio
 	=> Pilih Role (Customer / Seller) 
 	kalo pilih seller, ada tambahan suruh input cv/porto/ktp
+    kalo pilih customer, ada tambahan kolom yg nanya dari company apa
 - Button
 	=> Register → simpan data user ke database.
 	=> Back to Login → kembali ke form login.
