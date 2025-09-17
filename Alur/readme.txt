@@ -1,11 +1,11 @@
-Alur Web Ecommerce Jasa
+Alur Web Freelancing cybersecurity
 
 FORM LOGIN
 - Kolom Text
 	=> Username/Email
 	=> Password
 - Button
-	=> Login → untuk melakukan proses login sesuai role (customer/seller).
+	=> Login → untuk melakukan proses login sesuai role (customer/freelancer).
 	=> Register → redirect ke form registrasi.
 	=> Forgot Password → redirect ke halaman reset password.
 
@@ -18,8 +18,8 @@ FORM REGISTER
 	=> Confirm Password
 	=> Nomor HP
 - Dropdown/Radio
-	=> Pilih Role (Customer / Seller) 
-	kalo pilih seller, ada tambahan suruh input cv/porto/ktp
+	=> Pilih Role (Customer / freelancer) 
+	kalo pilih freelancer, ada tambahan suruh input cv/porto/ktp
     kalo pilih customer, ada tambahan kolom yg nanya dari company apa
 - Button
 	=> Register → simpan data user ke database.
@@ -32,7 +32,7 @@ FORM INDEX / HOMEPAGE (Customer)
 	=> 	a. recommend jasa random (buat pertama kali) 
 		b. recommend jasa sesuai last search (kalo ud pernah search) 
 - Fitur
-	=> Search bar → cari jasa (contoh: "tukang bersih rumah", "tukang AC"), nama pemilik jasa, kategori jasa (bersih rumah, servis AC, tukang masak, tukang kebun, dll)
+	=> Search bar → cari jasa (contoh: "Pentester"), nama pemilik jasa, kategori jasa (Network pentesting, Web application pentesting, Mobile application pentesting, dll)
 	=> Filter kategori → review, harga, domisili
 - Button/Link
 	=> Redirect ke detail Jasa yang dicari
@@ -42,10 +42,10 @@ FORM INDEX / HOMEPAGE (Customer)
 HALAMAN DETAIL JASA
 - Menampilkan
 	=> Nama jasa
-	=> Nama penyedia (seller)
+	=> Nama penyedia (freelancer)
 	=> Harga per jam/hari
 	=> Deskripsi layanan / penjelasan lbh lanjut ttg penyedia layanan
-	=> Foto seller
+	=> Foto freelancer
 	=> Rating & review
 - Button
 	=> Pesan Jasa → redirect ke halaman checkout.
@@ -54,8 +54,7 @@ HALAMAN DETAIL JASA
 
 FORM PESAN JASA (Checkout – Customer)
 - Kolom Input
-	=> Alamat layanan
-	=> Tanggal & jam layanan
+	=> Deadline / Tanggal 
 	=> Catatan tambahan
 - Dropdown / radio button
 	=> Pilih metode pembayaran (transfer bank, e-wallet, COD).
@@ -73,7 +72,7 @@ HALAMAN RIWAYAT ORDER (Customer)
 	=> Berikan Review → isi rating & komentar untuk seller.
 
 
-DASHBOARD SELLER
+DASHBOARD FREELANCER
 => Tambah Jasa Baru
 => Kelola Jasa (semisal dia input 3 jasa, dia bisa nonaktifin 1 jasa lain yang lg ga aktif)
 => Order Masuk
@@ -84,7 +83,7 @@ DASHBOARD SELLER
 => Rating rata-rata
 
 
-FORM TAMBAH JASA (Seller)
+FORM TAMBAH JASA (Freelancer)
 - Kolom Input
 	=> Nama jasa
 	=> Harga
@@ -96,7 +95,7 @@ FORM TAMBAH JASA (Seller)
 	=> Cancel → kembali ke dashboard.
 
 
-HALAMAN ORDER MASUK (Seller)
+HALAMAN ORDER MASUK (Freelancer)
 - Menampilkan
 	=> Daftar order yang belum diproses.
 	=> Detail customer (nama, alamat, catatan).
