@@ -2,6 +2,6 @@
 
 /Database  = Mysql  
 /Web/FE  
-/Web/BE    = PHP  
+/Web/BE    = PHP (Laravel)  
 /Microservice (optional)  
 /Alur (alur aplikasi)  
