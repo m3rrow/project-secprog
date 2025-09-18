@@ -3,25 +3,29 @@ What we have done so far
 -> Theme : Freelancing
 -> Project Name : H3kHire
 -> Brief Desc : Web based Freelancing Platform specialized on cybersecurity
+-> Website workflow
+https://github.com/m3rrow/project-secprog/blob/main/Alur/readme.txt
+
+-> Database mapping
+https://github.com/m3rrow/project-secprog/blob/main/Database/readme.txt
 
 Scopes
 -> Goals : To build a professional clean and user friendly platform for cybersecurity freelancers.
 -> Delivery : Login/Register page, Homepage, Dashboard (Freelancer), Dashboard (Customers), Profile management, Freelancing management, Admin workflow.
 -> Acceptance : The project will be considered finished when every planned feature is implemented and the website is fully active.
 
-Website workflow
-https://github.com/m3rrow/project-secprog/blob/main/Alur/readme.txt
+Whats the goal for next week?
+-> focusing on frontend development so backend can start moving aswell
 
-Database mapping
-https://github.com/m3rrow/project-secprog/blob/main/Database/readme.txt
+Any obstacles so far?
+-> Our frontend development is at a halt because we havent found a template that fits
+* We are going to figure out which template to use and vote on it this week so that progress can be made further
+
+Support needed?
+-> None so far
 
 What we plan to do next?
--> Figure out which framework to use for the web / we use a template.
+-> Figure out which template to use
 -> Start frontend development for pages (mainly database related pages)
 -> if possible backend development start
 
-Whats the goal for next week?
--> focusing on frontend development atleast 2-3 pages (30% progress)
-
-Any obstacles?
--> So far no obstacles.
