@@ -10,4 +10,18 @@ Scopes
 -> Acceptance : The project will be considered finished when every planned feature is implemented and the website is fully active.
 
 Website workflow
-[workflow](https://github.com/m3rrow/project-secprog/blob/main/Alur/readme.txt)
+https://github.com/m3rrow/project-secprog/blob/main/Alur/readme.txt
+
+Database mapping
+https://github.com/m3rrow/project-secprog/blob/main/Database/readme.txt
+
+What we plan to do next?
+-> Figure out which framework to use for the web / we use a template.
+-> Start frontend development for pages (mainly database related pages)
+-> if possible backend development start
+
+Whats the goal for next week?
+-> focusing on frontend development atleast 2-3 pages (30% progress)
+
+Any obstacles?
+-> So far no obstacles.
