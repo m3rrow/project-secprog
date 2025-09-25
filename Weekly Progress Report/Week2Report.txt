@@ -1,0 +1,18 @@
+Weekly Progress Report #2
+What we have done so far
+Frontend developing (Website design and page layouts)
+Backend developing (Website database attatchment)
+
+Whats the goal for next week?
+-> Focusing on website development from the frontend and backend side
+
+Any obstacles so far?
+-> None so far
+
+Support needed?
+-> None so far
+
+What we plan to do next?
+-> Figure out which template to use
+-> Start frontend development for pages (mainly database related pages)
+-> if possible backend development start
