@@ -9,11 +9,10 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // If you truly need to ensure the DB exists via migration (optional):
+        // WARNING: cuman quary dibawah cuman buat dev (optional)
+        /* drop database secprog; create database secprog */
+        // DB::statement('DROP DATABASE secprog');
         // DB::statement('CREATE DATABASE IF NOT EXISTS secprog');
-
-        // Note: Using fully qualified table names (secprog.<table>)
-        // assumes your MySQL user has permissions and the DB exists.
 
         // ----------------------
         // secprog.user
@@ -22,16 +21,50 @@ return new class extends Migration
             $table->engine = 'InnoDB';
 
             $table->string('user_id', 64)->primary();
-            $table->string('username', 32);
+            $table->string('username', 32)->unique();
             $table->string('email', 255)->unique();
             $table->string('password', 255);
 
+            /* timestamp implementation */
+            // set to current time, never change
             $table->timestamp('created_timestamp')->useCurrent();
-            $table->timestamp('login_timestamp')->useCurrent()->useCurrentOnUpdate();
+            // change on login
+            $table->timestamp('login_timestamp')->nullable();
+            // auto when password changes
             $table->timestamp('pass_change_timestamp')->nullable();
 
             $table->enum('role', ['admin', 'customer', 'freelancer'])->nullable(false);
         });
+        // --- TRIGGERS ---
+        // A) Keep created_timestamp immutable
+        DB::unprepared(<<<'SQL'
+CREATE TRIGGER `secprog_user_preserve_created_ts`
+BEFORE UPDATE ON `secprog`.`user`
+FOR EACH ROW
+BEGIN
+    SET NEW.`created_timestamp` = OLD.`created_timestamp`;
+END
+SQL);
+        // B) Auto-set pass_change_timestamp when password actually changes
+        DB::unprepared(<<<'SQL'
+CREATE TRIGGER `secprog_user_password_changed`
+BEFORE UPDATE ON `secprog`.`user`
+FOR EACH ROW
+BEGIN
+    IF (NEW.`password` <> OLD.`password`) THEN
+        SET NEW.`pass_change_timestamp` = CURRENT_TIMESTAMP;
+    END IF;
+END
+SQL);
+        // C) Auto-set user.user_id == user_detail.user_id
+        DB::unprepared(<<<'SQL'
+CREATE TRIGGER `secprog_user_after_insert`
+AFTER INSERT ON `secprog`.`user`
+FOR EACH ROW
+BEGIN
+  INSERT INTO `secprog`.`user_detail` (`user_id`) VALUES (NEW.`user_id`);
+END;
+SQL);
 
         // ----------------------
         // secprog.user_detail
@@ -152,7 +185,12 @@ return new class extends Migration
 
     public function down(): void
     {
-        // Drop in reverse FK dependency order
+        // drop trigger
+        DB::unprepared('DROP TRIGGER IF EXISTS `secprog_user_preserve_created_ts`');
+        DB::unprepared('DROP TRIGGER IF EXISTS `secprog_user_password_changed`');
+        DB::unprepared('DROP TRIGGER IF EXISTS `secprog_user_after_insert`');
+
+        // drop table in reverse FK dependency order
         Schema::dropIfExists('secprog.job_ratings');
         Schema::dropIfExists('secprog.job_order');
         Schema::dropIfExists('secprog.jobs');
