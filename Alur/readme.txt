@@ -118,7 +118,8 @@ FORM PROFIL (jd kek binusmaya yg bisa milih jd lecturer/student, nah kalo ini bi
 
 
 ADMIN FLOW
-a.	Verifikasi seller baru. (verifnya kek mastiin porto / cv / ktp si seller biar bisa mastiin dia real ato fake) 
+a.	- Verifikasi hanya berlaku untuk seller baru. (verifnya kek mastiin porto / cv / ktp si seller biar bisa mastiin dia real ato fake)
+	- Untuk customer tidak perlu verifikasi dari admin dan yang menjadi patokan legal adalah inputan informasi Company
 b.	Kelola data jasa (hapus jika tidak sesuai).
 c.	Kelola order (cancel/refund bila ada masalah).
 d.	Monitoring transaksi & aktivitas user.
