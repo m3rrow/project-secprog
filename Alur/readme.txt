@@ -54,13 +54,27 @@ HALAMAN DETAIL JASA
 
 FORM PESAN JASA (Checkout – Customer)
 - Kolom Input
-	=> Deadline / Tanggal 
+	=> Durasi(jumlah hari atau jam sesuai jenis harga yang ditentukan freelancer) 
 	=> Catatan tambahan
 - Dropdown / radio button
-	=> Pilih metode pembayaran (transfer bank, e-wallet, COD).
+	=> Pilih jeniss harga : mau perhari atau perjam
+
+	=> Pilih metode pembayaran (transfer bank, e-wallet, COD)
+- Otomatis oleh system
+=> Dealine/tanggal selesai, dihitung otomatis dari mulai + durasi(hari/jam)
+	=> Total harga, di itung otomatis berdasarkan rumus
+Rumus :
+Total Harga = harga perhari x jumlah hari => ini rumus untuk perhari
+Total Harga = harga perjam x jumlah jam =>buat perjam
 - Button
 	=> Konfirmasi Pesanan → simpan order ke database (status: menunggu konfirmasi).
 	=> Cancel → kembali ke halaman detail jasa.
+- Skenario test checkout
+=> Freelancer untuk perhari/jam -> menentapkan harga sama customer netapkan durasi mau berapa hari/jam
+=>Customer harus mengisi durasi untuk melakukan pemesanan kalua ga isi system validasi input menampilkan pesan “harus isi durasi”
+=>Customer tidak boleh memilih durasi melebih maksimum kalau melebihin system bakalan kasih pesan “tidak boleh melebihi durasi”
+=>Semua data terisi dari pilihan jasa, durasi dan metode pembayaran akan disimpan ke system data dan status nya “menunggu konfirmasi”
+=>Customer men-cancel pemesanan maka system bakalan membatalkan proses, tidak menyimpan data ke data base dan langsung di arahkan ke halaman utama
 
 
 HALAMAN RIWAYAT ORDER (Customer)
@@ -123,3 +137,5 @@ a.	- Verifikasi hanya berlaku untuk seller baru. (verifnya kek mastiin porto / c
 b.	Kelola data jasa (hapus jika tidak sesuai).
 c.	Kelola order (cancel/refund bila ada masalah).
 d.	Monitoring transaksi & aktivitas user.
+
+Sistem 
