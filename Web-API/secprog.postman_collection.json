@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "4921cdd0-48a5-45d6-a41f-708782a25d77",
+		"name": "secprog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49066600",
+		"_collection_link": "https://m3rr0w27-2378522.postman.co/workspace/merrow's-Workspace~de32fa95-23dc-496f-8bba-e9d6a7d695d6/collection/49066600-4921cdd0-48a5-45d6-a41f-708782a25d77?action=share&source=collection_link&creator=49066600"
+	},
+	"item": [
+		{
+			"name": "account register",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user\",\r\n    \"email\": \"user@mail.com\",\r\n    \"password\": \"p@ssw0rd\",\r\n    \"role\": \"freelancer\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "account login",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6IjZCZFBaeGFqUVVFVjZycVdwa1ZtaUE9PSIsInZhbHVlIjoiQkpiazJqYklvZGpJZng5VVlIbWN6LzhoZkI0Y2d1ditHL0tkZC9OQ1RVRjJSdmExb3UySzdzTmZlWnRveUtqbi9zTXQ5bEVBNzkvQVpET1VwUTVqb1Ayc0wxdHFJdE96UVlCd1IrSkxSWlp3ZjVSM3NXbE5tVFRlZWhXMnJCNTciLCJtYWMiOiJiNmQxYTJiMjE0NzFjZmZmYWMwNWNmZjYxMWFjNmIzYjkxZWRlNTZlOTM2NjEyMTdmNThiZDRhZTI1YWRkNzg5IiwidGFnIjoiIn0%3D; expires=Thu, 06 Nov 2025 17:53:58 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"login\": \"user\",\r\n    \"password\": \"p@ssw0rd\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "account logout",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false,
+				"followRedirects": false,
+				"followOriginalHttpMethod": false,
+				"disableCookies": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6InpSZTRSM2ZjaGFjenVJbHZIcFM3c1E9PSIsInZhbHVlIjoienlwL3BUWmRrUHQ5cDlMYUFlMFE2VW9aM1MycXlMRkZERENoR0tIejNXYkEyMnlMK0ZjeWthVW9BbmVJWjhEd0E2RmpGdlJ3ZVZNeWFsMEc4NnRpRW1YcUtKWmdTcTB4N0xLQmJIOXJENzJsWG02aUFnZFgyWlhlaEFKMzRwK3AiLCJtYWMiOiIzMjBkNTE4YTY1NTYxYWVjZDRiYTllMzZkZjAyMDgyYmQzYzZmZjE0NGM5NTdkMGY2YTczNDJkZGE1NWVkZjJkIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 00:02:19 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"logout"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "account change password",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6Imx6MTNnTXJaVmZVeXg3akhGYSsxTWc9PSIsInZhbHVlIjoibFFrUWx4WnFpOTRBYlA2UmNOMTgrQWZsMWpxZllzc1dKaUlyemtDb043SWd4QTZiSEVBNVpQL09xMEQ0TSs0eHRrZnFrMkRNazJRelI5cXVHa2dlNVNMaDBMc0liMWRib0hKTG4raEUreTdDN2pwOEx0V2VDc0dOYVYzc3I0ZzIiLCJtYWMiOiJlYjJiY2JhNWM3ODdiMmY1OWVhMmZiOWNhNjhlZDc4MjA0ZjA0MjNkYjQ4MGRiYmE0M2U4MDQzMDc2NjAwZDY3IiwidGFnIjoiIn0%3D; expires=Sat, 08 Nov 2025 23:43:13 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"current_password\": \"p@ssw0rd\",\r\n    \"new_password\": \"p@ssw0rd!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/change_password",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"change_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "freelancer detail - view",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false,
+				"disableCookies": true,
+				"followRedirects": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6IjVhbSswNEQ2SFhFN29raFh5YklwQ2c9PSIsInZhbHVlIjoiaVVsTElOSDRXeG5kcUw3Z2U3Y1FXNk5GQ0VrWW1jeUE4dythT1R4MGUyZTg5Z0txQVBDSGNLSVZ5L3ZCT0hGR1VwQkVUUXpVRWpoRVZlS3I2QldmeGQ1NHkzZHFyTUVDVlFuaHpJcmJuU2V4L25wQzFWRjYzc1VPM2tnL2JMeWsiLCJtYWMiOiIyOWZjZDNhMDBkZDE1ZjNjM2ZhMGE5MzM1YTM2N2VlN2IxYmNjNzFmODc4NmE3MWZkMDA2ZDhiMTVhNjk0ZTZlIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 00:15:12 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/freelancer-account/view",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"freelancer-account",
+						"view"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "freelancer detail - insert",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false,
+				"disableCookies": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6Imx6MTNnTXJaVmZVeXg3akhGYSsxTWc9PSIsInZhbHVlIjoibFFrUWx4WnFpOTRBYlA2UmNOMTgrQWZsMWpxZllzc1dKaUlyemtDb043SWd4QTZiSEVBNVpQL09xMEQ0TSs0eHRrZnFrMkRNazJRelI5cXVHa2dlNVNMaDBMc0liMWRib0hKTG4raEUreTdDN2pwOEx0V2VDc0dOYVYzc3I0ZzIiLCJtYWMiOiJlYjJiY2JhNWM3ODdiMmY1OWVhMmZiOWNhNjhlZDc4MjA0ZjA0MjNkYjQ4MGRiYmE0M2U4MDQzMDc2NjAwZDY3IiwidGFnIjoiIn0%3D; expires=Sat, 08 Nov 2025 23:43:13 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_lengkap",
+							"value": "Kolor Sakti",
+							"type": "text"
+						},
+						{
+							"key": "no_hp",
+							"value": "+62857123123",
+							"type": "text"
+						},
+						{
+							"key": "tgl_lahir",
+							"value": "12/30/1945",
+							"type": "text"
+						},
+						{
+							"key": "alamat",
+							"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
+							"type": "text"
+						},
+						{
+							"key": "profile_photo",
+							"type": "file",
+							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+						},
+						{
+							"key": "input_cv",
+							"type": "file",
+							"src": "/D:/Penetration_Tester_dummy.pdf"
+						},
+						{
+							"key": "input_porto",
+							"type": "file",
+							"src": "/D:/Penetration_Tester_dummy.pdf"
+						},
+						{
+							"key": "input_ktp",
+							"type": "file",
+							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/freelancer-account/insert",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"freelancer-account",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "freelancer detail - update",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false,
+				"disableCookies": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6IkxDcjZ2aS9GK3pmY0E3aTV2NXlOMlE9PSIsInZhbHVlIjoieE41VGhkSDVzWk5nWnpvRU80cWtCOWtCNjhsdnlCY3R5bklBRE00S2xIS2lHZ2hQM1BYYTNLV1U2REhyMXBheTdFOWQ2b2RleWRXQ1B4WlkyOUJNenpRTDd4S0ZqSTRJSEhacmxsbFhzbGwzN3JIVFpEMUNlVkVTTUNZdnlaMEQiLCJtYWMiOiI1NTYzZjQwM2U2YjllMzI4MWRhZWE1ODljM2ZiZTgzNmU3YjViYWU5Y2NjMDc1ODBiNDZjOGQ3YzAzYzcwN2E1IiwidGFnIjoiIn0%3D; expires=Sat, 08 Nov 2025 21:00:35 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "user@noxia.com",
+							"type": "text"
+						},
+						{
+							"key": "nama_lengkap",
+							"value": "Kolor Manga",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "no_hp",
+							"value": "+62857123123",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "tgl_lahir",
+							"value": "12/30/1945",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alamat",
+							"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "profile_photo",
+							"type": "file",
+							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+						},
+						{
+							"key": "input_cv",
+							"type": "file",
+							"src": "/D:/Penetration_Tester_dummy.pdf"
+						},
+						{
+							"key": "input_porto",
+							"type": "file",
+							"src": "/D:/Penetration_Tester_dummy.pdf"
+						},
+						{
+							"key": "input_ktp",
+							"type": "file",
+							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/freelancer-account/update",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"freelancer-account",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
