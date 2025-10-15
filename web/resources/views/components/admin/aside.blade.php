@@ -35,7 +35,7 @@
                                  class="d-xl-flex d-lg-flex d-md-none d-sm-none d-none justify-content-end align-items-center social-media-icons">
                                  <li class="dekstop-login-btn">
                                     @auth
-                                       <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i> Logined as {{ Auth::user()->name }}</a>
+                                       <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i>{{ Auth::user()->name }}</a>
                                        <a href="{{ route('logout') }}">/ Logout</a>
                                     @else
                                        <a href="{{ route('login') }}"> <i class="fa fa-user-o" aria-hidden="true"></i> Login</a>

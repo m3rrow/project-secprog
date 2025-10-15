@@ -3,6 +3,11 @@
 @section('content')
 <!-- banner section start start-->
 <div class="index1-slider-wrapper ps-rel">
+<div class ="video-bg">
+    <video autoplay muted loop playsinline poster="../video/banner.mp4">
+        <source src="../video/banner.mp4" type="video/mp4">
+    </video>
+</div>
 <div class="overlay-slider">
     <div class="container">
         <div class="slider-caption">
@@ -764,7 +769,7 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="left-side">
                 <h2>The Best Way To Find a Profesional</h2>
-                <a href="javascript:;"> <span><i class="fas fa-plus-circle"></i> &nbsp; Post a Ressume</span> </a>
+                <a href="javascript:;"> <span><i class="fas fa-plus-circle"></i> &nbsp; Post a Resume</span> </a>
             </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-12">
