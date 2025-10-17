@@ -15,7 +15,7 @@ use Illuminate\Validation\Rule;
 use App\Models\SecprogUser;
 use App\Enums\AccountStatus;
 
-class FreelancerAccountController extends Controller
+class CustomerAccountController extends Controller
 {
     public function view(Request $request)
     {
@@ -25,8 +25,8 @@ class FreelancerAccountController extends Controller
         /* check if account is suspended */
         if ($resp = $this->checkSuspended($session)) return $resp; // early return with JSON
 
-        /* get current freelancer data */
-        $row = DB::table('freelancer_detail')
+        /* get current customer data */
+        $row = DB::table('customer_detail')
             ->where('user_id', $session->user_id)
             ->first([
                 'nama_lengkap',
@@ -35,9 +35,7 @@ class FreelancerAccountController extends Controller
                 'alamat',
                 
                 'profile_photo',
-                'file_cv',
-                'file_portofolio',
-                'file_ktp',
+                'company_name',
 
                 'last_modified_at',
             ]);
@@ -76,22 +74,11 @@ class FreelancerAccountController extends Controller
             'no_hp'              => ['required','string','max:16','regex:/^\+?[0-9\- ]{1,16}$/'],
             'tgl_lahir'          => ['required','date'],
             'alamat'             => ['required','string','max:255'],
+            'company_name'       => ['required','string','max:255'],
 
             'profile_photo'     => ['required','file',
                         'mimes:jpg,jpeg,png',   // dev: extension check
                         'max:5120' // 5MB
-            ],
-            'input_cv'          =>    ['required','file',
-                        'mimes:pdf,doc,docx',   // dev: extension check
-                        'max:10240' // 10MB
-            ],
-            'input_porto'        =>    ['required','file',
-                        'mimes:pdf,doc,docx',   // dev: extension check
-                        'max:10240' // 10MB
-            ],
-            'input_ktp'          => ['required','file',
-                        'mimes:jpg,jpeg,png',   // dev: extension check
-                        'max:8192' // 8MB
             ],
         ], [
             'no_hp.regex' => 'Phone number must contain digits, space, or dashes (optional +).',
@@ -107,9 +94,6 @@ class FreelancerAccountController extends Controller
 
         // $php artisan storage:link (security wise, default nama file sudah diobfuscated dalam base64 format)
         $photoPath = $request->file('profile_photo')->store('user_profile_photo', 'public');
-        $cvPath = $request->file('input_cv')->store('user_cv', 'public');
-        $portoPath = $request->file('input_porto')->store('user_porto', 'public');
-        $ktpPath = $request->file('input_ktp')->store('user_ktp', 'public');
 
         try {
             /* converted date format */
@@ -121,13 +105,11 @@ class FreelancerAccountController extends Controller
                 'no_hp'              => $request->input('no_hp'),
                 'tgl_lahir'          => $tgl_lahir,
                 'alamat'             => $request->input('alamat'),
+                'company_name'       => $request->input('company_name'),
 
                 'profile_photo'     => $photoPath,
-                'file_cv'           => $cvPath,
-                'file_portofolio'   => $portoPath,
-                'file_ktp'          => $ktpPath,
             ];
-            DB::table('freelancer_detail')->where('user_id', $session->user_id)->update($payload);
+            DB::table('customer_detail')->where('user_id', $session->user_id)->update($payload);
 
             /* set account_status to Pending */
             $session->account_status = AccountStatus::Pending;
@@ -135,14 +117,11 @@ class FreelancerAccountController extends Controller
 
             return response()->json([
                 'status'  => 'success',
-                'message' => 'Freelancer Information Inserted'
+                'message' => 'customer Information Inserted'
             ], 201);
         } catch (QueryException $e) {
             /* revert uploaded file */
             Storage::disk('public')->delete($photoPath);
-            Storage::disk('public')->delete($cvPath);
-            Storage::disk('public')->delete($portoPath);
-            Storage::disk('public')->delete($ktpPath);
 
             // give invalid permission error
             return response()->json([
@@ -178,22 +157,11 @@ class FreelancerAccountController extends Controller
             'no_hp'              => ['sometimes','nullable','string','max:16','regex:/^\+?[0-9\- ]{1,16}$/'],
             'tgl_lahir'          => ['sometimes','nullable','date'],
             'alamat'             => ['sometimes','nullable','string','max:255'],
+            'company_name'       => ['sometimes','nullable','string','max:255'],
 
             'profile_photo'     => ['sometimes','file',
                         'mimes:jpg,jpeg,png',   // dev: extension check
                         'max:5120' // 5MB
-            ],
-            'input_cv'          =>    ['sometimes','file',
-                        'mimes:pdf,doc,docx',   // dev: extension check
-                        'max:10240' // 10MB
-            ],
-            'input_porto'       =>    ['sometimes','file',
-                        'mimes:pdf,doc,docx',   // dev: extension check
-                        'max:10240' // 10MB
-            ],
-            'input_ktp'         => ['sometimes','file',
-                        'mimes:jpg,jpeg,png',   // dev: extension check
-                        'max:8192' // 8MB
             ],
         ], [
             'no_hp.regex' => 'phone number must contain digits, space, or dashes (optional +).',
@@ -210,16 +178,13 @@ class FreelancerAccountController extends Controller
         $payload = collect($validator->validated());
 
         // current file paths from DB
-        $file_row = DB::table('freelancer_detail')
+        $file_row = DB::table('customer_detail')
             ->where('user_id', $session->user_id)
-            ->first(['profile_photo','file_cv','file_portofolio','file_ktp']);
+            ->first(['profile_photo']);
 
         /* store new files and stage payload + remember old paths */
         $fileMap = [
             'profile_photo' => ['column' => 'profile_photo',   'dir' => 'user_profile_photo'],
-            'input_cv'      => ['column' => 'file_cv',         'dir' => 'user_cv'],
-            'input_porto'   => ['column' => 'file_portofolio', 'dir' => 'user_porto'],
-            'input_ktp'     => ['column' => 'file_ktp',        'dir' => 'user_ktp'],
         ];
         $oldPathsToDelete = [];
         foreach ($fileMap as $fkey => $fvalue) {
@@ -252,9 +217,9 @@ class FreelancerAccountController extends Controller
                 $session->save();
             }
             
-            /* update table freelancer_detail */
+            /* update table customer_detail */
             if (!$payload->isEmpty()) {
-                DB::table('freelancer_detail')->where('user_id', $session->user_id)->update($payload->toArray());
+                DB::table('customer_detail')->where('user_id', $session->user_id)->update($payload->toArray());
             }
         });
 
@@ -268,7 +233,7 @@ class FreelancerAccountController extends Controller
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'Freelancer detail updated'
+            'message' => 'Customer detail updated'
         ]);
     }
 }
