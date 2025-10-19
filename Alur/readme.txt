@@ -47,7 +47,6 @@ HALAMAN DETAIL JASA
 	=> Rating & review
 	=> section “profile freelancer” bisa di isi dengan:
      - job description (ringkasan pengalaman yang pernah di kerjain dan apa keahlian utamanya dalam bidang cyber)
-     - portofolio (link laporan selama kerja, hasil kerjanya, write-up, atau project yang sudah pernah di bikin)
      - button -> to show freelancer cv
 
 - Button
