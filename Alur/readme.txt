@@ -45,8 +45,8 @@ HALAMAN DETAIL JASA
 	=> Deskripsi layanan / penjelasan lbh lanjut ttg penyedia layanan
 	=> Foto freelancer
 	=> Rating & review
-	=> section “profil freelancer” bisa di isi dengan :
-- mini cv (ringkasan pengalaman yang pernah di kerjain dan apa keahlian utamanya dalam bidang cyber)
+	=> section “profile freelancer” bisa di isi dengan:
+- job description (ringkasan pengalaman yang pernah di kerjain dan apa keahlian utamanya dalam bidang cyber)
 - portofolia (link laporan selama kerja, hasil kerjanya, write-up, atau project yang sudah pernah di bikin)
 
 - Button
