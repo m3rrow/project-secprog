@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Freelancer Profile - H3kHire</title>
+    <title>User Profile - H3kHire</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -107,29 +107,6 @@
             font-weight: 600;
             font-size: 1.25rem;
         }
-        .profile-sidebar .text-muted {
-            font-size: 0.9rem;
-            color: var(--text-muted-color);
-        }
-        .hourly-rate {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0.75rem 0;
-            color: var(--text-color);
-        }
-        .btn-hire {
-            background-color: var(--primary-color);
-            color: #fff;
-            border-radius: 20px;
-            padding: 0.5rem 1.5rem;
-            margin-top: 1rem;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        .btn-hire:hover {
-            background-color: var(--primary-hover-color);
-            color: #fff;
-        }
         .verification-badge {
             font-size: 0.8rem;
             padding: 0.4em 0.8em;
@@ -226,11 +203,10 @@
                     
                     <h5>[Username]</h5>
 
-                    <span class="badge rounded-pill bg-success verification-badge" id="verificationStatus">
-                        <i class="fas fa-check-circle me-1"></i>Verified
+                    <span class="badge rounded-pill bg-warning text-dark verification-badge" id="verificationStatus">
+                        <i class="fas fa-exclamation-triangle me-1"></i>Not Verified
                     </span>
                     
-
                     <div class="default-actions">
                         <button type="button" class="btn btn-outline-secondary btn-edit btn-sm" id="editProfileButton">Edit Profile</button> 
                     </div>
@@ -250,8 +226,13 @@
                         <ul class="list-unstyled info-list">
                             <li>
                                 <span class="label">Full Name</span> 
-                                <span class="value">[Full Name]</span>
+                                <span class="value">[Not Provided]</span>
                                 <input type="text" name="fullname" class="form-control editable-field" value="">
+                            </li>
+                             <li>
+                                <span class="label">Company Name</span> 
+                                <span class="value">[Not Provided]</span>
+                                <input type="text" name="company_name" class="form-control editable-field" value="">
                             </li>
                             <li><span class="label">Email</span> <span class="value">[email@example.com]</span></li>
                             <li>
@@ -263,34 +244,6 @@
                                 <span class="label">Address</span> 
                                 <span class="value">[Not Provided]</span>
                                 <input type="text" name="address" class="form-control editable-field" value="">
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Verification Documents Section -->
-                    <div class="profile-section">
-                        <h5>Verification Documents</h5>
-                        <ul class="list-unstyled info-list">
-                            <li>
-                                <span class="label">Curriculum Vitae (CV)</span> 
-                                <span class="value">[Not Provided]</span>
-                                <div class="editable-field">
-                                    <input type="file" name="cv" class="form-control">
-                                </div>
-                            </li>
-                            <li>
-                                <span class="label">Portfolio</span> 
-                                <span class="value">[Not Provided]</span>
-                                <div class="editable-field">
-                                    <input type="file" name="portfolio" class="form-control">
-                                </div>
-                            </li>
-                            <li>
-                                <span class="label">Government ID</span> 
-                                <span class="value">[Not Provided]</span>
-                                <div class="editable-field">
-                                    <input type="file" name="government_id" class="form-control">
-                                </div>
                             </li>
                         </ul>
                     </div>
@@ -370,8 +323,24 @@
             }
         }
 
-        // JS logic remains the same as user profile for now...
-         editProfileButton.addEventListener('click', () => {
+        function checkVerificationStatus() {
+            const fullname = profileForm.querySelector('input[name="fullname"]').value;
+            const company_name = profileForm.querySelector('input[name="company_name"]').value;
+            const phone = profileForm.querySelector('input[name="phone"]').value;
+            const address = profileForm.querySelector('input[name="address"]').value;
+
+            if (fullname && company_name && phone && address) {
+                verificationStatus.innerHTML = '<i class="fas fa-check-circle me-1"></i>Verified';
+                verificationStatus.classList.remove('bg-warning', 'text-dark');
+                verificationStatus.classList.add('bg-success');
+            } else {
+                verificationStatus.innerHTML = '<i class="fas fa-exclamation-triangle me-1"></i>Not Verified';
+                verificationStatus.classList.remove('bg-success');
+                verificationStatus.classList.add('bg-warning', 'text-dark');
+            }
+        }
+
+        editProfileButton.addEventListener('click', () => {
             originalImageSrc = profilePicImg.src;
             profileForm.querySelectorAll('input, textarea').forEach(input => {
                 if (input.type !== 'file') {
@@ -406,47 +375,20 @@
             event.preventDefault(); 
             originalImageSrc = profilePicImg.src;
 
-            profileForm.querySelectorAll('input[type="text"], input[type="tel"], input[type="date"], textarea').forEach(input => {
-                const displayElement = input.closest('li, .profile-section').querySelector('.value');
-                if (displayElement) {
-                    if (input.type === 'date' && input.value) {
-                         const date = new Date(input.value);
-                         const options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
-                         displayElement.textContent = date.toLocaleDateString('en-US', options);
-                    } else {
-                        displayElement.textContent = input.value || 'Not Provided';
-                    }
-                }
-            });
-
-            const skillsInput = profileForm.querySelector('input[name="skills"]');
-            const skillsDisplay = profileForm.querySelector('.skills-list');
-            if(skillsInput && skillsDisplay) {
-                skillsDisplay.innerHTML = '';
-                const skills = skillsInput.value.split(',').map(skill => skill.trim()).filter(skill => skill);
-                skills.forEach(skillText => {
-                    const badge = document.createElement('span');
-                    badge.className = 'badge rounded-pill';
-                    badge.textContent = skillText;
-                    skillsDisplay.appendChild(badge);
-                });
-            }
-
-            profileForm.querySelectorAll('input[type="file"]').forEach(input => {
-                if (input.name === 'profile_picture') return; 
-
+            profileForm.querySelectorAll('input[type="text"], input[type="tel"]').forEach(input => {
                 const displayElement = input.closest('li').querySelector('.value');
-                if (input.files.length > 0) {
-                    displayElement.innerHTML = `<i class="fas fa-check-circle me-1"></i>Uploaded (${input.files[0].name})`;
-                    displayElement.classList.add('uploaded');
+                if (displayElement) {
+                    displayElement.textContent = input.value || '[Not Provided]';
                 }
             });
 
-            alert('Changes saved temporarily! Data is updated on the page.');
-            
+            checkVerificationStatus();
+
+            alert('Changes saved temporarily!');
             toggleEditMode(false);
         });
 
+        checkVerificationStatus();
     });
 </script>
 
