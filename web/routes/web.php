@@ -65,6 +65,10 @@ Route::get('checkout', function () {
     return view('checkout');
 })->name('checkout');
 
+Route::get('/job-detail/{id}', function ($id) {
+    return view('job_detail', ['jobId' => $id]);
+})->name('job.detail');
+
 Route::post('register', [RegisterController::class, 'handleRegister'])->name('register.store');
 
 Route::middleware('guest')->group(function () {
