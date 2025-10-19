@@ -50,6 +50,10 @@ Route::get('project-details', function () {
     return view('services.project.project-details');
 })->name('project.details');
 
+Route::get('checkout', function () {
+    return view('checkout');
+})->name('checkout');
+
 Route::post('register', [RegisterController::class, 'handleRegister'])->name('register.store');
 
 Route::middleware('guest')->group(function () {
