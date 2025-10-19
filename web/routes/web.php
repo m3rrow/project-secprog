@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('freelancer-profile', function(){
+    return view('freelancer-profile');
+});
+
 Route::get('forgot', function(){
     return view('forgot');
 })->name('forgot');
