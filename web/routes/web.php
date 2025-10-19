@@ -12,6 +12,10 @@ Route::get('freelancer-profile', function(){
     return view('freelancer-profile');
 });
 
+Route::get('user-profile', function(){
+    return view('user-profile');
+});
+
 Route::get('forgot', function(){
     return view('forgot');
 })->name('forgot');
@@ -72,6 +76,14 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    // profile routes
+    Route::get('user/profile', function () {
+        return view('user-profile');
+    })->name('user.profile');
+
+    Route::get('freelancer/profile', function () {
+        return view('freelancer-profile');
+    })->name('freelancer.profile');
     Route::get('addproject', function () {
         return view('services.project.post-project');
     })->name('addproject');

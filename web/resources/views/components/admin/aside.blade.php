@@ -4,7 +4,7 @@
                    <div class="col-lg-8 col-md-6">
                     <div class="index1-logo">
                        <a href="{{ url('/') }}">
-                       <img class="normal-logo" src="images/h3khire-logo.png" alt="logo">
+                       <img class="normal-logo" src="images/h3khire-logo.png" alt="logo" style="max-height: 60px;">
                           <img class="sticky-logo" src="images/h3khire-logo.png" alt="logo">
                        </a>
                     </div>
@@ -34,10 +34,11 @@
                    <ul
                                  class="d-xl-flex d-lg-flex d-md-none d-sm-none d-none justify-content-end align-items-center social-media-icons">
                                  <li class="dekstop-login-btn">
-                                    @auth
-                                       <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i>{{ Auth::user()->name }}</a>
-                                       <a href="{{ route('logout') }}">/ Logout</a>
-                                    @else
+                              @auth
+                                 @php $profileRoute = (Auth::user()->role === 'freelancer') ? route('freelancer.profile') : route('user.profile'); @endphp
+                                 <a href="{{ $profileRoute }}"><i class="fa fa-user-o" aria-hidden="true"></i>{{ Auth::user()->name }}</a>
+                                 <a href="{{ route('logout') }}">/ Logout</a>
+                              @else
                                        <a href="{{ route('login') }}"> <i class="fa fa-user-o" aria-hidden="true"></i> Login</a>
                                        <a href="{{ route('register') }}">/ Sign Up</a>
                                     @endauth
@@ -178,7 +179,7 @@
           </div>
           <div id="sidebar">
                      <div class="sidebar_logo">
-                        <a href="{{ url('/') }}"><img src="images/h3khire-logo.png" alt="logo"></a>
+                        <a href="{{ url('/') }}"><img src="images/h3khire-logo.png" alt="logo" style="max-height: 60px"></a>
                      </div>
                      <div id="toggle_close">&times;</div>
                      <div id='cssmenu'>
