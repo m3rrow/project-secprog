@@ -44,10 +44,6 @@ class aside extends Component
                         'route_name' => 'freelancer',
                     ],
                     [
-                        'label' => 'Companies',
-                        'route_name' => 'company',
-                    ],
-                    [
                         'label' => 'Projects',
                         'route_name' => 'project',
                     ],

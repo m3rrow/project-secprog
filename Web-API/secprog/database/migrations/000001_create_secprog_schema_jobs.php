@@ -21,15 +21,17 @@ return new class extends Migration
             $table->engine = 'InnoDB';
 
             $table->string('job_id', 64)->primary();
-            $table->string('name', 128)->nullable();
+            $table->string('job_title', 128)->nullable();
             $table->text('job_desc')->nullable();
-            $table->string('link_job_photo', 255)->nullable();
             $table->decimal('price_per_hour', 15, 2)->default(0.00);
-            $table->date('hire_time')->nullable();
+
+            $table->string('file_job_banner', 255)->nullable();
+
+            $table->enum('job_status', ['available', 'booked', 'unavailable'])->default('available');
 
             $table->enum('category', [
-                'Red Team', 'Blue Team', 'Forensic', 'Pentester',
-                'Code Audit', 'CTF Player', 'Recruiter'
+                'Red Team', 'Blue Team', 'Forensic', 'Network Pentest',
+                'Code Audit', 'CTF Player', 'Mobile Pentest', 'Web Application Pentest'
             ])->nullable(false);
 
             $table->string('user_id', 64)->nullable();
@@ -48,7 +50,8 @@ return new class extends Migration
 
             $table->unsignedInteger('duration_hours')->nullable();
             $table->string('order_note', 255)->nullable();
-            $table->enum('job_status', ['On Progress', 'Complete', 'Waiting Order'])->nullable(false);
+            $table->enum('job_status', ['Awaiting-Payment', 'On-Progress', 'Complete', 'Canceled'])->nullable(false);
+            $table->timestamp('order_at')->useCurrent()->useCurrentOnUpdate();
 
             $table->string('job_id', 64)->nullable();
             $table->string('recruiter_id', 64)->nullable();

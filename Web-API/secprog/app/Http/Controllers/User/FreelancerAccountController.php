@@ -209,16 +209,6 @@ class FreelancerAccountController extends Controller
 
         $payload = collect($validator->validated());
 
-        /* validate file first */
-        $file_row = DB::table('freelancer_detail')
-            ->where('user_id', $session->user_id)
-            ->first([                
-                'profile_photo',
-                'file_cv',
-                'file_portofolio',
-                'file_ktp',
-            ]);
-
         // current file paths from DB
         $file_row = DB::table('freelancer_detail')
             ->where('user_id', $session->user_id)
@@ -278,7 +268,7 @@ class FreelancerAccountController extends Controller
 
         return response()->json([
             'status'  => 'success',
-            'message' => 'User detail updated'
+            'message' => 'Freelancer detail updated'
         ]);
     }
 }

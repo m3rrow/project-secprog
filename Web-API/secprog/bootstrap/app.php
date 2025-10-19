@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+use App\Http\Middleware\EnsureRole;
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
@@ -13,6 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
         // dev: code api disini!
         api: __DIR__.'/../routes/api.php',
     )
+    ->withMiddleware(function (Middleware $middleware): void {
+        // dev: buat alias middleware "role"
+        $middleware->alias([
+            'role' => EnsureRole::class,
+        ]);
+    })
     ->withMiddleware(function (Middleware $middleware): void {
         //
     })

@@ -27,6 +27,10 @@ extension=fileinfo
 ```
 $ php composer.phar create-project laravel/laravel secprog --ignore-platform-req=ext-fileinfo
 $ cd secprog
+```
+
+> pull all vendor (berguna kalo digunain ke device lain)
+```
 $ composer require laravel/framework:12.28.1 --update-with-all-dependencies --ignore-platform-req=ext-fileinfo
 ```
 

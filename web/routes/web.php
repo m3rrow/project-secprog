@@ -8,6 +8,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('forgot', function(){
+    return view('forgot');
+})->name('forgot');
 
 Route::get('contact-us', function () {
     return view('home.contact-us');
