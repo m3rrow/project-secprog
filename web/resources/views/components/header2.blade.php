@@ -38,7 +38,7 @@
     <div class="main-header-wrapper1 inner-main-header float_left">
        <div class="right-sidebar" id="right-sidebar">
           <div class="toggle-top-header">
-             <a class="tog-logo" href="javascript:;"> <img src="images/index1-logo.png" alt="logo"> </a>
+             <a class="tog-logo" href="javascript:;"> <img src="images/h3khire-logo.png" alt="logo"> </a>
              <button class="sidebar-close"></button>
           </div>
           <div class="toogle-centent float_left">

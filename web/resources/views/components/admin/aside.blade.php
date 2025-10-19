@@ -4,7 +4,7 @@
                    <div class="col-lg-8 col-md-6">
                     <div class="index1-logo">
                        <a href="{{ url('/') }}">
-                       <img class="normal-logo" src="images/h3khire-logo.png" alt="logo">
+                       <img class="normal-logo" src="images/h3khire-logo.png" alt="logo" style="height: 50px; width: auto; position: relative; left: 0px; top: 0Px;">
                           <img class="sticky-logo" src="images/h3khire-logo.png" alt="logo">
                        </a>
                     </div>

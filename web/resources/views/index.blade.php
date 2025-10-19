@@ -91,162 +91,130 @@
                         <div class="tab-pane fade show active" id="contentFive-1">
                         <div class="row">
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
+                                <div class="trending-main-box float_left job-card-clickable" data-job-id="1" style="cursor: pointer;">
                                     <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Seniour PHP Developer</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
+                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                        <div class="icon-img"><img src="images/drive.png" alt="img"></div>
+                                         <h5>Senior PHP Developer</h5> 
+                                        <p> (1-2 Yrs Exp.) </p>
                                     </div>
                                     <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"> <span>Apply</span> </a>
+                                        <span>Google Info.</span>
+                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
+                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
+                                        <div class="custom-btn"><span>Apply</span></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
+                                <div class="trending-main-box float_left job-card-clickable" data-job-id="2" style="cursor: pointer;">
                                     <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive1.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Graphics Designer</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
+                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
+                                        <h5>Graphics Designer</h5>
+                                        <p> (1-2 Yrs Exp.) </p>
                                     </div>
                                     <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                                        <span>Google Info.</span>
+                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
+                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
+                                        <div class="custom-btn"><span>Apply</span></div>
+                                    </div>
+                                 </div>
+                             </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                               <div class="trending-main-box float_left job-card-clickable" data-job-id="3" style="cursor: pointer;">
+                                    <div class="trending-upper-text ps-rel">
+                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
+                                        <h5>Product Manager</h5>
+                                        <p> (1-2 Yrs Exp.) </p>
+                                    </div>
+                                    <div class="trending-lower-text">
+                                        <span>Google Info.</span>
+                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
+                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
+                                        <div class="custom-btn"><span>Apply</span></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
+                                <div class="trending-main-box float_left job-card-clickable" data-job-id="4" style="cursor: pointer;">
                                     <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive2.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Product Manager</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
+                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
+                                        <h5>Sales Analytics</h5>
+                                        <p> (1-2 Yrs Exp.) </p>
                                     </div>
                                     <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                                        <span>Google Info.</span>
+                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
+                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
+                                        <div class="custom-btn"><span>Apply</span></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
+                                <div class="trending-main-box float_left job-card-clickable" data-job-id="5" style="cursor: pointer;">
                                     <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive3.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
+                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
+                                        <h5>Sales Analytics</h5>
+                                        <p> (1-2 Yrs Exp.) </p>
                                     </div>
                                     <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                                        <span>Google Info.</span>
+                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
+                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
+                                        <div class="custom-btn"><span>Apply</span></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
+                                <div class="trending-main-box float_left job-card-clickable" data-job-id="6" style="cursor: pointer;">
                                     <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive4.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
+                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
+                                        <h5>Sales Analytics</h5>
+                                        <p> (1-2 Yrs Exp.) </p>
                                     </div>
                                     <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                                        <span>Google Info.</span>
+                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
+                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
+                                        <div class="custom-btn"><span>Apply</span></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
+                                <div class="trending-main-box float_left job-card-clickable" data-job-id="7" style="cursor: pointer;">
                                     <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive3.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
+                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
+                                        <h5>Sales Analytics</h5>
+                                        <p> (1-2 Yrs Exp.) </p>
                                     </div>
                                     <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                                        <span>Google Info.</span>
+                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
+                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
+                                        <div class="custom-btn"><span>Apply</span></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
+                                <div class="trending-main-box float_left job-card-clickable" data-job-id="8" style="cursor: pointer;">
                                     <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
+                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
+                                        <h5>Sales Analytics</h5>
+                                        <p> (1-2 Yrs Exp.) </p>
                                     </div>
                                     <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive5.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                                        <span>Google Info.</span>
+                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
+                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
+                                        <div class="custom-btn"><span>Apply</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -1235,5 +1203,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const jobCards = document.querySelectorAll('.job-card-clickable');
+
+        jobCards.forEach(card => {
+
+            card.addEventListener('click', function (event) {
+
+                event.preventDefault();
+
+                const jobId = this.dataset.jobId;
+
+                if (jobId) {
+
+                    window.location.href = `/job-detail/${jobId}`;
+                }
+            });
+        });
+    });
+</script>
 
 @endsection
