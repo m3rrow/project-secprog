@@ -200,6 +200,92 @@ ul {
   padding: 0px 50px;
 }
 
+/* Responsive logo sizing to prevent overlaps */
+.index1-logo .normal-logo,
+.index1-logo .sticky-logo,
+.sidebar_logo img,
+.mobile-logo img {
+  max-width: 160px; /* cap width */
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+/* slightly smaller for sticky header */
+.index1-logo .sticky-logo {
+  max-width: 130px;
+}
+
+/* sidebar logo smaller */
+.sidebar_logo img {
+  max-width: 90px;
+}
+
+/* mobile logo: keep compact */
+.mobile-logo img {
+  max-width: 100px;
+}
+
+@media (max-width: 992px) {
+  .index1-logo .normal-logo { max-width: 140px; }
+  .index1-logo .sticky-logo { max-width: 110px; }
+}
+
+@media (max-width: 576px) {
+  .index1-logo .normal-logo { max-width: 120px; }
+  .mobile-logo img { max-width: 80px; }
+  .sidebar_logo img { max-width: 60px; }
+}
+
+/* Header vertical-centering fixes: use flex alignment and normalize image behavior */
+.menu-items-wrapper .container.custom-container .row,
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .row {
+  display: flex;       /* ensure the row behaves as a flex container */
+  align-items: center; /* vertical center children */
+}
+
+/* Logo container: center its contents and remove unexpected offsets */
+.index1-logo {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure images don't baseline-shift and have consistent sizing */
+.index1-logo img,
+.index1-logo .normal-logo,
+.index1-logo .sticky-logo,
+.sidebar_logo img,
+.mobile-logo img {
+  display: block;
+  vertical-align: middle;
+  max-height: 60px; /* tweak as needed */
+  height: auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar and social icons align with logo */
+.menu-item-wrapper3 .navbar,
+.menu-item-wrapper3 .social-media-icons,
+.menu-item-wrapper3 .social-media-icons li {
+  display: flex;
+  align-items: center;
+}
+
+/* If sticky header is smaller, scale it down a bit */
+.main-header-wrapper1 .menu-fixed .index1-logo img,
+.index1-logo .sticky-logo {
+  max-height: 48px;
+}
+
+@media (max-width: 768px) {
+  .index1-logo img { max-height: 48px; }
+}
+
+
 a.button-btn, button.button-btn {
   padding: 0px 55px;
   display: inline-block;
