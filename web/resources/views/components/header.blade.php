@@ -16,7 +16,7 @@
          <!--[endif]-->
          <head>
             <meta charset="utf-8" />
-            <title>Tabula</title>
+            <title>H3kHire</title>
             <meta content="width=device-width, initial-scale=1.0" name="viewport" />
             <!--Template style -->
             <link rel="stylesheet" type="text/css" href="css/animate.css" />
