@@ -21,10 +21,8 @@ class RegisterController extends Controller
             'role' => ['nullable', 'in:user,freelancer'],
         ]);
 
-        // Hash password and create user
-        $data['password'] = bcrypt($data['password']);
-
-        // only use the fillable fields on the model
+        // The User model casts 'password' => 'hashed', so pass the plain password
+        // and let the model/hash cast handle hashing to avoid double-hashing.
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
