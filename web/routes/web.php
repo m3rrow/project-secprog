@@ -21,7 +21,7 @@ Route::get('forgot', function(){
 })->name('forgot');
 
 Route::get('contact-us', function () {
-    return view('home.contact-us');
+    return view('home.contact-us');     
 })->name('contact');
 
 Route::get('support', function () {
@@ -88,6 +88,15 @@ Route::middleware('auth')->group(function () {
     Route::get('freelancer/profile', function () {
         return view('freelancer-profile');
     })->name('freelancer.profile');
+    
+    // Freelancer dashboard - only for authenticated users with role 'freelancer'
+    Route::get('freelancer/dashboard', function () {
+        $user = auth()->user();
+        if (! $user || $user->role !== 'freelancer') {
+            abort(403);
+        }
+        return view('components.dashboard.dashboard-freelancer');
+    })->name('freelancer.dashboard');
     Route::get('addproject', function () {
         return view('services.project.post-project');
     })->name('addproject');

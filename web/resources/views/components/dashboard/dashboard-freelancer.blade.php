@@ -1,212 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Freelancer Dashboard</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      background-color: #f8f9fa;
-      font-family: 'Poppins', sans-serif;
-    }
-    header {
-      background: #212529;
-      color: #fff;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      font-size: 1.5rem;
-      margin: 0;
-    }
-    header nav a {
-      color: #fff;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-    .summary-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .summary-card h5 {
-      font-size: 1rem;
-      color: #6c757d;
-    }
-    .summary-card h2 {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #212529;
-      color: #fff;
-      margin-top: 40px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Dashboard Freelancer</h1>
-    <nav>
-      <a href="#">Projects</a>
-      <a href="#">Messages</a>
-    </nav>
-    <div>
-      <img src="https://via.placeholder.com/40" class="rounded-circle me-2" alt="User" />
-      <span>freelancer</span>
-    </div>
-  </header>
-
-  <main class="container my-4">
-    <div class="mb-4 p-4 bg-white rounded shadow-sm d-flex justify-content-between align-items-center">
-      <div>
-        <h3>Welcome back, freelancer name!</h3>
-        <p>You have <strong>2 active</strong> projects and <strong>1 new</strong> offer.</p>
-      </div>
-      <div>
-        <button class="btn btn-primary me-2">View Projects</button>
-        <button class="btn btn-outline-secondary">Upload Report</button>
-      </div>
-    </div>
-
-    <div class="row text-center g-3 mb-4">
-      <div class="col-md-3"><div class="summary-card"><h5>Active Projects</h5><h2>3</h2></div></div>
-      <div class="col-md-3"><div class="summary-card"><h5>Earnings (Month)</h5><h2>Rp 5.200.000</h2></div></div>
-      <div class="col-md-3"><div class="summary-card"><h5>Rating</h5><h2>4.8 ⭐</h2></div></div>
-      <div class="col-md-3"><div class="summary-card"><h5>Pending Tasks</h5><h2>2</h2></div></div>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-lg-8">
-        <div class="bg-white p-4 rounded shadow-sm mb-4">
-          <h4 class="mb-3">My Projects</h4>
-          <table class="table table-hover align-middle">
-            <thead class="table-light">
-              <tr>
-                <th>Project</th>
-                <th>Client</th>
-                <th>Status</th>
-                <th>Deadline</th>
-                <th>Progress</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Web Security Audit</td>
-                <td>PT CyberSafe</td>
-                <td><span class="badge bg-warning">In Progress</span></td>
-                <td>25 Okt 2025</td>
-                <td><div class="progress"><div class="progress-bar" style="width: 60%">60%</div></div></td>
-              </tr>
-              <tr>
-                <td>Phishing Awareness Training</td>
-                <td>Bank XYZ</td>
-                <td><span class="badge bg-success">Done</span></td>
-                <td>10 Okt 2025</td>
-                <td><div class="progress"><div class="progress-bar bg-success" style="width: 100%">100%</div></div></td>
-              </tr>
-            </tbody>
-          </table>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Freelancer Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+      :root { --card-bg: #ffffff; --muted: #6c757d; }
+      body { background: #f5f7fb; font-family: 'Poppins', sans-serif; color: #222; }
+      .page-header { padding: 24px 0; }
+      .summary-card { background: var(--card-bg); border-radius: 12px; padding: 18px; box-shadow: 0 6px 18px rgba(19,24,36,0.06); }
+      .section-title { font-weight: 600; margin-bottom: 16px; }
+      .job-actions .btn { min-width: 110px; }
+      .table-job td, .table-job th { vertical-align: middle; }
+      .rating-stars { color: #f1c40f; font-size: 1.1rem; }
+      .muted { color: var(--muted); }
+      .deactivated { opacity: 0.6; text-decoration: line-through; }
+    </style>
+  </head>
+  <body>
+    <div class="container page-header">
+      <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <h2 class="mb-0">Dashboard</h2>
+          <small class="muted">Welcome back — here's a summary of your account</small>
         </div>
-
-        <div class="bg-white p-4 rounded shadow-sm">
-          <h4 class="mb-3">Project Offers</h4>
-          <table class="table table-hover align-middle">
-            <thead class="table-light">
-              <tr>
-                <th>Project</th>
-                <th>Description</th>
-                <th>Budget</th>
-                <th>Deadline</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Penetration Test WebApp</td>
-                <td>Audit OWASP Top 10</td>
-                <td>Rp 3.500.000</td>
-                <td>5 hari</td>
-                <td><button class="btn btn-sm btn-primary">Apply</button></td>
-              </tr>
-              <tr>
-                <td>API Vulnerability Review</td>
-                <td>Check Auth & Token Flow</td>
-                <td>Rp 4.200.000</td>
-                <td>7 hari</td>
-                <td><button class="btn btn-sm btn-primary">Apply</button></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#postJobModal">Post a Job</button>
+          <a class="btn btn-primary" href="#">View public profile</a>
         </div>
       </div>
+    </div>
 
-      <div class="col-lg-4">
-        <div class="bg-white p-4 rounded shadow-sm mb-4 text-center">
-          <img src="https://via.placeholder.com/100" class="rounded-circle mb-3" alt="Profile" />
-          <h5>freelancer name</h5>
-          <p class="text-muted">Web Penetration Tester</p>
-          <div class="mb-3">
-            <span class="badge bg-info text-dark">Web Pentest</span>
-            <span class="badge bg-info text-dark">OSINT</span>
-            <span class="badge bg-info text-dark">Python</span>
+    <div class="container mb-5">
+      <div class="row g-4">
+        <!-- LEFT: Jobs, Orders -->
+        <div class="col-lg-8">
+          <div class="mb-4 summary-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h5 class="section-title mb-0">Jobs You Posted</h5>
+                <small class="muted">Active listings and quick controls</small>
+              </div>
+              <div class="text-end muted">Total: <strong>3</strong></div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-job table-hover">
+                <thead class="table-light">
+                  <tr>
+                    <th>Title</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Applicants</th>
+                    <th class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-job-id="101">
+                    <td>
+                      <div class="fw-semibold">Web Application Security Audit</div>
+                      <div class="muted small">Posted: 3 days ago • Deadline: 20 Nov 2025</div>
+                    </td>
+                    <td class="text-center"><span class="badge bg-success">Active</span></td>
+                    <td class="text-center">5</td>
+                    <td class="text-end job-actions">
+                      <button class="btn btn-sm btn-outline-secondary" onclick="viewJob(101)">View</button>
+                      <button class="btn btn-sm btn-danger" onclick="toggleDeactivate(this,101)">Deactivate</button>
+                    </td>
+                  </tr>
+                  <tr data-job-id="102">
+                    <td>
+                      <div class="fw-semibold">API Pentest (Auth Flows)</div>
+                      <div class="muted small">Posted: 10 days ago • Deadline: 05 Nov 2025</div>
+                    </td>
+                    <td class="text-center"><span class="badge bg-warning">In Progress</span></td>
+                    <td class="text-center">2</td>
+                    <td class="text-end job-actions">
+                      <button class="btn btn-sm btn-outline-secondary" onclick="viewJob(102)">View</button>
+                      <button class="btn btn-sm btn-danger" onclick="toggleDeactivate(this,102)">Deactivate</button>
+                    </td>
+                  </tr>
+                  <tr data-job-id="103">
+                    <td>
+                      <div class="fw-semibold">Short-term Secure Code Review</div>
+                      <div class="muted small">Posted: 2 months ago • Deadline: Completed</div>
+                    </td>
+                    <td class="text-center"><span class="badge bg-secondary">Closed</span></td>
+                    <td class="text-center">8</td>
+                    <td class="text-end job-actions">
+                      <button class="btn btn-sm btn-outline-secondary" onclick="viewJob(103)">View</button>
+                      <button class="btn btn-sm btn-danger" onclick="toggleDeactivate(this,103)">Deactivate</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <button class="btn btn-outline-primary w-100">Edit Profile</button>
+
+          <div class="mb-4 summary-card">
+            <h5 class="section-title">Orders</h5>
+            <ul class="nav nav-tabs" id="ordersTab" role="tablist">
+              <li class="nav-item" role="presentation"><button class="nav-link active" id="current-tab" data-bs-toggle="tab" data-bs-target="#current" type="button" role="tab">Current Orders</button></li>
+              <li class="nav-item" role="presentation"><button class="nav-link" id="past-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab">Past Orders</button></li>
+            </ul>
+            <div class="tab-content mt-3">
+              <div class="tab-pane fade show active" id="current" role="tabpanel">
+                <div class="list-group">
+                  <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                      <div class="fw-semibold">Web App Audit — Order #234</div>
+                      <div class="muted small">Client: Acme Co — Due: 2025-11-22</div>
+                    </div>
+                    <div>
+                      <span class="badge bg-info me-2">In Progress</span>
+                      <button class="btn btn-sm btn-outline-primary">Open</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="past" role="tabpanel">
+                <div class="list-group">
+                  <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                      <div class="fw-semibold">API Review — Order #190</div>
+                      <div class="muted small">Client: Bank XYZ — Completed: 2025-10-12</div>
+                    </div>
+                    <div>
+                      <span class="badge bg-success">Completed</span>
+                      <button class="btn btn-sm btn-outline-secondary ms-2">Receipt</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="bg-white p-4 rounded shadow-sm mb-4">
-          <h5 class="mb-3">Earnings Overview</h5>
-          <canvas id="earningsChart"></canvas>
-        </div>
+        <!-- RIGHT: Earnings, Rating, Quick Stats -->
+        <div class="col-lg-4">
+          <div class="mb-4 summary-card text-center">
+            <h6 class="muted">Monthly Income</h6>
+            <h3 class="mt-2">Rp 5.200.000</h3>
+            <div class="muted small">Paid this month</div>
+            <div class="mt-3">
+              <canvas id="miniEarnings" width="300" height="120"></canvas>
+            </div>
+          </div>
 
-        <div class="bg-white p-4 rounded shadow-sm">
-          <h5 class="mb-3">Notifications</h5>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">💰 Payment received from Bank XYZ</li>
-            <li class="list-group-item">🧾 New project offer: API Review</li>
-            <li class="list-group-item">⭐ You got a 5-star review!</li>
-          </ul>
+          <div class="mb-4 summary-card text-center">
+            <h6 class="muted">Rating</h6>
+            <div class="rating-stars mt-2">★★★★★ <span class="small muted">(4.8)</span></div>
+            <div class="muted small mt-2">Based on 124 reviews</div>
+          </div>
+
+          <div class="summary-card">
+            <h6 class="muted">Quick Stats</h6>
+            <div class="d-flex justify-content-between mt-3">
+              <div>
+                <div class="muted small">Active Jobs</div>
+                <div class="fw-bold">3</div>
+              </div>
+              <div>
+                <div class="muted small">Open Orders</div>
+                <div class="fw-bold">1</div>
+              </div>
+              <div>
+                <div class="muted small">Completed</div>
+                <div class="fw-bold">27</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </main>
 
-  <footer>
-    &copy; 2025 Freelance Platform. All Rights Reserved.
-  </footer>
+    <!-- Post Job Modal (frontend placeholder) -->
+    <div class="modal fade" id="postJobModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Post a new Job</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="post-job-form">
+              <div class="mb-3">
+                <label class="form-label">Job Title</label>
+                <input class="form-control" placeholder="e.g. Web application pentest" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Budget</label>
+                <input class="form-control" placeholder="Rp 3.000.000" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" rows="4"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" onclick="fakePostJob()">Post Job (placeholder)</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <script>
-    const ctx = document.getElementById('earningsChart');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-        datasets: [{
-          label: 'Earnings (Rp)',
-          data: [2500000, 3000000, 4200000, 4800000, 5100000, 5200000, 5300000],
-          borderColor: '#007bff',
-          fill: false,
-          tension: 0.2
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false }
-        },
-        scales: {
-          y: { beginAtZero: false }
-        }
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function viewJob(id){
+        alert('Open job details (placeholder) — job id: ' + id);
       }
-    });
-  </script>
-</body>
+      function toggleDeactivate(btn, id){
+        const row = btn.closest('tr');
+        const deactivated = row.classList.toggle('deactivated');
+        btn.textContent = deactivated ? 'Activate' : 'Deactivate';
+      }
+      function fakePostJob(){
+        const modal = new bootstrap.Modal(document.getElementById('postJobModal'));
+        modal.hide();
+        alert('Job posted (placeholder). Implement server-side create to persist.');
+      }
+
+      // Small placeholder chart (no external Chart.js dependency required)
+      (function renderMiniChart(){
+        const c = document.getElementById('miniEarnings');
+        if(!c) return;
+        const ctx = c.getContext('2d');
+        ctx.fillStyle = '#e9f2ff'; ctx.fillRect(0,0,c.width,c.height);
+        ctx.fillStyle = '#007bff';
+        [40,60,45,70,55,75,65].forEach((v,i)=>{ ctx.fillRect(10+i*40, c.height - v, 24, v); });
+      })();
+    </script>
+  </body>
 </html>

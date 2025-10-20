@@ -10,6 +10,14 @@
                     </div>
                     <nav class="navbar navbar-expand-lg">
                                  <ul class="navbar-nav">
+                              {{-- Dashboard link visible only to authenticated freelancers --}}
+                              @auth
+                                 @if (Auth::user()->role === 'freelancer')
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="{{ route('freelancer.dashboard') }}">Dashboard</a>
+                                    </li>
+                                 @endif
+                              @endauth
                                     @foreach ($routes as $route)
                                         @if ($route['is_dropdown'])
                                             <li class="nav-item menu-click{{ $loop->iteration }} ps-rel">
@@ -184,6 +192,11 @@
                      <div id="toggle_close">&times;</div>
                      <div id='cssmenu'>
                         <ul class="float_left">
+                     @auth
+                        @if (Auth::user()->role === 'freelancer')
+                           <li><a href="{{ route('freelancer.dashboard') }}">Dashboard</a></li>
+                        @endif
+                     @endauth
                             @foreach ($routes as $route)
                                 @if ($route['is_dropdown'])
                                     <li class="has-sub">
