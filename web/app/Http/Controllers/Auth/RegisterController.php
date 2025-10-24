@@ -16,12 +16,19 @@ class RegisterController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email'],
-            'birthdate' => ['required', 'date'],
-            'password' => ['required', 'min:8'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'min:8', 'confirmed'],
+            'role' => ['nullable', 'in:user,freelancer'],
         ]);
-        $data['password'] = bcrypt($data['password']);
-        $user = User::create($data);
+
+        // The User model casts 'password' => 'hashed', so pass the plain password
+        // and let the model/hash cast handle hashing to avoid double-hashing.
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'role' => $data['role'] ?? 'user',
+        ]);
 
         Auth::login($user);
 

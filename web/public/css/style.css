@@ -200,6 +200,92 @@ ul {
   padding: 0px 50px;
 }
 
+/* Responsive logo sizing to prevent overlaps */
+.index1-logo .normal-logo,
+.index1-logo .sticky-logo,
+.sidebar_logo img,
+.mobile-logo img {
+  max-width: 160px; /* cap width */
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+/* slightly smaller for sticky header */
+.index1-logo .sticky-logo {
+  max-width: 130px;
+}
+
+/* sidebar logo smaller */
+.sidebar_logo img {
+  max-width: 90px;
+}
+
+/* mobile logo: keep compact */
+.mobile-logo img {
+  max-width: 100px;
+}
+
+@media (max-width: 992px) {
+  .index1-logo .normal-logo { max-width: 140px; }
+  .index1-logo .sticky-logo { max-width: 110px; }
+}
+
+@media (max-width: 576px) {
+  .index1-logo .normal-logo { max-width: 120px; }
+  .mobile-logo img { max-width: 80px; }
+  .sidebar_logo img { max-width: 60px; }
+}
+
+/* Header vertical-centering fixes: use flex alignment and normalize image behavior */
+.menu-items-wrapper .container.custom-container .row,
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .row {
+  display: flex;       /* ensure the row behaves as a flex container */
+  align-items: center; /* vertical center children */
+}
+
+/* Logo container: center its contents and remove unexpected offsets */
+.index1-logo {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure images don't baseline-shift and have consistent sizing */
+.index1-logo img,
+.index1-logo .normal-logo,
+.index1-logo .sticky-logo,
+.sidebar_logo img,
+.mobile-logo img {
+  display: block;
+  vertical-align: middle;
+  max-height: 60px; /* tweak as needed */
+  height: auto;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar and social icons align with logo */
+.menu-item-wrapper3 .navbar,
+.menu-item-wrapper3 .social-media-icons,
+.menu-item-wrapper3 .social-media-icons li {
+  display: flex;
+  align-items: center;
+}
+
+/* If sticky header is smaller, scale it down a bit */
+.main-header-wrapper1 .menu-fixed .index1-logo img,
+.index1-logo .sticky-logo {
+  max-height: 48px;
+}
+
+@media (max-width: 768px) {
+  .index1-logo img { max-height: 48px; }
+}
+
+
 a.button-btn, button.button-btn {
   padding: 0px 55px;
   display: inline-block;
@@ -1333,6 +1419,72 @@ header css
   transition: all 0.3s ease-in-out;
 }
 
+/* ===== Sticky/float header (menu-fixed) overrides ===== */
+/* Ensure the floating header that appears after scrolling is white with dark text/icons */
+.menu-fixed,
+.menu-items-wrapper.menu-fixed,
+.main-header-wrapper1 .menu-fixed,
+.main-header-wrapper1 .menu-items-wrapper.menu-fixed {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e9e9e9 !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06) !important;
+  z-index: 9999 !important;
+}
+
+/* nav links inside sticky header */
+.menu-fixed .sb-main-header1 .menu-item-wrapper3 nav ul li a,
+.menu-items-wrapper.menu-fixed .sb-main-header1 .menu-item-wrapper3 nav ul li a,
+.main-header-wrapper1 .menu-fixed nav ul li a {
+  color: #111 !important;
+}
+
+/* icons and svg fills */
+.menu-fixed .sb-main-header1 .menu-item-wrapper3 .social-media-icons li .search_bar .lv_search_bar a span svg,
+.menu-fixed .sb-main-header1 .menu-item-wrapper3 .social-media-icons li .sidebar-toggle span svg,
+.menu-items-wrapper.menu-fixed .sb-main-header1 .menu-item-wrapper3 .social-media-icons li .search_bar .lv_search_bar a span svg,
+.menu-items-wrapper.menu-fixed .sb-main-header1 .menu-item-wrapper3 .social-media-icons li .sidebar-toggle span svg {
+  fill: #111 !important;
+}
+
+/* user menu and dropdowns */
+.menu-fixed .sb-main-header1 .menu-item-wrapper3 nav ul li .dropdown-items,
+.menu-fixed .sb-main-header1 .menu-item-wrapper3 .social-media-icons .user-text,
+.menu-items-wrapper.menu-fixed .sb-main-header1 .menu-item-wrapper3 nav ul li .dropdown-items,
+.menu-items-wrapper.menu-fixed .sb-main-header1 .menu-item-wrapper3 .social-media-icons .user-text {
+  background-color: #ffffff !important;
+  color: #111 !important;
+  border-color: #eee !important;
+}
+
+/* show sticky small logo if present */
+.menu-fixed .index1-logo .sticky-logo,
+.menu-items-wrapper.menu-fixed .index1-logo .sticky-logo {
+  display: block !important;
+  max-height: 48px;
+}
+
+/* Hide the regular (normal) logo when the sticky/menu-fixed header is active
+   to avoid displaying both logos at the same time. */
+.menu-fixed .index1-logo .normal-logo,
+.menu-items-wrapper.menu-fixed .index1-logo .normal-logo {
+  display: none !important;
+}
+
+/* Ensure the default state shows the normal logo and hides the sticky logo */
+.index1-logo .normal-logo {
+  display: block;
+}
+.index1-logo .sticky-logo {
+  display: none;
+}
+
+/* keep sticky header children vertically centered */
+.menu-fixed .container .row,
+.menu-items-wrapper.menu-fixed .container .row {
+  align-items: center !important;
+}
+
+
 .mega-menu {
   width: 700px !important;
   padding: 20px 0;
@@ -1429,6 +1581,51 @@ header css
 .inner-main-header .sb-main-header1 .menu-fixed .social-media-icons .dekstop-login-btn a {
   color: #fff;
 }
+
+/* === Navbar: force white background and black text/icons === */
+/* High-specificity overrides placed after header rules to ensure they apply. */
+.main-header-wrapper1 {
+  background-color: #ffffff !important;
+}
+
+/* Nav links */
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 nav ul li a,
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 nav ul li a span {
+  color: #111 !important;
+}
+
+/* Social icons, search icon, toggles */
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons li .search_bar .lv_search_bar a span svg,
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons li .sidebar-toggle span svg {
+  fill: #111 !important;
+}
+
+/* Post button / login text */
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons .post-drop .post-btn,
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons .dekstop-login-btn a,
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons .login-btn a {
+  color: #111 !important;
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+/* Dropdowns and user-text */
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 nav ul li .dropdown-items,
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons .user-text {
+  background-color: #ffffff !important;
+}
+
+/* If there's a sticky menu variant that darkens text, override it */
+.main-header-wrapper1 .sb-main-header1 .menu-fixed nav ul li a,
+.main-header-wrapper1 .sb-main-header1 .menu-fixed .social-media-icons .login-btn a {
+  color: #111 !important;
+}
+
+/* Mobile menu toggle lines (hamburger) */
+.mobile-menu-wrapper .toggle-main-wrapper .line {
+  background-color: #111 !important;
+}
+
 
 .ewr_breadcrumbs_help_wrapper {
   padding: 55px 0px 0px 0px;

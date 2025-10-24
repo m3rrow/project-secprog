@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Hazy',
             'email' => 'hazy@example.com',
-            'birthdate' => '2000-01-01',
-            'password' => 'password', // password
+            // let the factory handle password hashing; don't set birthdate (removed)
+            'role' => 'user',
         ]);
     }
 }

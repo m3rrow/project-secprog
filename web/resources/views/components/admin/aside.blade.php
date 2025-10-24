@@ -4,12 +4,20 @@
                    <div class="col-lg-8 col-md-6">
                     <div class="index1-logo">
                        <a href="{{ url('/') }}">
-                       <img class="normal-logo" src="images/blue-logo.png" alt="logo">
-                          <img class="sticky-logo" src="images/index1-logo.png" alt="logo">
+                       <img class="normal-logo" src="images/h3khire-logo.png" alt="logo" style="max-height: 60px;">
+                          <img class="sticky-logo" src="images/h3khire-logo.png" alt="logo">
                        </a>
                     </div>
                     <nav class="navbar navbar-expand-lg">
                                  <ul class="navbar-nav">
+                              {{-- Dashboard link visible only to authenticated freelancers --}}
+                              @auth
+                                 @if (Auth::user()->role === 'freelancer')
+                                    <li class="nav-item">
+                                       <a class="nav-link" href="{{ route('freelancer.dashboard') }}">Dashboard</a>
+                                    </li>
+                                 @endif
+                              @endauth
                                     @foreach ($routes as $route)
                                         @if ($route['is_dropdown'])
                                             <li class="nav-item menu-click{{ $loop->iteration }} ps-rel">
@@ -34,10 +42,11 @@
                    <ul
                                  class="d-xl-flex d-lg-flex d-md-none d-sm-none d-none justify-content-end align-items-center social-media-icons">
                                  <li class="dekstop-login-btn">
-                                    @auth
-                                       <a href="#"><i class="fa fa-user-o" aria-hidden="true"></i>{{ Auth::user()->name }}</a>
-                                       <a href="{{ route('logout') }}">/ Logout</a>
-                                    @else
+                              @auth
+                                 @php $profileRoute = (Auth::user()->role === 'freelancer') ? route('freelancer.profile') : route('user.profile'); @endphp
+                                 <a href="{{ $profileRoute }}"><i class="fa fa-user-o" aria-hidden="true"></i>{{ Auth::user()->name }}</a>
+                                 <a href="{{ route('logout') }}">/ Logout</a>
+                              @else
                                        <a href="{{ route('login') }}"> <i class="fa fa-user-o" aria-hidden="true"></i> Login</a>
                                        <a href="{{ route('register') }}">/ Sign Up</a>
                                     @endauth
@@ -113,7 +122,7 @@
                    <div class=" col-md-4 col-sm-4 col-4">
                       <div class="mobile-logo">
                          <a href="">
-                         <img src="images/index1-logo.png" alt="logo">
+                         <img src="images/h3khire-logo.png" alt="logo">
                          </a>
                       </div>
                    </div>
@@ -178,11 +187,16 @@
           </div>
           <div id="sidebar">
                      <div class="sidebar_logo">
-                        <a href="{{ url('/') }}"><img src="images/index1-logo.png" alt="logo"></a>
+                        <a href="{{ url('/') }}"><img src="images/h3khire-logo.png" alt="logo" style="max-height: 60px"></a>
                      </div>
                      <div id="toggle_close">&times;</div>
                      <div id='cssmenu'>
                         <ul class="float_left">
+                     @auth
+                        @if (Auth::user()->role === 'freelancer')
+                           <li><a href="{{ route('freelancer.dashboard') }}">Dashboard</a></li>
+                        @endif
+                     @endauth
                             @foreach ($routes as $route)
                                 @if ($route['is_dropdown'])
                                     <li class="has-sub">

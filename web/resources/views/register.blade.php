@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <title>Register - H3kHire</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
   <link rel="shortcut icon" type="image/png" href="images/fav-icon.png" />
 
   <style>
@@ -31,61 +31,55 @@
       border-radius: 15px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.1);
       width: 100%;
-      max-width: 480px; 
+      max-width: 480px;
     }
 
     .login-box h4 {
       font-weight: 600;
-      margin-bottom: 1.5rem;
-      text-align: center;
+      margin-bottom: 3rem;       text-align: center;
     }
 
     .signup-link {
       font-size: 0.9rem;
     }
 
-    /* --- PILL SEGMENTED CONTROL TAB STYLES --- */
-    .form-tabs .nav-pills {
-        display: flex;
-        justify-content: stretch;
-        gap: 0; 
-        border: 1px solid #dee2e6;
-        border-radius: 30px; 
-        overflow: hidden; 
-        background-color: #fff;
+    .field-select {
+        position: relative;
     }
-
-    .form-tabs .nav-item {
-        flex: 1; 
-    }
-
-    .form-tabs .nav-link {
-        border-radius: 0; 
-        text-align: center;
+    .field-select .form-select {
+        background-color: #eaf2f7;
+        border: 1px solid #eaf2f7;
+        border-radius: 30px;
+        height: 50px;
+        padding-left: 20px;
+        padding-right: 40px;
         color: #555;
-        font-weight: 500;
-        transition: all 0.3s ease-in-out; 
-        border: none; 
-        background-color: transparent; 
-        width: 100%; 
-        padding: 0.75rem 1rem; 
+        font-size: 1rem;
+        width: 100%;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 16px 12px;
+        cursor: pointer;
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .field-select .form-select:required:invalid {
+        color: #6c757d;
+    }
+    .field-select .form-select option {
+         color: #212529;
+    }
+    .field-select .form-select option:disabled {
+         color: #6c757d;
+    }
+    .field-select .form-select:focus {
+        box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25);
+        border-color: #a9a5f7;
+        background-color: #eaf2f7;
+        outline: none;
     }
 
-    .form-tabs .nav-item:not(:last-child) .nav-link {
-        border-right: 1px solid #dee2e6;
-    }
-
-    .form-tabs .nav-link.active {
-        background: #4;
-        color: #fff;
-    }
-
-    .form-tabs .nav-link:hover:not(.active) {
-        background-color: #eaf2f7; 
-        color: #333;
-    }
-
-    /* --- FORM INPUT BOX STYLES --- */
     .field-icon {
         position: relative;
     }
@@ -108,18 +102,17 @@
         border-color: #eaf2f7;
     }
 
-    /* --- SUBMIT BUTTON STYLES --- */
     .btn-custom {
       background: #4f46e5;
       color: #fff;
       border-radius: 24px;
       padding: 0.75rem;
       font-weight: 500;
-      width: 200px; 
+      width: 200px;
       border: none;
-      position: relative; 
-      overflow: hidden;  
-      z-index: 1;        
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
     .btn-custom span {
         position: relative;
@@ -145,7 +138,6 @@
         color: #fff;
     }
 
-    /* --- SOCIAL BUTTON STYLES --- */
     .social-login {
       display: flex;
       justify-content: center;
@@ -161,7 +153,7 @@
         align-items: center;
         justify-content: center;
         color: #555;
-        position: relative; 
+        position: relative;
         overflow: hidden;
         transition: all 0.3s;
     }
@@ -195,55 +187,38 @@
 </head>
 <body>
   <div class="login-container">
-    
+
     <div class="text-center mb-4">
       <img src="images/h3khire-logo.png" alt="H3kHire Logo" style="max-height: 80px;">
     </div>
 
     <div class="login-box">
-      
-      <div class="form-tabs mb-4">
-        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pills-user-tab" data-bs-toggle="pill" data-bs-target="#pills-user" type="button" role="tab" aria-controls="pills-user" aria-selected="true">User</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="pills-freelancer-tab" data-bs-toggle="pill" data-bs-target="#pills-freelancer" type="button" role="tab" aria-controls="pills-freelancer" aria-selected="false">Freelancer</button>
-            </li>
-        </ul>
-      </div>
 
-      <div class="tab-content" id="pills-tabContent">
-        
-        <div class="tab-pane fade show active" id="pills-user" role="tabpanel" aria-labelledby="pills-user-tab">
-            <h4>Sign Up as User</h4>
-            <form method="POST" action="{{ route('register.store') }}">
-                @csrf
-                <div class="mb-3 field-icon"><i class="fas fa-user icon"></i><input type="text" name="name" class="form-control" placeholder="Full Name" required></div>
-                <div class="mb-3 field-icon"><i class="fas fa-envelope icon"></i><input type="email" name="email" class="form-control" placeholder="Email" required></div>
-                <div class="mb-3 field-icon"><i class="fas fa-calendar-alt icon"></i><input type="date" name="birthdate" class="form-control" required></div>
-                <div class="mb-3 field-icon"><i class="fas fa-lock icon"></i><input type="password" name="password" class="form-control" placeholder="Password" required></div>
-                <div class="mb-3 field-icon"><i class="fas fa-lock icon"></i><input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required></div>
-                <div class="form-check mb-3"><input type="checkbox" id="terms-user" class="form-check-input" required><label for="terms-user" class="form-check-label" style="font-size: 0.9rem;">I agree to the Terms & Conditions.</label></div>
-                <div class="text-center"><button type="submit" class="btn btn-custom"><span>Sign Up</span></button></div>
-            </form>
-        </div>
+      <h4>Welcome!</h4>
 
-        <div class="tab-pane fade" id="pills-freelancer" role="tabpanel" aria-labelledby="pills-freelancer-tab">
-            <h4>Sign Up as Freelancer</h4>
-            <form method="POST" action="">
-                @csrf
-                <div class="mb-3 field-icon"><i class="fas fa-user icon"></i><input type="text" name="name" class="form-control" placeholder="Full Name" required></div>
-                <div class="mb-3 field-icon"><i class="fas fa-envelope icon"></i><input type="email" name="email" class="form-control" placeholder="Email" required></div>
-                <div class="mb-3 field-icon"><i class="fas fa-briefcase icon"></i><input type="text" name="category" class="form-control" placeholder="Category (e.g., Web Developer)" required></div>
-                <div class="mb-3 field-icon"><i class="fas fa-lock icon"></i><input type="password" name="password" class="form-control" placeholder="Password" required></div>
-                <div class="mb-3 field-icon"><i class="fas fa-lock icon"></i><input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required></div>
-                <div class="form-check mb-3"><input type="checkbox" id="terms-freelancer" class="form-check-input" required><label for="terms-freelancer" class="form-check-label" style="font-size: 0.9rem;">I agree to the Terms & Conditions.</label></div>
-                <div class="text-center"><button type="submit" class="btn btn-custom"><span>Sign Up</span></button></div>
-            </form>
-        </div>
+      <form method="POST" action="{{ route('register.store') }}">
+          @csrf
 
-      </div>
+          <div class="mb-3 field-icon"><i class="fas fa-user icon"></i><input type="text" name="name" class="form-control" placeholder="Username" required></div>
+
+          <div class="mb-3 field-icon"><i class="fas fa-envelope icon"></i><input type="email" name="email" class="form-control" placeholder="Email" required></div>
+
+          <div class="mb-3 field-icon"><i class="fas fa-lock icon"></i><input type="password" name="password" class="form-control" placeholder="Password" required></div>
+
+          <div class="mb-3 field-icon"><i class="fas fa-lock icon"></i><input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required></div>
+
+          <div class="mb-3 field-select">
+              <select class="form-select" name="role" required>
+                  <option value="" disabled selected>Select your role</option>
+                  <option value="user">User</option>
+                  <option value="freelancer">Freelancer</option>
+              </select>
+          </div>
+
+          <div class="form-check mb-3"><input type="checkbox" id="terms" class="form-check-input" required><label for="terms" class="form-check-label" style="font-size: 0.9rem;">I agree to the Terms & Conditions.</label></div>
+
+          <div class="text-center"><button type="submit" class="btn btn-custom"><span>Sign Up</span></button></div>
+      </form>
 
       <div class="text-center mt-3">
         <span>- OR -</span>
@@ -262,5 +237,30 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const roleSelect = document.querySelector('select[name="role"]');
+    const categoryField = document.getElementById('category-field');
+    const categoryInput = categoryField ? categoryField.querySelector('input') : null;
+
+    function updateCategoryField() {
+      if (!categoryField || !categoryInput) return; 
+
+      if (roleSelect.value === 'freelancer') {
+        categoryField.style.display = 'block';
+        categoryInput.required = true;
+      } else {
+        categoryField.style.display = 'none';
+        categoryInput.required = false;
+        categoryInput.value = ''; 
+      }
+    }
+
+    if (roleSelect) {
+        updateCategoryField();
+        roleSelect.addEventListener('change', updateCategoryField);
+    }
+  </script>
+
 </body>
 </html>

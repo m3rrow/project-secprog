@@ -34,26 +34,7 @@ class aside extends Component
                 'label' => 'Jobs',
                 'route_name' => 'jobs',
                 'is_dropdown' => false,
-            ],
-            [
-                'label' => 'Services',
-                'is_dropdown' => true,
-                'dropdown' => [
-                    [
-                        'label' => 'Freelancers',
-                        'route_name' => 'freelancer',
-                    ],
-                    [
-                        'label' => 'Companies',
-                        'route_name' => 'company',
-                    ],
-                    [
-                        'label' => 'Projects',
-                        'route_name' => 'project',
-                    ],
-                ]
-
-            ],
+            ]
         ];
     }
 
