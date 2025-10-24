@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\FreelancerAccountController;
 use App\Http\Controllers\User\CustomerAccountController;
+use App\Http\Controllers\Job\JobsController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Middleware\EnsureRole;
 
@@ -29,6 +30,7 @@ Route::middleware(['web','auth:web'])
     ->withoutMiddleware(VerifyCsrfToken::class); // disable csrf
 
 
+    
 /* start of freelancer area */
 // {{url}}/api/freelancer-account/view
 // untuk melihat informasi detail freelancer
@@ -53,6 +55,7 @@ Route::middleware(['web','auth:web','throttle:30,1',
 /* end of freelancer area */
 
 
+
 /* start of customer area */
 // {{url}}/api/customer-account/view
 // untuk melihat informasi detail customer
@@ -75,6 +78,39 @@ Route::middleware(['web','auth:web','throttle:30,1',
     ->post('/customer-account/update', [CustomerAccountController::class, 'update'])
     ->withoutMiddleware(VerifyCsrfToken::class);
 /* end of customer area */
+
+
+
+/* start of job area */
+// {{url}}/api/jobs
+// {{url}}/api/jobs?limit=3&sort=asc
+// {{url}}/api/jobs?status=available&category=Web%20Application%20Pentest&limit=10&offset=10
+Route::get('/jobs', [JobsController::class, 'index']);
+
+// {{url}}/api/jobs/mine
+// {{url}}/api/jobs/mine?status=available&category=Web%20Application%20Pentest&limit=10&offset=10
+Route::middleware(['web','auth:web','throttle:30,1',
+    EnsureRole::class.':freelancer'])
+    ->get('/jobs/mine', [JobsController::class, 'mine'])
+    ->withoutMiddleware(VerifyCsrfToken::class);
+
+// {{url}}/api/jobs/{id}
+Route::middleware(['web','auth:web'])
+    ->get('/jobs/{id}', [JobsController::class, 'show']);
+
+// {{url}}/api/jobs/insert_job
+Route::middleware(['web','auth:web','throttle:30,1',
+    EnsureRole::class.':freelancer'])
+    ->post('/jobs/create', [JobsController::class, 'create'])
+    ->withoutMiddleware(VerifyCsrfToken::class);
+
+// {{url}}/jobs/{id}/update_job
+Route::middleware(['web','auth:web','throttle:30,1',
+    EnsureRole::class.':freelancer'])
+    ->post('/jobs/{id}/update', [JobsController::class, 'update'])
+    ->withoutMiddleware(VerifyCsrfToken::class);
+/* end of job area */
+
 
 
 /* redirect semua request /api/* ke / */

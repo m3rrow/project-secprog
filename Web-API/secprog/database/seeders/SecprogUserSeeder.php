@@ -19,5 +19,21 @@ class SecprogUserSeeder extends Seeder
             'role'              => 'admin',
             'account_status'    => 'verified',
         ]);
+
+
+        foreach (["dimas", "fajar", "eko", "vera", "nadia"] as $name) {
+            $uuid_freelancer = (string) Str::uuid();
+            DB::table('user')->insert([
+                'user_id'           => $uuid_freelancer,
+                'username'          => $name,
+                'email'             => "{$name}@mail.com",
+                'password'          => Hash::make('p@ssw0rd'),
+                'role'              => 'freelancer',
+                'account_status'    => 'verified',
+            ]);
+            DB::table('freelancer_detail')->insert([
+                'user_id'           => $uuid_freelancer
+            ]);
+        }
     }
 }
