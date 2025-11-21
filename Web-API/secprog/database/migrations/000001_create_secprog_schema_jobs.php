@@ -21,11 +21,13 @@ return new class extends Migration
             $table->engine = 'InnoDB';
 
             $table->string('job_id', 64)->primary();
-            $table->string('job_title', 128)->nullable();
+            $table->string('job_title', 128)->unique();
             $table->text('job_desc')->nullable();
-            $table->decimal('price_per_hour', 15, 2)->default(0.00);
 
-            $table->string('file_job_banner', 255)->nullable();
+            $table->enum('price_type', ['hour', 'day'])->default('day');
+            $table->unsignedInteger('price_per_time')->nullable();
+
+            // $table->string('file_job_banner', 255)->nullable(); // not needed (untuk sekarang gak ada fitur banner gampbar)
 
             $table->enum('job_status', ['available', 'booked', 'unavailable'])->default('available');
 
@@ -34,11 +36,23 @@ return new class extends Migration
                 'Code Audit', 'CTF Player', 'Mobile Pentest', 'Web Application Pentest'
             ])->nullable(false);
 
+            $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
+
             $table->string('user_id', 64)->nullable();
             $table->foreign('user_id')
                   ->references('user_id')->on('secprog.user')
                   ->onDelete('cascade');
         });
+        // --- TRIGGERS ---
+        // A) Keep created_timestamp immutable
+        DB::unprepared(<<<'SQL'
+CREATE TRIGGER `secprog_jobs_update_ts`
+BEFORE UPDATE ON `secprog`.`jobs`
+FOR EACH ROW
+BEGIN
+    SET NEW.`update_at` = CURRENT_TIMESTAMP;
+END
+SQL);
 
         // ----------------------
         // secprog.job_order
@@ -47,8 +61,10 @@ return new class extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('order_id');
+            
+            $table->enum('price_type', ['hour', 'day'])->default('day');
+            $table->unsignedInteger('duration_amount')->nullable();
 
-            $table->unsignedInteger('duration_hours')->nullable();
             $table->string('order_note', 255)->nullable();
             $table->enum('job_status', ['Awaiting-Payment', 'On-Progress', 'Complete', 'Canceled'])->nullable(false);
             $table->timestamp('order_at')->useCurrent()->useCurrentOnUpdate();
@@ -97,6 +113,7 @@ return new class extends Migration
     public function down(): void
     {
         // drop trigger
+        DB::unprepared('DROP TRIGGER IF EXISTS `secprog_jobs_update_ts`');
 
         // drop table in reverse FK dependency order
         Schema::dropIfExists('secprog.job_ratings');

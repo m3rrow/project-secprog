@@ -29,7 +29,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"user\",\r\n    \"email\": \"user@mail.com\",\r\n    \"password\": \"p@ssw0rd\",\r\n    \"role\": \"freelancer\"\r\n}",
+					"raw": "{\r\n    \"username\": \"dimas\",\r\n    \"email\": \"dimas@mail.com\",\r\n    \"password\": \"p@ssw0rd\",\r\n    \"role\": \"freelancer\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,7 +76,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"login\": \"user\",\r\n    \"password\": \"p@ssw0rd\"\r\n}",
+					"raw": "{\r\n    \"login\": \"vera@mail.com\",\r\n    \"password\": \"p@ssw0rd\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -103,8 +103,7 @@
 				"protocolVersion": "auto",
 				"disableUrlEncoding": false,
 				"followRedirects": false,
-				"followOriginalHttpMethod": false,
-				"disableCookies": true
+				"followOriginalHttpMethod": false
 			},
 			"request": {
 				"method": "GET",
@@ -206,7 +205,6 @@
 			"protocolProfileBehavior": {
 				"protocolVersion": "auto",
 				"disableUrlEncoding": false,
-				"disableCookies": true,
 				"followRedirects": false
 			},
 			"request": {
@@ -224,7 +222,7 @@
 					},
 					{
 						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6IjVhbSswNEQ2SFhFN29raFh5YklwQ2c9PSIsInZhbHVlIjoiaVVsTElOSDRXeG5kcUw3Z2U3Y1FXNk5GQ0VrWW1jeUE4dythT1R4MGUyZTg5Z0txQVBDSGNLSVZ5L3ZCT0hGR1VwQkVUUXpVRWpoRVZlS3I2QldmeGQ1NHkzZHFyTUVDVlFuaHpJcmJuU2V4L25wQzFWRjYzc1VPM2tnL2JMeWsiLCJtYWMiOiIyOWZjZDNhMDBkZDE1ZjNjM2ZhMGE5MzM1YTM2N2VlN2IxYmNjNzFmODc4NmE3MWZkMDA2ZDhiMTVhNjk0ZTZlIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 00:15:12 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"value": "laravel-session=eyJpdiI6InBzQStaZWs3c0dqanFVUGppVUFDcVE9PSIsInZhbHVlIjoiaUdjZjlGcE1iK3R6dzJINDVVQkpDNVg2UTZGNzhUcG9sV3J4VngrckVYWi9nUXA4QXVJalJYMVRXaTgxNmo1NmFkRVplVE8wZDZFSXU4QmZzcFQxeWpxMnhEeGxqNVZsaXhFSTBERVdNMVZJazBabmhnU1ViN01iOFEwYzJnWTMiLCJtYWMiOiI1OTBlZjYzYTE3OWI0MGFkZWM0MGZjMDEzNDFkN2VkNzBmNzc4MzBlYWI2ZmM5OWQ5NTRjMWIyOTVkMWY4NzJmIiwidGFnIjoiIn0%3D; expires=Sun, 23 Nov 2025 01:00:51 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
 						"type": "text"
 					}
 				],
@@ -243,11 +241,50 @@
 			"response": []
 		},
 		{
-			"name": "freelancer detail - insert",
+			"name": "customer detail - view",
 			"protocolProfileBehavior": {
 				"protocolVersion": "auto",
 				"disableUrlEncoding": false,
-				"disableCookies": true
+				"followRedirects": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6Im1YWnBGNmNMQkQxeGRBcU9LODJ3Y2c9PSIsInZhbHVlIjoieFJMOTQ3RW5SZU1Ka1VJd2ZKZFk1SEd5QndVdE92eTRoU05QNm1KdGc0Z2FYQTBnTExheTgvQU43UFpMVjlHTmpObU1Od0NjYUppQ0lON3JOMWY1QUpDYnB2alFYQ0hZMndTcjZOS0t5M1N0UDJWWGZ6NVA5NTdmYUVKL0FicmsiLCJtYWMiOiJhMjNhMzA0MzNhYWZkODJhMGE5MzNjZDRlYTdmMzFmOWE4ZDU4NmE0M2ZhZTM5NjcyYzMwYzUyYjdkZTEwMmRhIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 13:16:15 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/api/customer-account/view",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"customer-account",
+						"view"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "freelancer detail - insert",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
 			},
 			"request": {
 				"method": "POST",
@@ -264,7 +301,7 @@
 					},
 					{
 						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6Imx6MTNnTXJaVmZVeXg3akhGYSsxTWc9PSIsInZhbHVlIjoibFFrUWx4WnFpOTRBYlA2UmNOMTgrQWZsMWpxZllzc1dKaUlyemtDb043SWd4QTZiSEVBNVpQL09xMEQ0TSs0eHRrZnFrMkRNazJRelI5cXVHa2dlNVNMaDBMc0liMWRib0hKTG4raEUreTdDN2pwOEx0V2VDc0dOYVYzc3I0ZzIiLCJtYWMiOiJlYjJiY2JhNWM3ODdiMmY1OWVhMmZiOWNhNjhlZDc4MjA0ZjA0MjNkYjQ4MGRiYmE0M2U4MDQzMDc2NjAwZDY3IiwidGFnIjoiIn0%3D; expires=Sat, 08 Nov 2025 23:43:13 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"value": "laravel-session=eyJpdiI6InBzQStaZWs3c0dqanFVUGppVUFDcVE9PSIsInZhbHVlIjoiaUdjZjlGcE1iK3R6dzJINDVVQkpDNVg2UTZGNzhUcG9sV3J4VngrckVYWi9nUXA4QXVJalJYMVRXaTgxNmo1NmFkRVplVE8wZDZFSXU4QmZzcFQxeWpxMnhEeGxqNVZsaXhFSTBERVdNMVZJazBabmhnU1ViN01iOFEwYzJnWTMiLCJtYWMiOiI1OTBlZjYzYTE3OWI0MGFkZWM0MGZjMDEzNDFkN2VkNzBmNzc4MzBlYWI2ZmM5OWQ5NTRjMWIyOTVkMWY4NzJmIiwidGFnIjoiIn0%3D; expires=Sun, 23 Nov 2025 01:00:51 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
 						"type": "text"
 					}
 				],
@@ -311,12 +348,7 @@
 							"type": "file",
 							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
 						}
-					],
-					"options": {
-						"raw": {
-							"language": "text"
-						}
-					}
+					]
 				},
 				"url": {
 					"raw": "{{url}}/api/freelancer-account/insert",
@@ -333,11 +365,84 @@
 			"response": []
 		},
 		{
+			"name": "customer detail - insert",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6Im1YWnBGNmNMQkQxeGRBcU9LODJ3Y2c9PSIsInZhbHVlIjoieFJMOTQ3RW5SZU1Ka1VJd2ZKZFk1SEd5QndVdE92eTRoU05QNm1KdGc0Z2FYQTBnTExheTgvQU43UFpMVjlHTmpObU1Od0NjYUppQ0lON3JOMWY1QUpDYnB2alFYQ0hZMndTcjZOS0t5M1N0UDJWWGZ6NVA5NTdmYUVKL0FicmsiLCJtYWMiOiJhMjNhMzA0MzNhYWZkODJhMGE5MzNjZDRlYTdmMzFmOWE4ZDU4NmE0M2ZhZTM5NjcyYzMwYzUyYjdkZTEwMmRhIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 13:16:15 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "nama_lengkap",
+							"value": "Kolor Sakti",
+							"type": "text"
+						},
+						{
+							"key": "no_hp",
+							"value": "+62857123123",
+							"type": "text"
+						},
+						{
+							"key": "tgl_lahir",
+							"value": "12/30/1945",
+							"type": "text"
+						},
+						{
+							"key": "alamat",
+							"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
+							"type": "text"
+						},
+						{
+							"key": "company_name",
+							"value": "PT. Bank Mandiri",
+							"type": "text"
+						},
+						{
+							"key": "profile_photo",
+							"type": "file",
+							"src": "/D:/541096657_771483772244869_7506453998556014849_n.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/customer-account/insert",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"customer-account",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "freelancer detail - update",
 			"protocolProfileBehavior": {
 				"protocolVersion": "auto",
-				"disableUrlEncoding": false,
-				"disableCookies": true
+				"disableUrlEncoding": false
 			},
 			"request": {
 				"method": "POST",
@@ -420,6 +525,287 @@
 					"path": [
 						"api",
 						"freelancer-account",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer detail - update",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "laravel-session=eyJpdiI6Im1YWnBGNmNMQkQxeGRBcU9LODJ3Y2c9PSIsInZhbHVlIjoieFJMOTQ3RW5SZU1Ka1VJd2ZKZFk1SEd5QndVdE92eTRoU05QNm1KdGc0Z2FYQTBnTExheTgvQU43UFpMVjlHTmpObU1Od0NjYUppQ0lON3JOMWY1QUpDYnB2alFYQ0hZMndTcjZOS0t5M1N0UDJWWGZ6NVA5NTdmYUVKL0FicmsiLCJtYWMiOiJhMjNhMzA0MzNhYWZkODJhMGE5MzNjZDRlYTdmMzFmOWE4ZDU4NmE0M2ZhZTM5NjcyYzMwYzUyYjdkZTEwMmRhIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 13:16:15 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "HR@mandiri.com",
+							"type": "text"
+						},
+						{
+							"key": "nama_lengkap",
+							"value": "Kolor Manga",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "no_hp",
+							"value": "+62857123123",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "tgl_lahir",
+							"value": "12/30/1945",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "alamat",
+							"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "company_name",
+							"value": "PT. Bank Mandiri TBK",
+							"type": "text"
+						},
+						{
+							"key": "profile_photo",
+							"type": "file",
+							"src": "/D:/541096657_771483772244869_7506453998556014849_n.jpg",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/customer-account/update",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"customer-account",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "job - insert A",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "job_title",
+							"value": "Jasa Kwetok Magisk Root Mobile APK C",
+							"type": "text"
+						},
+						{
+							"key": "job_desc",
+							"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+							"type": "text"
+						},
+						{
+							"key": "price_type",
+							"value": "hour",
+							"type": "text"
+						},
+						{
+							"key": "price_per_time",
+							"value": "1.000.000",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "Mobile Pentest",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/jobs/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"jobs",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "job - insert B",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "job_title",
+							"value": "Cracking Facebook",
+							"type": "text"
+						},
+						{
+							"key": "job_desc",
+							"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+							"type": "text"
+						},
+						{
+							"key": "price_type",
+							"value": "day",
+							"type": "text"
+						},
+						{
+							"key": "price_per_time",
+							"value": "5.000.000",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "Web Application Pentest",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/jobs/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"jobs",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "job - update data job",
+			"protocolProfileBehavior": {
+				"protocolVersion": "auto",
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "job_title",
+							"value": "Ampar Ampar Pisang",
+							"type": "text"
+						},
+						{
+							"key": "job_desc",
+							"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price_type",
+							"value": "day",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price_per_time",
+							"value": "5.000.000",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "Web Application Pentest",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/jobs/3bf3b437-e8dd-4dca-ba9d-65f92562b04b/update",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"jobs",
+						"3bf3b437-e8dd-4dca-ba9d-65f92562b04b",
 						"update"
 					]
 				}

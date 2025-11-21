@@ -27,7 +27,7 @@
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           color: var(--text-color);
         }
-        
+
         #backButton {
             position: fixed;
             top: 1.5rem;
@@ -60,8 +60,7 @@
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07), 0 4px 6px -2px rgba(0,0,0,0.05);
             border: none;
         }
-        
-        /* Sidebar Styles */
+
         .profile-sidebar .card {
             padding: 1.5rem;
         }
@@ -101,7 +100,7 @@
         .edit-mode .change-photo-btn { display: flex; }
         .change-photo-btn:hover { transform: scale(1.1); }
         #profilePicInput { display: none; }
-        
+
         .profile-sidebar h5 {
             margin-bottom: 0.25rem;
             font-weight: 600;
@@ -110,25 +109,6 @@
         .profile-sidebar .text-muted {
             font-size: 0.9rem;
             color: var(--text-muted-color);
-        }
-        .hourly-rate {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0.75rem 0;
-            color: var(--text-color);
-        }
-        .btn-hire {
-            background-color: var(--primary-color);
-            color: #fff;
-            border-radius: 20px;
-            padding: 0.5rem 1.5rem;
-            margin-top: 1rem;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        .btn-hire:hover {
-            background-color: var(--primary-hover-color);
-            color: #fff;
         }
         .verification-badge {
             font-size: 0.8rem;
@@ -143,7 +123,6 @@
              font-weight: 500;
         }
 
-        /* Main Content Styles */
         .profile-section { margin-bottom: 2.5rem; }
         .profile-section h5 {
             font-weight: 600;
@@ -168,8 +147,7 @@
             font-weight: 500;
             text-align: right;
         }
-        
-        /* Edit Mode Styles */
+
         .editable-field { display: none; }
         .edit-mode .editable-field { display: block; }
         .edit-mode .value { display: none; }
@@ -187,20 +165,16 @@
         .edit-actions { display: none; }
         .edit-mode .edit-actions { display: flex; justify-content: flex-end; gap: 0.75rem; }
         .edit-mode .default-actions { display: none; }
-        
-        /* Modal Styles */
+
+        /* Skills style */
+        .skills-list .badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.4em 0.8em;
+            font-size: 0.85rem;
+        }
+
         .modal-content { border-radius: 1rem; border: none; }
-        .modal-body .form-control {
-            background-color: var(--light-gray-color);
-            border-radius: 0.75rem;
-            border: 1px solid var(--medium-gray-color);
-            padding: 0.75rem 1rem;
-        }
-        .modal-body .form-control:focus {
-            background-color: #fff;
-            box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25);
-            border-color: var(--primary-color);
-        }
     </style>
 </head>
 <body>
@@ -223,17 +197,35 @@
                         </label>
                         <input type="file" name="profile_picture" id="profilePicInput" accept="image/*">
                     </div>
-                    
-                    <h5>[Username]</h5>
 
+                    <h5>[Username]</h5>
                     <span class="badge rounded-pill bg-success verification-badge" id="verificationStatus">
                         <i class="fas fa-check-circle me-1"></i>Verified
                     </span>
-                    
 
                     <div class="default-actions">
                         <button type="button" class="btn btn-outline-secondary btn-edit btn-sm" id="editProfileButton">Edit Profile</button> 
                     </div>
+
+                    <hr class="my-4">
+
+                    <!-- About Me Section -->
+                    <div class="profile-section text-start">
+                        <h6 class="fw-bold">About Me</h6>
+                        <span class="value">[Not Provided]</span>
+                        <textarea name="about_me" class="form-control editable-field mt-2" rows="3" placeholder="Tell something about yourself..."></textarea>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="profile-section text-start mt-4">
+                        <h6 class="fw-bold">Skills</h6>
+                        <div class="skills-list d-flex flex-wrap gap-2 mb-2">
+                            <span class="value">[Not Provided]</span>
+                        </div>
+                        <input type="text" name="skills" class="form-control editable-field" placeholder="e.g. Python, Laravel, Networking">
+                        
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -244,7 +236,7 @@
             <div class="card">
                 <div class="card-body p-4 p-md-5">
 
-                    <!-- Personal Information Section -->
+                    <!-- Profile Information -->
                     <div class="profile-section">
                         <h5>Profile Information</h5>
                         <ul class="list-unstyled info-list">
@@ -259,7 +251,7 @@
                                 <span class="value">[Not Provided]</span>
                                 <input type="tel" name="phone" class="form-control editable-field" value="">
                             </li>
-                             <li>
+                            <li>
                                 <span class="label">Address</span> 
                                 <span class="value">[Not Provided]</span>
                                 <input type="text" name="address" class="form-control editable-field" value="">
@@ -267,7 +259,7 @@
                         </ul>
                     </div>
 
-                    <!-- Verification Documents Section -->
+                    <!-- Verification -->
                     <div class="profile-section">
                         <h5>Verification Documents</h5>
                         <ul class="list-unstyled info-list">
@@ -294,16 +286,15 @@
                             </li>
                         </ul>
                     </div>
-                    
-                    <!-- Security Section -->
+
+                    <!-- Security -->
                     <div class="profile-section">
                         <h5>Security</h5>
                         <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
                             Change Password
                         </button>
                     </div>
-                    
-                    <!-- Edit Mode Action Buttons -->
+
                     <div class="mt-4 edit-actions">
                         <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
                         <button type="submit" class="btn btn-primary" id="saveChangesButton">Save Changes</button>
@@ -313,17 +304,16 @@
             </div>
             </form>
         </div>
-
     </div>
 </div>
 
-<!-- Change Password Modal -->
-<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title">Change Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body">
         <form id="passwordChangeForm">
@@ -348,108 +338,78 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const editProfileButton = document.getElementById('editProfileButton');
-        const cancelButton = document.getElementById('cancelButton');
-        const profileForm = document.getElementById('profileForm');
-        const profileRow = document.getElementById('profileRow');
-        
-        const profilePicImg = document.getElementById('profilePicImg');
-        const profilePicInput = document.getElementById('profilePicInput');
-        
-        const verificationStatus = document.getElementById('verificationStatus');
+document.addEventListener('DOMContentLoaded', function () {
+    const editProfileButton = document.getElementById('editProfileButton');
+    const cancelButton = document.getElementById('cancelButton');
+    const profileForm = document.getElementById('profileForm');
+    const profileRow = document.getElementById('profileRow');
+    const profilePicImg = document.getElementById('profilePicImg');
+    const profilePicInput = document.getElementById('profilePicInput');
 
-        let originalValues = {};
-        let originalImageSrc = profilePicImg.src;
+    let originalValues = {};
+    let originalImageSrc = profilePicImg.src;
 
-        function toggleEditMode(isEditing) {
-            if (isEditing) {
-                profileRow.classList.add('edit-mode');
-            } else {
-                profileRow.classList.remove('edit-mode');
+    function toggleEditMode(isEditing) {
+        if (isEditing) profileRow.classList.add('edit-mode');
+        else profileRow.classList.remove('edit-mode');
+    }
+
+    editProfileButton.addEventListener('click', () => {
+        originalImageSrc = profilePicImg.src;
+        profileForm.querySelectorAll('input, textarea').forEach(input => {
+            if (input.type !== 'file') originalValues[input.name] = input.value;
+        });
+        toggleEditMode(true);
+    });
+
+    cancelButton.addEventListener('click', () => {
+        profilePicImg.src = originalImageSrc;
+        profilePicInput.value = '';
+        profileForm.querySelectorAll('input, textarea').forEach(input => {
+            if (originalValues[input.name]) input.value = originalValues[input.name];
+        });
+        toggleEditMode(false);
+    });
+
+    profilePicInput.addEventListener('change', (event) => {
+        if (event.target.files && event.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                profilePicImg.src = e.target.result;
             }
+            reader.readAsDataURL(event.target.files[0]);
         }
+    });
 
-        // JS logic remains the same as user profile for now...
-         editProfileButton.addEventListener('click', () => {
-            originalImageSrc = profilePicImg.src;
-            profileForm.querySelectorAll('input, textarea').forEach(input => {
-                if (input.type !== 'file') {
-                    originalValues[input.name] = input.value;
-                }
-            });
-            toggleEditMode(true);
-        });
+    profileForm.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-        cancelButton.addEventListener('click', () => {
-            profilePicImg.src = originalImageSrc;
-            profilePicInput.value = '';
-            profileForm.querySelectorAll('input, textarea').forEach(input => {
-                if (originalValues[input.name]) {
-                    input.value = originalValues[input.name];
-                }
-            });
-            toggleEditMode(false);
-        });
-        
-        profilePicInput.addEventListener('change', (event) => {
-            if (event.target.files && event.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profilePicImg.src = e.target.result;
-                }
-                reader.readAsDataURL(event.target.files[0]);
-            }
-        });
+        const aboutInput = profileForm.querySelector('textarea[name="about_me"]');
+        const aboutDisplay = document.getElementById('aboutMeDisplay');
+        if (aboutInput && aboutDisplay)
+            aboutDisplay.textContent = aboutInput.value || '[Not Provided]';
 
-        profileForm.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            originalImageSrc = profilePicImg.src;
-
-            profileForm.querySelectorAll('input[type="text"], input[type="tel"], input[type="date"], textarea').forEach(input => {
-                const displayElement = input.closest('li, .profile-section').querySelector('.value');
-                if (displayElement) {
-                    if (input.type === 'date' && input.value) {
-                         const date = new Date(input.value);
-                         const options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' };
-                         displayElement.textContent = date.toLocaleDateString('en-US', options);
-                    } else {
-                        displayElement.textContent = input.value || 'Not Provided';
-                    }
-                }
-            });
-
-            const skillsInput = profileForm.querySelector('input[name="skills"]');
-            const skillsDisplay = profileForm.querySelector('.skills-list');
-            if(skillsInput && skillsDisplay) {
-                skillsDisplay.innerHTML = '';
-                const skills = skillsInput.value.split(',').map(skill => skill.trim()).filter(skill => skill);
+        const skillsInput = profileForm.querySelector('input[name="skills"]');
+        const skillsDisplay = profileForm.querySelector('.skills-list');
+        if (skillsInput && skillsDisplay) {
+            skillsDisplay.innerHTML = '';
+            const skills = skillsInput.value.split(',').map(s => s.trim()).filter(Boolean);
+            if (skills.length > 0) {
                 skills.forEach(skillText => {
                     const badge = document.createElement('span');
                     badge.className = 'badge rounded-pill';
                     badge.textContent = skillText;
                     skillsDisplay.appendChild(badge);
                 });
+            } else {
+                skillsDisplay.innerHTML = '<span class="text-muted">[Not Provided]</span>';
             }
+        }
 
-            profileForm.querySelectorAll('input[type="file"]').forEach(input => {
-                if (input.name === 'profile_picture') return; 
-
-                const displayElement = input.closest('li').querySelector('.value');
-                if (input.files.length > 0) {
-                    displayElement.innerHTML = `<i class="fas fa-check-circle me-1"></i>Uploaded (${input.files[0].name})`;
-                    displayElement.classList.add('uploaded');
-                }
-            });
-
-            alert('Changes saved temporarily! Data is updated on the page.');
-            
-            toggleEditMode(false);
-        });
-
+        alert('Changes saved temporarily!');
+        toggleEditMode(false);
     });
+});
 </script>
-
 </body>
 </html>
-
