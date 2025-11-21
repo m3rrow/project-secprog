@@ -212,7 +212,7 @@
         alert('Open job details (placeholder) — job id: ' + id);
       }
       function toggleDeactivate(btn, id){
-        const row = btn.closest('tr');
+        const row =   btn.closest('tr');
         const deactivated = row.classList.toggle('deactivated');
         btn.textContent = deactivated ? 'Activate' : 'Deactivate';
       }

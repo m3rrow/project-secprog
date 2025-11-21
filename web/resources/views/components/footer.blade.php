@@ -4,18 +4,18 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 col-12">
                         <div class="sb-footer-section">
                             <div class="footer-logo">
-                                <a href="{{ url('/') }}"><img src="{{ asset('images/index1-logo.png') }}" alt=""></a>
+                                <a href="{{ url('/') }}"><img src="{{ asset('images/h3khire-logo.png') }}" alt="" style="max-width: 150px; height: auto;"></a>
                             </div>
-                            <p>Various versions have evolved over an the years, sometimes.</p>
+                            <p>Developed by a team of 6, maintained by a lazy person</p>
                             <ul>
                                 <li><a href="javascript:;"><i class="fas fa-map-marker-alt"></i>
-                                    125 / Tabula United States location sometimes.</a>
+                                    No where</a>
                                 </li>
                                 
                                 <li><a href="javascript:;"><i class="fas fa-envelope"></i>
-                                    tabula@example.com</a>
+                                    h3khire@support.com</a>
                                 </li>
-                                <li> <h4>+1234567890</h4> </li>
+                                <li> <h4>+676767676767</h4> </li>
                             </ul>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                            <p>© Copyright 2023 - 24 Design by Webstrot | All Rights Reserved.</p>
+                            <p>© Copyright 2025 - H3khire by team | All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

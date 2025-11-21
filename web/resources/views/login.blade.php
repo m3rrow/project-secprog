@@ -46,6 +46,7 @@
     /* --- FORM INPUT BOX STYLES --- */
     .field-icon {
         position: relative;
+        margin-bottom: 1rem;
     }
     .field-icon .form-control {
         background-color: #eaf2f7;
@@ -54,16 +55,32 @@
         height: 50px;
         padding-left: 45px;
     }
+    .field-icon .form-control.is-invalid {
+        border-color: #dc3545;
+        background-color: #fff5f5;
+    }
     .field-icon .icon {
         position: absolute;
         left: 20px;
-        top: 50%;
-        transform: translateY(-50%);
+        top: 15px;
         color: #0060aa;
+        z-index: 10;
+        pointer-events: none;
+    }
+    .field-icon.has-error .icon {
+        color: #dc3545;
     }
     .form-control:focus {
         box-shadow: none;
         border-color: #eaf2f7;
+    }
+    .form-control.is-invalid:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+    .invalid-feedback {
+        padding-left: 15px;
+        margin-top: 0.25rem;
     }
 
     /* --- SUBMIT BUTTON STYLES --- */
@@ -115,18 +132,24 @@
         border-radius: 50%;
         width: 45px;
         height: 45px;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         color: #555;
-        position: relative; 
+        background: #fff;
+        position: relative;
         overflow: hidden;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
     .social-login a i {
         position: relative;
         z-index: 2;
-        transition: color 0.3s;
+        transition: color 0.3s ease;
+        font-size: 16px;
+        line-height: 0;
     }
     .social-login a::after {
         content: "";
@@ -164,19 +187,31 @@
 
       <form method="POST" action="{{ route('login.attempt') }}">
         @csrf
-        <div class="mb-3 field-icon">
+        <div class="field-icon @error('login') has-error @enderror">
           <i class="fas fa-user icon"></i>
-          <input type="email" name="email" class="form-control" placeholder="Email" required>
+          <input type="email" name="email" class="form-control @error('login') is-invalid @enderror" 
+                 placeholder="Email" value="{{ old('email') }}" required>
         </div>
 
-        <div class="mb-3 field-icon">
+        <div class="field-icon @error('login') has-error @enderror">
           <i class="fas fa-lock icon"></i>
-          <input type="password" name="password" class="form-control" placeholder="Password" required>
+          <input type="password" name="password" class="form-control @error('login') is-invalid @enderror" 
+                 placeholder="Password" required>
         </div>
+
+        @if($errors->any())
+          <div style="margin-top: 0.25rem; margin-bottom: 0.5rem; padding-left: 5px;">
+            @foreach($errors->all() as $error)
+              <div style="color: #dc3545; font-size: 0.875rem; margin-bottom: 2px;">
+                <i class="fas fa-exclamation-circle" style="margin-right: 8px;"></i>{{ $error }}
+              </div>
+            @endforeach
+          </div>
+        @endif
 
         <div class="d-flex justify-content-between align-items-center mb-3">
           <div class="form-check">
-            <input type="checkbox" id="remember" class="form-check-input">
+            <input type="checkbox" name="remember" id="remember" class="form-check-input">
             <label for="remember" class="form-check-label">Remember Me</label>
           </div>
           <a href="{{ route('forgot') }}" class="forgot-link">Forgot Password?</a>

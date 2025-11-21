@@ -149,18 +149,24 @@
         border-radius: 50%;
         width: 45px;
         height: 45px;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
         color: #555;
+        background: #fff;
         position: relative;
         overflow: hidden;
-        transition: all 0.3s;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
     .social-login a i {
         position: relative;
         z-index: 2;
-        transition: color 0.3s;
+        transition: color 0.3s ease;
+        font-size: 16px;
+        line-height: 0;
     }
     .social-login a::after {
         content: "";
@@ -203,9 +209,22 @@
 
           <div class="mb-3 field-icon"><i class="fas fa-envelope icon"></i><input type="email" name="email" class="form-control" placeholder="Email" required></div>
 
-          <div class="mb-3 field-icon"><i class="fas fa-lock icon"></i><input type="password" name="password" class="form-control" placeholder="Password" required></div>
+          <div class="mb-3 field-icon">
+            <i class="fas fa-lock icon"></i>
+            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required>
+          </div>
+          <div style="font-size: 0.8rem; color: @error('password') #dc3545 @else #666 @enderror; margin-top: -10px; margin-bottom: 10px; padding-left: 5px;">
+            @error('password')
+              {{ $message }}
+            @else
+              Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character (@$!%*?&).
+            @enderror
+          </div>
 
-          <div class="mb-3 field-icon"><i class="fas fa-lock icon"></i><input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password" required></div>
+          <div class="mb-3 field-icon">
+            <i class="fas fa-lock icon"></i>
+            <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" placeholder="Confirm Password" required>
+          </div>
 
           <div class="mb-3 field-select">
               <select class="form-select" name="role" required>

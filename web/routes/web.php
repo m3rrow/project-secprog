@@ -95,7 +95,7 @@ Route::middleware('auth')->group(function () {
         if (! $user || $user->role !== 'freelancer') {
             abort(403);
         }
-        return view('components.dashboard.dashboard-freelancer');
+        return view('dashboard.dashboard-freelancer');
     })->name('freelancer.dashboard');
     Route::get('addproject', function () {
         return view('services.project.post-project');

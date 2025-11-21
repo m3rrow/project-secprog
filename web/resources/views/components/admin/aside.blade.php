@@ -91,25 +91,6 @@
                                        </div>
                                     </div>
                                  </li>
-                                 <li>
-                                    <a href="javascript:;" class="sidebar-toggle">
-                                       <span><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                           viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
-                                       <path d="M8.667,15h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,15,8.667,15z"/>
-                                       <path d="M8.667,37h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,37,8.667,37z"/>
-                                       <path d="M8.667,26h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,26,8.667,26z"/>
-                                       </svg></span>
-                                    </a>
-                                 </li>
-                                 @auth                                     
-                                 <li class="post-drop">
-                                    <a class="post-btn" href="javascript:;"><span><!-- <i class="fas fa-plus-circle"></i>   --> Post aNow &nbsp; <i class="fas fa-chevron-down"></i></span> </a>
-                                    <div class="post-page-wrapper">
-                                        <a href="{{ route('addjob') }}">Post a Job</a>
-                                        <a href="{{ route('addproject') }}">Post a Project</a>
-                                    </div>
-                                 </li>
-                                 @endauth
                               </ul>
                  </div>
                 </div>

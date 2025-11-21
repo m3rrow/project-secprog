@@ -19,15 +19,37 @@ class LoginController extends Controller
         ]);
         $remember = $request->boolean('remember');
 
+        // Check if user exists
+        $user = \App\Models\User::where('email', $credentials['email'])->first();
+        
+        // Check if account is locked
+        if ($user && $user->isLocked()) {
+            $minutesRemaining = now()->diffInMinutes($user->locked_until);
+            return back()->withErrors([
+                'login' => "Account temporarily locked due to multiple failed login attempts. Please try again in {$minutesRemaining} minutes.",
+            ])->withInput($request->only('email'));
+        }
+
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
- 
+            
+            // Reset failed login attempts on successful login
+            if ($user) {
+                $user->resetFailedLoginAttempts();
+            }
+            
             return redirect()->intended('/');
         }
  
+        // Increment failed login attempts if user exists
+        if ($user) {
+            $user->incrementFailedLoginAttempts();
+        }
+
+        // Generic error message for security - don't reveal if email exists or password is wrong
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+            'login' => 'Invalid username or password.',
+        ])->withInput($request->only('email'));
     }
     public function logout(Request $request): RedirectResponse
     {

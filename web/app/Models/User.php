@@ -23,6 +23,9 @@ class User extends Authenticatable
         'password',
         'birthdate',
         'role',
+        'failed_login_attempts',
+        'locked_until',
+        'last_failed_login',
     ];
 
     /**
@@ -48,5 +51,42 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'locked_until' => 'datetime',
+        'last_failed_login' => 'datetime',
     ];
+
+    /**
+     * Check if user account is locked
+     */
+    public function isLocked(): bool
+    {
+        return $this->locked_until && $this->locked_until->isFuture();
+    }
+
+    /**
+     * Increment failed login attempts and lock if needed
+     */
+    public function incrementFailedLoginAttempts(): void
+    {
+        $this->failed_login_attempts++;
+        $this->last_failed_login = now();
+        
+        // Lock account for 15 minutes after 5 failed attempts
+        if ($this->failed_login_attempts >= 5) {
+            $this->locked_until = now()->addMinutes(15);
+        }
+        
+        $this->save();
+    }
+
+    /**
+     * Reset failed login attempts
+     */
+    public function resetFailedLoginAttempts(): void
+    {
+        $this->failed_login_attempts = 0;
+        $this->locked_until = null;
+        $this->last_failed_login = null;
+        $this->save();
+    }
 }
