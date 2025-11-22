@@ -8,809 +8,1613 @@
 	},
 	"item": [
 		{
-			"name": "account register",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "account mgmt",
+			"item": [
+				{
+					"name": "account register",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"dimas\",\r\n    \"email\": \"dimas@mail.com\",\r\n    \"password\": \"p@ssw0rd\",\r\n    \"role\": \"freelancer\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"dimas\",\r\n    \"email\": \"dimas@mail.com\",\r\n    \"password\": \"p@ssw0rd\",\r\n    \"role\": \"freelancer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/register",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"register"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "account login",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+				{
+					"name": "account login freelancer",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto"
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6IjZCZFBaeGFqUVVFVjZycVdwa1ZtaUE9PSIsInZhbHVlIjoiQkpiazJqYklvZGpJZng5VVlIbWN6LzhoZkI0Y2d1ditHL0tkZC9OQ1RVRjJSdmExb3UySzdzTmZlWnRveUtqbi9zTXQ5bEVBNzkvQVpET1VwUTVqb1Ayc0wxdHFJdE96UVlCd1IrSkxSWlp3ZjVSM3NXbE5tVFRlZWhXMnJCNTciLCJtYWMiOiJiNmQxYTJiMjE0NzFjZmZmYWMwNWNmZjYxMWFjNmIzYjkxZWRlNTZlOTM2NjEyMTdmNThiZDRhZTI1YWRkNzg5IiwidGFnIjoiIn0%3D; expires=Thu, 06 Nov 2025 17:53:58 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"login\": \"vera@mail.com\",\r\n    \"password\": \"p@ssw0rd\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"ncw\",\r\n    \"password\": \"p@ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/login",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "account logout",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true,
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false,
-				"followRedirects": false,
-				"followOriginalHttpMethod": false
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+				{
+					"name": "account login customer",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto"
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6InpSZTRSM2ZjaGFjenVJbHZIcFM3c1E9PSIsInZhbHVlIjoienlwL3BUWmRrUHQ5cDlMYUFlMFE2VW9aM1MycXlMRkZERENoR0tIejNXYkEyMnlMK0ZjeWthVW9BbmVJWjhEd0E2RmpGdlJ3ZVZNeWFsMEc4NnRpRW1YcUtKWmdTcTB4N0xLQmJIOXJENzJsWG02aUFnZFgyWlhlaEFKMzRwK3AiLCJtYWMiOiIzMjBkNTE4YTY1NTYxYWVjZDRiYTllMzZkZjAyMDgyYmQzYzZmZjE0NGM5NTdkMGY2YTczNDJkZGE1NWVkZjJkIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 00:02:19 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"m3rr\",\r\n    \"password\": \"p@ssw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/logout",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"logout"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "account change password",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+				{
+					"name": "account login admin",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto"
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6Imx6MTNnTXJaVmZVeXg3akhGYSsxTWc9PSIsInZhbHVlIjoibFFrUWx4WnFpOTRBYlA2UmNOMTgrQWZsMWpxZllzc1dKaUlyemtDb043SWd4QTZiSEVBNVpQL09xMEQ0TSs0eHRrZnFrMkRNazJRelI5cXVHa2dlNVNMaDBMc0liMWRib0hKTG4raEUreTdDN2pwOEx0V2VDc0dOYVYzc3I0ZzIiLCJtYWMiOiJlYjJiY2JhNWM3ODdiMmY1OWVhMmZiOWNhNjhlZDc4MjA0ZjA0MjNkYjQ4MGRiYmE0M2U4MDQzMDc2NjAwZDY3IiwidGFnIjoiIn0%3D; expires=Sat, 08 Nov 2025 23:43:13 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"current_password\": \"p@ssw0rd\",\r\n    \"new_password\": \"p@ssw0rd!\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"admin\",\r\n    \"password\": \"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/change_password",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"change_password"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "freelancer detail - view",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false,
-				"followRedirects": false
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+				{
+					"name": "account logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false,
+						"followRedirects": false,
+						"followOriginalHttpMethod": false
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6InBzQStaZWs3c0dqanFVUGppVUFDcVE9PSIsInZhbHVlIjoiaUdjZjlGcE1iK3R6dzJINDVVQkpDNVg2UTZGNzhUcG9sV3J4VngrckVYWi9nUXA4QXVJalJYMVRXaTgxNmo1NmFkRVplVE8wZDZFSXU4QmZzcFQxeWpxMnhEeGxqNVZsaXhFSTBERVdNMVZJazBabmhnU1ViN01iOFEwYzJnWTMiLCJtYWMiOiI1OTBlZjYzYTE3OWI0MGFkZWM0MGZjMDEzNDFkN2VkNzBmNzc4MzBlYWI2ZmM5OWQ5NTRjMWIyOTVkMWY4NzJmIiwidGFnIjoiIn0%3D; expires=Sun, 23 Nov 2025 01:00:51 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{url}}/api/freelancer-account/view",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"freelancer-account",
-						"view"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "customer detail - view",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false,
-				"followRedirects": false
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6Im1YWnBGNmNMQkQxeGRBcU9LODJ3Y2c9PSIsInZhbHVlIjoieFJMOTQ3RW5SZU1Ka1VJd2ZKZFk1SEd5QndVdE92eTRoU05QNm1KdGc0Z2FYQTBnTExheTgvQU43UFpMVjlHTmpObU1Od0NjYUppQ0lON3JOMWY1QUpDYnB2alFYQ0hZMndTcjZOS0t5M1N0UDJWWGZ6NVA5NTdmYUVKL0FicmsiLCJtYWMiOiJhMjNhMzA0MzNhYWZkODJhMGE5MzNjZDRlYTdmMzFmOWE4ZDU4NmE0M2ZhZTM5NjcyYzMwYzUyYjdkZTEwMmRhIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 13:16:15 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{url}}/api/customer-account/view",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"customer-account",
-						"view"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "freelancer detail - insert",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6InBzQStaZWs3c0dqanFVUGppVUFDcVE9PSIsInZhbHVlIjoiaUdjZjlGcE1iK3R6dzJINDVVQkpDNVg2UTZGNzhUcG9sV3J4VngrckVYWi9nUXA4QXVJalJYMVRXaTgxNmo1NmFkRVplVE8wZDZFSXU4QmZzcFQxeWpxMnhEeGxqNVZsaXhFSTBERVdNMVZJazBabmhnU1ViN01iOFEwYzJnWTMiLCJtYWMiOiI1OTBlZjYzYTE3OWI0MGFkZWM0MGZjMDEzNDFkN2VkNzBmNzc4MzBlYWI2ZmM5OWQ5NTRjMWIyOTVkMWY4NzJmIiwidGFnIjoiIn0%3D; expires=Sun, 23 Nov 2025 01:00:51 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "nama_lengkap",
-							"value": "Kolor Sakti",
-							"type": "text"
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "no_hp",
-							"value": "+62857123123",
-							"type": "text"
-						},
-						{
-							"key": "tgl_lahir",
-							"value": "12/30/1945",
-							"type": "text"
-						},
-						{
-							"key": "alamat",
-							"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
-							"type": "text"
-						},
-						{
-							"key": "profile_photo",
-							"type": "file",
-							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
-						},
-						{
-							"key": "input_cv",
-							"type": "file",
-							"src": "/D:/Penetration_Tester_dummy.pdf"
-						},
-						{
-							"key": "input_porto",
-							"type": "file",
-							"src": "/D:/Penetration_Tester_dummy.pdf"
-						},
-						{
-							"key": "input_ktp",
-							"type": "file",
-							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+						"url": {
+							"raw": "{{url}}/api/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/freelancer-account/insert",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"freelancer-account",
-						"insert"
-					]
+				{
+					"name": "account change password",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"current_password\": \"p@ssw0rd\",\r\n    \"new_password\": \"p@ssw0rd!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/change_password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"change_password"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "customer detail - insert",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "freelancer account",
+			"item": [
+				{
+					"name": "freelancer detail - view",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false,
+						"followRedirects": false
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6Im1YWnBGNmNMQkQxeGRBcU9LODJ3Y2c9PSIsInZhbHVlIjoieFJMOTQ3RW5SZU1Ka1VJd2ZKZFk1SEd5QndVdE92eTRoU05QNm1KdGc0Z2FYQTBnTExheTgvQU43UFpMVjlHTmpObU1Od0NjYUppQ0lON3JOMWY1QUpDYnB2alFYQ0hZMndTcjZOS0t5M1N0UDJWWGZ6NVA5NTdmYUVKL0FicmsiLCJtYWMiOiJhMjNhMzA0MzNhYWZkODJhMGE5MzNjZDRlYTdmMzFmOWE4ZDU4NmE0M2ZhZTM5NjcyYzMwYzUyYjdkZTEwMmRhIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 13:16:15 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "nama_lengkap",
-							"value": "Kolor Sakti",
-							"type": "text"
-						},
-						{
-							"key": "no_hp",
-							"value": "+62857123123",
-							"type": "text"
-						},
-						{
-							"key": "tgl_lahir",
-							"value": "12/30/1945",
-							"type": "text"
-						},
-						{
-							"key": "alamat",
-							"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
-							"type": "text"
-						},
-						{
-							"key": "company_name",
-							"value": "PT. Bank Mandiri",
-							"type": "text"
-						},
-						{
-							"key": "profile_photo",
-							"type": "file",
-							"src": "/D:/541096657_771483772244869_7506453998556014849_n.jpg"
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/freelancer-account/view",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"freelancer-account",
+								"view"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/customer-account/insert",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"customer-account",
-						"insert"
-					]
+				{
+					"name": "freelancer detail - insert",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto"
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama_lengkap",
+									"value": "Kolor Sakti",
+									"type": "text"
+								},
+								{
+									"key": "no_hp",
+									"value": "+62857123123",
+									"type": "text"
+								},
+								{
+									"key": "tgl_lahir",
+									"value": "12/30/1945",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
+									"type": "text"
+								},
+								{
+									"key": "profile_photo",
+									"type": "file",
+									"src": "/D:/541096657_771483772244869_7506453998556014849_n.jpg"
+								},
+								{
+									"key": "input_cv",
+									"type": "file",
+									"src": "/D:/Penetration_Tester_dummy.pdf"
+								},
+								{
+									"key": "input_porto",
+									"type": "file",
+									"src": "/D:/Penetration_Tester_dummy.pdf"
+								},
+								{
+									"key": "input_ktp",
+									"type": "file",
+									"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/freelancer-account/insert",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"freelancer-account",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "freelancer detail - update",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto"
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@noxia.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nama_lengkap",
+									"value": "Kolor Manga",
+									"type": "text"
+								},
+								{
+									"key": "no_hp",
+									"value": "+62857123123",
+									"type": "text"
+								},
+								{
+									"key": "tgl_lahir",
+									"value": "12/30/1945",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
+									"type": "text"
+								},
+								{
+									"key": "profile_photo",
+									"type": "file",
+									"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+								},
+								{
+									"key": "input_cv",
+									"type": "file",
+									"src": "/D:/Penetration_Tester_dummy.pdf"
+								},
+								{
+									"key": "input_porto",
+									"type": "file",
+									"src": "/D:/Penetration_Tester_dummy.pdf"
+								},
+								{
+									"key": "input_ktp",
+									"type": "file",
+									"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/freelancer-account/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"freelancer-account",
+								"update"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "freelancer detail - update",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "customer account",
+			"item": [
+				{
+					"name": "customer detail - view",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false,
+						"followRedirects": false
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6IkxDcjZ2aS9GK3pmY0E3aTV2NXlOMlE9PSIsInZhbHVlIjoieE41VGhkSDVzWk5nWnpvRU80cWtCOWtCNjhsdnlCY3R5bklBRE00S2xIS2lHZ2hQM1BYYTNLV1U2REhyMXBheTdFOWQ2b2RleWRXQ1B4WlkyOUJNenpRTDd4S0ZqSTRJSEhacmxsbFhzbGwzN3JIVFpEMUNlVkVTTUNZdnlaMEQiLCJtYWMiOiI1NTYzZjQwM2U2YjllMzI4MWRhZWE1ODljM2ZiZTgzNmU3YjViYWU5Y2NjMDc1ODBiNDZjOGQ3YzAzYzcwN2E1IiwidGFnIjoiIn0%3D; expires=Sat, 08 Nov 2025 21:00:35 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "user@noxia.com",
-							"type": "text"
-						},
-						{
-							"key": "nama_lengkap",
-							"value": "Kolor Manga",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "no_hp",
-							"value": "+62857123123",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "tgl_lahir",
-							"value": "12/30/1945",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "alamat",
-							"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "profile_photo",
-							"type": "file",
-							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
-						},
-						{
-							"key": "input_cv",
-							"type": "file",
-							"src": "/D:/Penetration_Tester_dummy.pdf"
-						},
-						{
-							"key": "input_porto",
-							"type": "file",
-							"src": "/D:/Penetration_Tester_dummy.pdf"
-						},
-						{
-							"key": "input_ktp",
-							"type": "file",
-							"src": "/D:/536268311_3170513899763742_7333809418563770607_n.jpg"
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/customer-account/view",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customer-account",
+								"view"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/freelancer-account/update",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"freelancer-account",
-						"update"
-					]
+				{
+					"name": "customer detail - insert",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nama_lengkap",
+									"value": "Kolor Sakti",
+									"type": "text"
+								},
+								{
+									"key": "no_hp",
+									"value": "+62857123123",
+									"type": "text"
+								},
+								{
+									"key": "tgl_lahir",
+									"value": "12/30/1945",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "PT. Bank Mandiri",
+									"type": "text"
+								},
+								{
+									"key": "profile_photo",
+									"type": "file",
+									"src": "/D:/541096657_771483772244869_7506453998556014849_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/customer-account/insert",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customer-account",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customer detail - update",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "HR@mandiri.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nama_lengkap",
+									"value": "Kolor Manga",
+									"type": "text"
+								},
+								{
+									"key": "no_hp",
+									"value": "+62857123123",
+									"type": "text"
+								},
+								{
+									"key": "tgl_lahir",
+									"value": "12/30/1945",
+									"type": "text"
+								},
+								{
+									"key": "alamat",
+									"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "PT. Bank Mandiri TBK",
+									"type": "text"
+								},
+								{
+									"key": "profile_photo",
+									"type": "file",
+									"src": "/D:/526640670_978435394751396_4889505474996643807_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/customer-account/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customer-account",
+								"update"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "customer detail - update",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "job",
+			"item": [
+				{
+					"name": "job - insert A",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Cookie",
-						"value": "laravel-session=eyJpdiI6Im1YWnBGNmNMQkQxeGRBcU9LODJ3Y2c9PSIsInZhbHVlIjoieFJMOTQ3RW5SZU1Ka1VJd2ZKZFk1SEd5QndVdE92eTRoU05QNm1KdGc0Z2FYQTBnTExheTgvQU43UFpMVjlHTmpObU1Od0NjYUppQ0lON3JOMWY1QUpDYnB2alFYQ0hZMndTcjZOS0t5M1N0UDJWWGZ6NVA5NTdmYUVKL0FicmsiLCJtYWMiOiJhMjNhMzA0MzNhYWZkODJhMGE5MzNjZDRlYTdmMzFmOWE4ZDU4NmE0M2ZhZTM5NjcyYzMwYzUyYjdkZTEwMmRhIiwidGFnIjoiIn0%3D; expires=Sun, 09 Nov 2025 13:16:15 GMT; Max-Age=2592000; path=/; httponly; samesite=lax",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "HR@mandiri.com",
-							"type": "text"
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "job_title",
+									"value": "Jasa Kwetok Magisk Root Mobile APK",
+									"type": "text"
+								},
+								{
+									"key": "job_desc",
+									"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+									"type": "text"
+								},
+								{
+									"key": "price_type",
+									"value": "hour",
+									"type": "text"
+								},
+								{
+									"key": "price_per_time",
+									"value": "1.000.000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Mobile Pentest",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "nama_lengkap",
-							"value": "Kolor Manga",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "no_hp",
-							"value": "+62857123123",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "tgl_lahir",
-							"value": "12/30/1945",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "alamat",
-							"value": "Kabupaten Jatim - Kota Angarangyar - Desa Morgokerto No. 123",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "company_name",
-							"value": "PT. Bank Mandiri TBK",
-							"type": "text"
-						},
-						{
-							"key": "profile_photo",
-							"type": "file",
-							"src": "/D:/541096657_771483772244869_7506453998556014849_n.jpg",
-							"disabled": true
+						"url": {
+							"raw": "{{url}}/api/jobs/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"create"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/customer-account/update",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"customer-account",
-						"update"
-					]
+				{
+					"name": "job - insert B",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "job_title",
+									"value": "Cracking Facebook",
+									"type": "text"
+								},
+								{
+									"key": "job_desc",
+									"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+									"type": "text"
+								},
+								{
+									"key": "price_type",
+									"value": "day",
+									"type": "text"
+								},
+								{
+									"key": "price_per_time",
+									"value": "5.000.000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Web Application Pentest",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "job - insert C",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "job_title",
+									"value": "Jasa Bantukan CTF CSC dulu le",
+									"type": "text"
+								},
+								{
+									"key": "job_desc",
+									"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+									"type": "text"
+								},
+								{
+									"key": "price_type",
+									"value": "hour",
+									"type": "text"
+								},
+								{
+									"key": "price_per_time",
+									"value": "100.000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "CTF Player",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "job - update data job",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "job_title",
+									"value": "Ampar Ampar Pisang",
+									"type": "text"
+								},
+								{
+									"key": "job_desc",
+									"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "price_type",
+									"value": "day",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "price_per_time",
+									"value": "5.000.000",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "Web Application Pentest",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/3bf3b437-e8dd-4dca-ba9d-65f92562b04b/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"3bf3b437-e8dd-4dca-ba9d-65f92562b04b",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "job - delete",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/275f92c0-0214-4948-b93e-e994ff53111e/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"275f92c0-0214-4948-b93e-e994ff53111e",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "job view all job",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs?limit=10&sort=desc",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "sort",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "job view our own job",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/mine?status=available&limit=10&offset=0",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"mine"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "available"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "job view one job",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/91f87763-d65f-4117-ad2f-0830333a5ff8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"91f87763-d65f-4117-ad2f-0830333a5ff8"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "job - insert A",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "admin panel",
+			"item": [
+				{
+					"name": "approved payment order",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "job_title",
-							"value": "Jasa Kwetok Magisk Root Mobile APK C",
-							"type": "text"
-						},
-						{
-							"key": "job_desc",
-							"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-							"type": "text"
-						},
-						{
-							"key": "price_type",
-							"value": "hour",
-							"type": "text"
-						},
-						{
-							"key": "price_per_time",
-							"value": "1.000.000",
-							"type": "text"
-						},
-						{
-							"key": "category",
-							"value": "Mobile Pentest",
-							"type": "text"
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/admin/orders/57ec136b-8a33-4f0d-b02f-16be66957a29/approve-payment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"orders",
+								"57ec136b-8a33-4f0d-b02f-16be66957a29",
+								"approve-payment"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/jobs/create",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"jobs",
-						"create"
-					]
+				{
+					"name": "refund & cancel payment order",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/admin/orders/d333fa3e-edf7-4cd6-948f-fd4b6ac740b2/refund-payment",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"orders",
+								"d333fa3e-edf7-4cd6-948f-fd4b6ac740b2",
+								"refund-payment"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "job - insert B",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "job - freelancer checkout",
+			"item": [
+				{
+					"name": "get all incoming order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "job_title",
-							"value": "Cracking Facebook",
-							"type": "text"
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
 						},
-						{
-							"key": "job_desc",
-							"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-							"type": "text"
-						},
-						{
-							"key": "price_type",
-							"value": "day",
-							"type": "text"
-						},
-						{
-							"key": "price_per_time",
-							"value": "5.000.000",
-							"type": "text"
-						},
-						{
-							"key": "category",
-							"value": "Web Application Pentest",
-							"type": "text"
+						"url": {
+							"raw": "{{url}}/api/orders/incoming",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"incoming"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/jobs/create",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"jobs",
-						"create"
-					]
+				{
+					"name": "accept order",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/orders/57ec136b-8a33-4f0d-b02f-16be66957a29/accept",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"57ec136b-8a33-4f0d-b02f-16be66957a29",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reject order",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/orders/57ec136b-8a33-4f0d-b02f-16be66957a29/reject",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"57ec136b-8a33-4f0d-b02f-16be66957a29",
+								"reject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show checkout detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/dd765d68-e461-49e2-be1e-e6a570b5d864",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"dd765d68-e461-49e2-be1e-e6a570b5d864"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "job - update data job",
-			"protocolProfileBehavior": {
-				"protocolVersion": "auto",
-				"disableUrlEncoding": false
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+			"name": "job - customer checkout",
+			"item": [
+				{
+					"name": "checkout version A",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
 					},
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "job_title",
-							"value": "Ampar Ampar Pisang",
-							"type": "text"
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "duration",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "payment_method",
+									"value": "transfer_bank",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "Pangsit 2, Bakso Babi Kecap 5, dibungkus di tempat\npagi renang, malam senam, siang turu\nmancing kelabu",
+									"type": "text"
+								}
+							]
 						},
-						{
-							"key": "job_desc",
-							"value": "Lorem Ipsum is simply dummy text of the printing\nand typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and \nscrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing \nLorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "price_type",
-							"value": "day",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "price_per_time",
-							"value": "5.000.000",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "category",
-							"value": "Web Application Pentest",
-							"type": "text",
-							"disabled": true
+						"url": {
+							"raw": "{{url}}/api/jobs/c4067d5b-e975-4dfa-a3cb-b0c97aaaef6b/checkout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"c4067d5b-e975-4dfa-a3cb-b0c97aaaef6b",
+								"checkout"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{url}}/api/jobs/3bf3b437-e8dd-4dca-ba9d-65f92562b04b/update",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"api",
-						"jobs",
-						"3bf3b437-e8dd-4dca-ba9d-65f92562b04b",
-						"update"
-					]
+				{
+					"name": "checkout version B",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "duration",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "payment_method",
+									"value": "transfer_bank",
+									"type": "text"
+								},
+								{
+									"key": "note",
+									"value": "Aku Nak kamu kerjaan kripto, rev, web, pwn, misc semuanya ntar masuk TNI deh",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/jobs/c4067d5b-e975-4dfa-a3cb-b0c97aaaef6b/checkout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"jobs",
+								"c4067d5b-e975-4dfa-a3cb-b0c97aaaef6b",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all checkout history",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/mine",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"mine"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show checkout detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/dd765d68-e461-49e2-be1e-e6a570b5d864",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"dd765d68-e461-49e2-be1e-e6a570b5d864"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "mark order complete",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/57ec136b-8a33-4f0d-b02f-16be66957a29/complete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"57ec136b-8a33-4f0d-b02f-16be66957a29",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "give rating & review completed order",
+					"protocolProfileBehavior": {
+						"protocolVersion": "auto",
+						"disableUrlEncoding": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "rating",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "Aku tak kisah lah, juara 1 lomba CSC COYYY",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/orders/57ec136b-8a33-4f0d-b02f-16be66957a29/review",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"57ec136b-8a33-4f0d-b02f-16be66957a29",
+								"review"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }

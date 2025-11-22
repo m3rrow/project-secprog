@@ -46,7 +46,19 @@ DB_USERNAME=root
 DB_PASSWORD=
 '''
 ```
-   
+
+> this app using real email notification, so change below config in .env by setup "App Password" from google mail  
+```
+## Google App Password (must setup your own google app password lah)
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=CHANGE_THIS_EMAIL
+MAIL_PASSWORD="CHANGE_THIS_PASSWORD"
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=CHANGE_THIS_EMAIL
+MAIL_FROM_NAME="${APP_NAME}"
+```
 
 > start the laravel webserver
 ```
@@ -63,3 +75,4 @@ $ php artisan serve
 ```
 
 
+#### > you can use postman for api testing https://github.com/m3rrow/project-secprog/blob/main/Web-API/secprog.postman_collection.json
