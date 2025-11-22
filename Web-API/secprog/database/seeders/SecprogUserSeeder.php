@@ -21,19 +21,79 @@ class SecprogUserSeeder extends Seeder
         ]);
 
 
-        foreach (["dimas", "fajar", "eko", "vera", "nadia"] as $name) {
-            $uuid_freelancer = (string) Str::uuid();
+        $userArr = [
+            "dimas" => "freelancer",
+            "fajar" => "customer",
+            "eko" => "freelancer",
+            "vera" => "customer",
+            "nadia" => "freelancer"
+        ];
+
+        foreach ($userArr as $name => $role) {
+            $gen_uuid = (string) Str::uuid();
+            // user & user_detail
             DB::table('user')->insert([
-                'user_id'           => $uuid_freelancer,
+                'user_id'           => $gen_uuid,
                 'username'          => $name,
                 'email'             => "{$name}@mail.com",
                 'password'          => Hash::make('p@ssw0rd'),
-                'role'              => 'freelancer',
+                'role'              => $role,
                 'account_status'    => 'verified',
             ]);
-            DB::table('freelancer_detail')->insert([
-                'user_id'           => $uuid_freelancer
+            DB::table("{$role}_detail")->insert([
+                'user_id'           => $gen_uuid
+            ]);
+
+            // generate wallet too
+            DB::table("user_wallet")->insert([
+                'wallet_id'         => (string) Str::uuid(),
+                'user_id'           => $gen_uuid,
+                'balance'           => mt_rand(500, 1000)*1000 // generate from 500.000 to 1.000.000
             ]);
         }
+
+        // custom add
+        $gen_uuid = (string) Str::uuid();
+        $role = "freelancer";
+        // user & user_detail
+        DB::table('user')->insert([
+            'user_id'           => $gen_uuid,
+            'username'          => "ncw",
+            'email'             => "ncw.binus2024@gmail.com",
+            'password'          => Hash::make('p@ssw0rd'),
+            'role'              => $role,
+            'account_status'    => 'verified',
+        ]);
+        DB::table("{$role}_detail")->insert([
+            'user_id'           => $gen_uuid
+        ]);
+        // generate wallet too
+        DB::table("user_wallet")->insert([
+            'wallet_id'         => (string) Str::uuid(),
+            'user_id'           => $gen_uuid,
+            'balance'           => 1000000
+        ]);
+
+        // custom add
+        $gen_uuid = (string) Str::uuid();
+        $role = "customer";
+        // user & user_detail
+        DB::table('user')->insert([
+            'user_id'           => $gen_uuid,
+            'username'          => "m3rr",
+            'email'             => "m3rr0w27@gmail.com",
+            'password'          => Hash::make('p@ssw0rd'),
+            'role'              => $role,
+            'account_status'    => 'verified',
+        ]);
+        DB::table("{$role}_detail")->insert([
+            'user_id'           => $gen_uuid
+        ]);
+        // generate wallet too
+        DB::table("user_wallet")->insert([
+            'wallet_id'         => (string) Str::uuid(),
+            'user_id'           => $gen_uuid,
+            'balance'           => 1000000
+        ]);
     }
 }

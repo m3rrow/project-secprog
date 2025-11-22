@@ -40,6 +40,17 @@ class CustomerAccountController extends Controller
                 'last_modified_at',
             ]);
 
+        // get balance if exist
+        $wallet = DB::table('user_wallet')
+                    ->where('user_id', $session->user_id)
+                    ->first(['balance']);
+        if ($wallet && (float) $wallet->balance !== 0.0) {
+            // Rp. 100.000 format
+            $formattedBalance = number_format((float) $wallet->balance, 0, ',', '.');
+            $balance = "Rp {$formattedBalance}";
+        } else {
+            $balance = 'no balance yet (contact admin for topup)';
+        }
         return response()->json([
             'status' => 'success',
             'data' => [
@@ -47,6 +58,7 @@ class CustomerAccountController extends Controller
                 'email'    => $session->email,
                 'role'     => $session->role,
                 'account_status' => $session->account_status,
+                'balance'   => $balance,
                 'detail'   => $row, // may be null if never inserted
             ],
         ]);
@@ -217,6 +229,13 @@ class CustomerAccountController extends Controller
                 $session->save();
             }
             
+            /* update value of tgl_lahir if exist */
+            /* converted date format */
+            $tgl_lahir = $payload->has('tgl_lahir') ? mb_strtolower($payload->pull('tgl_lahir')) : null;
+            if (!is_null($email)) {
+                $payload = $payload->put('tgl_lahir', Carbon::createFromFormat('m/d/Y', $tgl_lahir)->format('Y-m-d'));
+            }
+
             /* update table customer_detail */
             if (!$payload->isEmpty()) {
                 DB::table('customer_detail')->where('user_id', $session->user_id)->update($payload->toArray());

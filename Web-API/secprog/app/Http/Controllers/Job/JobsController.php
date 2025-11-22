@@ -240,7 +240,7 @@ class JobsController extends Controller
         $price_formatted = $job->price_per_time !== null
             ? number_format((int)$job->price_per_time, 0, ',', '.')
             : null;
-        $job->price_per_time = "Rp$price_formatted";
+        $job->price_per_time = "Rp $price_formatted";
 
         // cleanup output
         unset($job->job_id);
@@ -328,4 +328,39 @@ class JobsController extends Controller
         ]);
     }
 
+    public function delete(Request $request, string $id)
+    {
+        $session = $request->user(); // get session
+
+        $job = DB::table('jobs')->where('job_id', $id)->first();
+
+        if (!$job) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Job not found',
+            ], 404);
+        }
+
+        // security wise, ensure this job belongs to the current freelancer
+        if ($job->user_id !== $session->user_id) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'You are not the owner of this job',
+            ], 403);
+        }
+
+        // security wise, prevent deleting jobs that are already booked / in use
+        if ($job->job_status !== 'available') {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Only available jobs can be deleted',
+            ], 409);
+        }
+
+        DB::table('jobs')->where('job_id', $id)->delete();
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Job deleted successfully',
+        ]);
+    }
 }

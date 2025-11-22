@@ -60,29 +60,44 @@ SQL);
         Schema::create('secprog.job_order', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->increments('order_id');
+            $table->string('order_id', 64)->primary();
             
             $table->enum('price_type', ['hour', 'day'])->default('day');
             $table->unsignedInteger('duration_amount')->nullable();
 
             $table->string('order_note', 255)->nullable();
-            $table->enum('job_status', ['Awaiting-Payment', 'On-Progress', 'Complete', 'Canceled'])->nullable(false);
-            $table->timestamp('order_at')->useCurrent()->useCurrentOnUpdate();
+            $table->enum('job_status', [
+                'Awaiting-Payment', 'Expired-Payment', 'On-Progress', 'Complete', 'Canceled'
+            ])->nullable(false);
+            $table->timestamp('order_at')->useCurrent();
+
+            // Payment method: transfer bank, e-wallet, COD
+            $table->enum('payment_method', ['transfer_bank','e-wallet','cod'])
+                ->default('transfer_bank');
+
+            // Total price in smallest unit (rupiah, no decimals)
+            $table->unsignedBigInteger('total_price')->nullable();
+
+            // Deadline (start+duration)
+            $table->timestamp('deadline_at')->nullable();
+            
+            // payment status for order pay lol
+            $table->boolean('payment_status')->default(false);
 
             $table->string('job_id', 64)->nullable();
             $table->string('recruiter_id', 64)->nullable();
             $table->string('freelancer_id', 64)->nullable();
 
             $table->foreign('job_id')
-                  ->references('job_id')->on('secprog.jobs')
-                  ->onDelete('cascade');
+                ->references('job_id')->on('secprog.jobs')
+                ->onDelete('cascade');
 
             // Both link to secprog.*_detail(user_id) per your SQL
             $table->foreign('recruiter_id')
-                  ->references('user_id')->on('secprog.customer_detail');
+                ->references('user_id')->on('secprog.customer_detail');
 
             $table->foreign('freelancer_id')
-                  ->references('user_id')->on('secprog.freelancer_detail');
+                ->references('user_id')->on('secprog.freelancer_detail');
         });
 
         // ----------------------
@@ -91,7 +106,7 @@ SQL);
         Schema::create('secprog.job_ratings', function (Blueprint $table) {
             $table->engine = 'InnoDB';
 
-            $table->increments('rating_id');
+            $table->string('rating_id', 64)->primary();
             $table->unsignedTinyInteger('rating_score');
             $table->text('comment')->nullable();
             $table->timestamp('created_timestamp')->useCurrent();

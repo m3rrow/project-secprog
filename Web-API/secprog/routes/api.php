@@ -1,13 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\RegisterController;
+
 use App\Http\Controllers\User\FreelancerAccountController;
 use App\Http\Controllers\User\CustomerAccountController;
+
 use App\Http\Controllers\Job\JobsController;
+use App\Http\Controllers\Job\JobOrderController;
+
+use App\Http\Controllers\Admin\AdminWalletController;
+
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Middleware\EnsureRole;
 
@@ -109,8 +116,71 @@ Route::middleware(['web','auth:web','throttle:30,1',
     EnsureRole::class.':freelancer'])
     ->post('/jobs/{id}/update', [JobsController::class, 'update'])
     ->withoutMiddleware(VerifyCsrfToken::class);
+
+// {{url}}/jobs/{id}/delete
+Route::middleware(['web','auth:web','throttle:30,1',
+    EnsureRole::class.':freelancer'])
+    ->get('/jobs/{id}/delete', [JobsController::class, 'delete'])
+    ->withoutMiddleware(VerifyCsrfToken::class);
 /* end of job area */
 
+
+/* 
+###########################
+###### CHECKOUT AREA ######
+###########################
+*/
+    // ========== CUSTOMER SIDE ==========
+    Route::middleware(['web','auth:web',
+        EnsureRole::class.':customer'])
+        ->post('/jobs/{job_id}/checkout', [JobOrderController::class, 'checkout'])
+        ->withoutMiddleware(VerifyCsrfToken::class);
+
+    Route::middleware(['web','auth:web',
+        EnsureRole::class.':customer'])
+        ->get('/orders/mine', [JobOrderController::class, 'customerOrders']);
+
+    Route::middleware(['web','auth:web',
+        EnsureRole::class.':customer'])
+        ->get('/orders/{order_id}/complete', [JobOrderController::class, 'complete']);
+
+    Route::middleware(['web','auth:web',
+        EnsureRole::class.':customer'])
+        ->post('/orders/{order_id}/review', [JobOrderController::class, 'review'])
+        ->withoutMiddleware(VerifyCsrfToken::class);
+
+    // ========== FREELANCER SIDE ==========
+    Route::middleware(['web','auth:web',
+        EnsureRole::class.':freelancer'])
+        ->get('/orders/incoming', [JobOrderController::class, 'freelancerOrders']);
+
+    Route::middleware(['web','auth:web',
+        EnsureRole::class.':freelancer'])
+        ->get('/orders/{order_id}/accept', [JobOrderController::class, 'freelancerAccept']);
+
+    Route::middleware(['web','auth:web',
+        EnsureRole::class.':freelancer'])
+        ->get('/orders/{order_id}/reject', [JobOrderController::class, 'freelancerReject']);
+
+    // ========== SHARED ==========
+    Route::middleware(['web','auth:web'])
+        ->get('/orders/{order_id}', [JobOrderController::class, 'show']);
+
+
+
+// ========== ADMIN PANEL ==========
+Route::middleware(['web','auth:web',
+    EnsureRole::class.':admin'])
+    ->post('/admin/wallet/topup/{user_id}', [AdminWalletController::class, 'topup'])
+    ->withoutMiddleware(VerifyCsrfToken::class);
+
+Route::middleware(['web','auth:web',
+    EnsureRole::class.':admin'])
+    ->get('/admin/orders/{order_id}/approve-payment', [AdminWalletController::class, 'approveJobPayment']);
+
+Route::middleware(['web','auth:web',
+    EnsureRole::class.':admin'])
+    ->get('/admin/orders/{order_id}/refund-payment', [AdminWalletController::class, 'refundJobPayment']);
 
 
 /* redirect semua request /api/* ke / */
