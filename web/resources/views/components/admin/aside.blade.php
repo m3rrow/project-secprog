@@ -4,8 +4,8 @@
                    <div class="col-lg-8 col-md-6">
                     <div class="index1-logo">
                        <a href="{{ url('/') }}">
-                       <img class="normal-logo" src="images/h3khire-logo.png" alt="logo" style="max-height: 60px;">
-                          <img class="sticky-logo" src="images/h3khire-logo.png" alt="logo">
+                       <img class="normal-logo" src="{{ asset('images/h3khire-logo.png') }}" alt="logo" style="max-height: 60px;">
+                          <img class="sticky-logo" src="{{ asset('images/h3khire-logo.png') }}" alt="logo">
                        </a>
                     </div>
                     <nav class="navbar navbar-expand-lg">
@@ -103,7 +103,7 @@
                    <div class=" col-md-4 col-sm-4 col-4">
                       <div class="mobile-logo">
                          <a href="">
-                         <img src="images/h3khire-logo.png" alt="logo">
+                         <img src="{{ asset('images/h3khire-logo.png') }}" alt="logo">
                          </a>
                       </div>
                    </div>
@@ -166,9 +166,9 @@
                 </div>
              </div>
           </div>
-          <div id="sidebar">
+                         <div id="sidebar">
                      <div class="sidebar_logo">
-                        <a href="{{ url('/') }}"><img src="images/h3khire-logo.png" alt="logo" style="max-height: 60px"></a>
+                        <a href="{{ url('/') }}"><img src="{{ asset('images/h3khire-logo.png') }}" alt="logo" style="max-height: 60px"></a>
                      </div>
                      <div id="toggle_close">&times;</div>
                      <div id='cssmenu'>

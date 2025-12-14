@@ -32,8 +32,10 @@ Route::get('support', function () {
 use App\Http\Controllers\JobController;
 
 Route::get('jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
 Route::post('jobs', [JobController::class, 'store'])->name('jobs.store');
 Route::get('jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
+Route::get('jobs/{id}/checkout', [JobController::class, 'checkout'])->name('jobs.checkout');
 
 Route::get('job-details', function () {
     return view('jobs.job-details');
@@ -99,7 +101,17 @@ Route::middleware('auth')->group(function () {
         if (! $user || $user->role !== 'freelancer') {
             abort(403);
         }
-        return view('dashboard.dashboard-freelancer');
+        
+        // Get user's services
+        $jobs = \App\Models\Job::where('user_id', $user->id)->get();
+        $activeCount = $jobs->where('is_active', true)->count();
+        $totalEarnings = '$0.00'; // Placeholder for now
+        
+        return view('dashboard.dashboard-freelancer', [
+            'jobs' => $jobs,
+            'activeCount' => $activeCount,
+            'totalEarnings' => $totalEarnings,
+        ]);
     })->name('freelancer.dashboard');
     Route::get('addproject', function () {
         return view('services.project.post-project');

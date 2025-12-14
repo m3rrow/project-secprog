@@ -16,20 +16,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabula</title>
-    <link rel="stylesheet" type="text/css" href="css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="css/animate.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/fonts.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css" />
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/check.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
-    <!--favicon-->
-  <link rel="shortcut icon" type="image/png" href="images/fav-icon.png" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/magnific-popup.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.default.min.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/check.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('css/responsive.css') }}" />
+      <!--favicon-->
+   <link rel="shortcut icon" type="image/png" href="{{ asset('images/fav-icon.png') }}" />
 </head>
 
 <body>
@@ -38,7 +38,7 @@
     <div class="main-header-wrapper1 inner-main-header float_left">
        <div class="right-sidebar" id="right-sidebar">
           <div class="toggle-top-header">
-             <a class="tog-logo" href="javascript:;"> <img src="images/h3khire-logo.png" alt="logo"> </a>
+             <a class="tog-logo" href="javascript:;"> <img src="{{ asset('images/h3khire-logo.png') }}" alt="logo"> </a>
              <button class="sidebar-close"></button>
           </div>
           <div class="toogle-centent float_left">
@@ -47,7 +47,7 @@
           </div>
           <div class="post-toggle float_left">
                      <div class="togle-img">
-                        <img src="images/drive.png" alt="img">
+                        <img src="{{ asset('images/drive.png') }}" alt="img">
                      </div>
                      <div class="togle-text">
                         <a href="javascript:;">Seniour PHP Developer</a>
@@ -58,7 +58,7 @@
                   <!--  -->
                   <div class="post-toggle float_left">
                      <div class="togle-img">
-                        <img src="images/drive1.png" alt="img">
+                        <img src="{{ asset('images/drive1.png') }}" alt="img">
                      </div>
                      <div class="togle-text">
                         <a href="javascript:;">Graphics Designer</a>
@@ -69,7 +69,7 @@
                   <!--  -->
                   <div class="post-toggle float_left">
                      <div class="togle-img">
-                        <img src="images/drive2.png" alt="post">
+                        <img src="{{ asset('images/drive2.png') }}" alt="post">
                      </div>
                      <div class="togle-text">
                         <a href="javascript:;">Product Manager</a>
@@ -138,11 +138,11 @@
                      </ul>
                      <a class="btn-from" href="javascript:;">Sign in</a>
                   </div>
-       </div>
+      </div>
   
   
-       <div class="sb-main-header1">
-            <x-admin.aside />
-       </div>
+        <div class="sb-main-header1">
+           <x-admin.aside />
+        </div>
     </div>
     <!-- header end -->
