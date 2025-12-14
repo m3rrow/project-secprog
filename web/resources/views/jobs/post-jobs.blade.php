@@ -15,16 +15,17 @@
          <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                <div class="post-form-wrapper float_left">
-                  <form>
+                  <form action="{{ route('jobs.store') }}" method="POST">
+                  @csrf
                      
                      <div class="form-group row">
                         <div class="col-md-6 col-12">
                            <label>Job title</label>
-                           <input type="text" placeholder="Add title">
+                           <input type="text" name="title" placeholder="Add title" required>
                         </div>
                         <div class="col-md-6 col-12">
                            <label>Location</label>
-                           <input type="text" placeholder="E.g. San Francisco, CA">
+                           <input type="text" name="location" placeholder="E.g. San Francisco, CA">
                         </div>
                      </div>
 
@@ -102,26 +103,20 @@
                         <div class="col-md-6 col-12">
                            <label>Salary range</label>
                            <div class="select-field">
-                              <select>
-                                 <option selected="selected" value="">Select Range</option>
-                                 <option value="7-9">$700 - $1000</option>
-                                 <option value="10-13">$1000 - $1200 </option>
-                                 <option value="10-13">$1200 - $1400 </option>
-                                 <option value="20">$1500 - $1800</option>
-                                 <option value="20">$2000 - $3000</option>
-                              </select>
+                              <input type="text" name="salary" placeholder="e.g. $1000 - $1500">
                            </div>
                         </div> 
                      </div> 
                      <div class="form-group row">
                         <div class="col-md-12 col-12">
-                           <label>Job description</label>
-                           <textarea rows="4" cols="50" placeholder="Describe your project here..."></textarea>
+                                        <label>Job description</label>
+                                        <textarea name="description" rows="4" cols="50" placeholder="Describe the job here..."></textarea>
                         </div>
                      </div>
-                        
-                  </form>
-                  <a class="custom-btn" href="javascript:;"> <span>Publish Job</span> </a>
+                               <div class="form-actions">
+                                  <button type="submit" class="custom-btn"><span>Publish Job</span></button>
+                               </div>
+                           </form>
                </div>
             </div>
          </div>

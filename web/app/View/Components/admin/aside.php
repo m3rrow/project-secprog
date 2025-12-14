@@ -32,7 +32,7 @@ class aside extends Component
             ],
             [
                 'label' => 'Jobs',
-                'route_name' => 'jobs',
+                'route_name' => 'jobs.index',
                 'is_dropdown' => false,
             ]
         ];

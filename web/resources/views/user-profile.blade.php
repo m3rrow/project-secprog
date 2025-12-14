@@ -194,14 +194,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="profile-pic-container">
-                        <img src="https://placehold.co/150x150/EAF2F7/0060AA?text=Avatar" alt="Profile Picture" class="profile-pic" id="profilePicImg">
+                        <img src="{{ $user->profile_picture ? url('storage/' . $user->profile_picture) : 'https://placehold.co/150x150/EAF2F7/0060AA?text=Avatar' }}" alt="Profile Picture" class="profile-pic" id="profilePicImg">
                         <label for="profilePicInput" class="change-photo-btn">
                             <i class="fas fa-camera"></i>
                         </label>
-                        <input type="file" name="profile_picture" id="profilePicInput" accept="image/*">
                     </div>
                     
-                    <h5>[Username]</h5>
+                    <h5>{{ $user->name }}</h5>
 
                     <span class="badge rounded-pill bg-warning text-dark verification-badge" id="verificationStatus">
                         <i class="fas fa-exclamation-triangle me-1"></i>Not Verified
@@ -216,7 +215,31 @@
 
         <!-- Main Content Section -->
         <div class="col-lg-8 profile-content">
-            <form id="profileForm" action="#" method="POST" enctype="multipart/form-data">
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Validation Errors:</strong>
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+
+            <form id="profileForm" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <!-- Hidden file input container for profile picture -->
+            <div style="display: none;">
+                <input type="file" name="profile_picture" id="profilePicInput" accept="image/*">
+            </div>
             <div class="card">
                 <div class="card-body p-4 p-md-5">
 
@@ -226,24 +249,24 @@
                         <ul class="list-unstyled info-list">
                             <li>
                                 <span class="label">Full Name</span> 
-                                <span class="value">[Not Provided]</span>
-                                <input type="text" name="fullname" class="form-control editable-field" value="">
+                                <span class="value">{{ $user->name ?? '[Not Provided]' }}</span>
+                                <input type="text" name="fullname" class="form-control editable-field" value="{{ $user->name }}">
                             </li>
                              <li>
                                 <span class="label">Company Name</span> 
-                                <span class="value">[Not Provided]</span>
-                                <input type="text" name="company_name" class="form-control editable-field" value="">
+                                <span class="value">{{ $user->company_name ?? '[Not Provided]' }}</span>
+                                <input type="text" name="company_name" class="form-control editable-field" value="{{ $user->company_name }}">
                             </li>
-                            <li><span class="label">Email</span> <span class="value">[email@example.com]</span></li>
+                            <li><span class="label">Email</span> <span class="value">{{ $user->email }}</span></li>
                             <li>
                                 <span class="label">Phone</span> 
-                                <span class="value">[Not Provided]</span>
-                                <input type="tel" name="phone" class="form-control editable-field" value="">
+                                <span class="value">{{ $user->phone ?? '[Not Provided]' }}</span>
+                                <input type="tel" name="phone" class="form-control editable-field" value="{{ $user->phone }}">
                             </li>
                              <li>
                                 <span class="label">Address</span> 
-                                <span class="value">[Not Provided]</span>
-                                <input type="text" name="address" class="form-control editable-field" value="">
+                                <span class="value">{{ $user->address ?? '[Not Provided]' }}</span>
+                                <input type="text" name="address" class="form-control editable-field" value="{{ $user->address }}">
                             </li>
                         </ul>
                     </div>
@@ -279,20 +302,32 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="passwordChangeForm">
+        <form id="passwordChangeForm" action="{{ route('profile.change-password') }}" method="POST">
+          @csrf
           <div class="mb-3">
             <label for="current_password" class="form-label">Current Password</label>
-            <input type="password" class="form-control" id="current_password" required>
+            <input type="password" class="form-control" id="current_password" name="current_password" required>
+            @error('current_password')
+              <div class="text-danger small mt-1">{{ $message }}</div>
+            @enderror
           </div>
           <div class="mb-3">
             <label for="new_password" class="form-label">New Password</label>
-            <input type="password" class="form-control" id="new_password" required>
+            <input type="password" class="form-control" id="new_password" name="new_password" required>
+            @error('new_password')
+              <div class="text-danger small mt-1">{{ $message }}</div>
+            @enderror
+            <small class="text-muted d-block mt-2">Password must be at least 8 characters and contain uppercase, lowercase, number, and special character.</small>
+          </div>
+          <div class="mb-3">
+            <label for="new_password_confirmation" class="form-label">Confirm New Password</label>
+            <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save Password</button>
+        <button type="submit" form="passwordChangeForm" class="btn btn-primary">Save Password</button>
       </div>
     </div>
   </div>
@@ -372,8 +407,8 @@
         });
 
         profileForm.addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            originalImageSrc = profilePicImg.src;
+            // Update form display values but don't update image preview
+            // Let the form submit and the page reload will show the actual saved image
 
             profileForm.querySelectorAll('input[type="text"], input[type="tel"]').forEach(input => {
                 const displayElement = input.closest('li').querySelector('.value');
@@ -384,8 +419,9 @@
 
             checkVerificationStatus();
 
-            alert('Changes saved temporarily!');
             toggleEditMode(false);
+            // Form will submit normally via POST to the server
+            // Page reload will display the saved profile picture from database
         });
 
         checkVerificationStatus();

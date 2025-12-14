@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;   // <-- add this
-use App\Http\Controllers\Auth\RegisterController;   // <-- add this
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('index');
@@ -28,9 +29,11 @@ Route::get('support', function () {
     return view('home.support');
 })->name('support');
 
-Route::get('jobs', function () {
-    return view('jobs.jobs-listing');
-})->name('jobs');
+use App\Http\Controllers\JobController;
+
+Route::get('jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::post('jobs', [JobController::class, 'store'])->name('jobs.store');
+Route::get('jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 
 Route::get('job-details', function () {
     return view('jobs.job-details');
@@ -80,14 +83,15 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-    // profile routes
-    Route::get('user/profile', function () {
-        return view('user-profile');
-    })->name('user.profile');
-
-    Route::get('freelancer/profile', function () {
-        return view('freelancer-profile');
-    })->name('freelancer.profile');
+    
+    // Profile routes
+    Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('profile/change-password', [ProfileController::class, 'changePassword'])->name('profile.change-password');
+    
+    // Legacy routes (kept for backward compatibility)
+    Route::get('user/profile', [ProfileController::class, 'show'])->name('user.profile');
+    Route::get('freelancer/profile', [ProfileController::class, 'show'])->name('freelancer.profile');
     
     // Freelancer dashboard - only for authenticated users with role 'freelancer'
     Route::get('freelancer/dashboard', function () {
@@ -100,7 +104,5 @@ Route::middleware('auth')->group(function () {
     Route::get('addproject', function () {
         return view('services.project.post-project');
     })->name('addproject');
-    Route::get('addjob', function () {
-        return view('jobs.post-jobs');
-    })->name('addjob');
+    Route::get('addjob', [JobController::class, 'create'])->name('addjob');
 });

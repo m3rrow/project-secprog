@@ -275,159 +275,63 @@
                   </ul>
                </div>
             </div>
-            <!--  -->
-            <div class="freelauncer-profile float_left">
-               <div class="profile-img">
-                  <img src="images/p1.png" alt="profie">
-               </div>
-               <div class="profile-text ps-rel">
-                  <a href="jobs-details.html"><h6>Sales Analytics</h6></a>
-                  <a href="jobs-details.html"><small>Infratech Pvt Ltd <i class="fa fa-check" aria-hidden="true"></i></small></a>
-                  <div class="rating-sec">
-                     <div class="star">
-                        <ul>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
-                        </ul>
+            <!-- Jobs listing (dynamic) -->
+            @if(isset($jobs) && $jobs->count())
+               @foreach($jobs as $job)
+                  <div class="freelauncer-profile float_left">
+                     <div class="profile-img">
+                        <img src="{{ asset('images/p1.png') }}" alt="job">
                      </div>
-                     <div class="rating-btn">
-                        <a class="btn1" href="javascript:;">Featured</a>
-                        
+                     <div class="profile-text ps-rel">
+                        <a href="{{ route('jobs.show', $job->id) }}"><h6>{{ $job->title }}</h6></a>
+                        <a href="{{ route('jobs.show', $job->id) }}"><small>{{ $job->company ?? optional($job->user)->name ?? 'Company' }} <i class="fa fa-check" aria-hidden="true"></i></small></a>
+                        <div class="rating-sec">
+                           <div class="star">
+                              <ul>
+                                 <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
+                                 <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
+                                 <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
+                                 <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
+                                 <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
+                              </ul>
+                           </div>
+                           <div class="rating-btn">
+                              <a class="btn1" href="javascript:;">Featured</a>
+                           </div>
+                        </div>
+                        <div class="pro-add">
+                           <ul>
+                              <li> <span><i class="far fa-money-bill-alt"></i></span> {{ $job->salary ?? 'Negotiable' }}</li>
+                              <li> <span><i class="fa fa-clock-o" aria-hidden="true"></i></span> {{ $job->created_at->diffForHumans() }}</li>
+                              <li> <span><i class="fas fa-map-marker-alt"></i></span> {{ $job->location ?? 'Remote' }}</li>
+                              <li class="heart"> <span><i class="fas fa-heart"></i></span></li>
+                           </ul>
+                        </div>
                      </div>
-                  </div>
-                  <div class="pro-add">
-                     <ul>
-                        <li> <span><i class="far fa-money-bill-alt"></i></span> $20 / Hour</li>
-                        <li> <span><i class="fa fa-clock-o" aria-hidden="true"></i></span> 8 months ago </li>
-                        <li> <span><i class="fas fa-map-marker-alt"></i></span> Brisbane</li>
-                        <li class="heart"> <span><i class="fas fa-heart"></i></span></li>
-                        
-                     </ul>
-                  </div>
-               </div>
-               <div class="pro-text">
-                  <p>Excepteur sint occaecat cupidatat non proident, saeunt in culpa qui officia deserunt mollit anim id est laborum. Seden utem perspiciatis undesieu omnis iste natus error…</p>
-               </div>
-               <div class="skill">
-                  <div class="skill-text">
-                     <p>Skills</p>
-                     <a href="javascript:;">HTML</a>
-                     <a href="javascript:;">Photoshop</a>
-                     <a href="javascript:;">Java</a>
-                     <a href="javascript:;">Ui / UX</a>
-                     <a href="javascript:;">Jquery</a>
-                     <a href="javascript:;">My SQL</a>
-                     <a href="javascript:;">PHP</a>
-                  </div>
-                  <button class="apply-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>Apply Now</span></button>
-               </div>
-               
-               
-            </div>
-            <!--  -->
-            <div class="freelauncer-profile float_left">
-               <div class="profile-img">
-                  <img src="images/p2.png" alt="profie">
-               </div>
-               <div class="profile-text ps-rel">
-                  <a href="jobs-details.html"><h6>Android & IOS Developer</h6></a>
-                  <a href="jobs-details.html"><small>Softtech Pvt Ltd <i class="fa fa-check" aria-hidden="true"></i></small></a>
-                  <div class="rating-sec">
-                     <div class="star">
-                        <ul>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
-                        </ul>
+                     <div class="pro-text">
+                        <p>{{ \Illuminate\Support\Str::limit($job->description, 200) }}</p>
                      </div>
-                     <div class="rating-btn">
-                        <a class="btn2" href="javascript:;">New</a>
-                        
+                     <div class="skill">
+                        <div class="skill-text">
+                           <p>Skills</p>
+                           @if($job->skills)
+                              @foreach(explode(',', $job->skills) as $skill)
+                                 <a href="javascript:;">{{ trim($skill) }}</a>
+                              @endforeach
+                           @endif
+                        </div>
+                        <button class="apply-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>Apply Now</span></button>
                      </div>
                   </div>
-                  <div class="pro-add">
-                     <ul>
-                        <li> <span><i class="far fa-money-bill-alt"></i></span> $20 / Hour</li>
-                        <li> <span><i class="fa fa-clock-o" aria-hidden="true"></i></span> 8 months ago </li>
-                        <li> <span><i class="fas fa-map-marker-alt"></i></span> Brisbane</li>
-                        <li class="heart"> <span><i class="fas fa-heart"></i></span></li>
-                        
-                     </ul>
+               @endforeach
+            @else
+               <div class="freelauncer-profile float_left">
+                  <div class="profile-text ps-rel">
+                     <h6>No jobs found.</h6>
+                     <p>There are currently no jobs posted.</p>
                   </div>
                </div>
-               <div class="pro-text">
-                  <p>Excepteur sint occaecat cupidatat non proident, saeunt in culpa qui officia deserunt mollit anim id est laborum. Seden utem perspiciatis undesieu omnis iste natus error…</p>
-               </div>
-               <div class="skill">
-                  <div class="skill-text">
-                     <p>Skills</p>
-                     <a href="javascript:;">HTML</a>
-                     <a href="javascript:;">Photoshop</a>
-                     <a href="javascript:;">Java</a>
-                     <a href="javascript:;">Ui / UX</a>
-                     <a href="javascript:;">Jquery</a>
-                     <a href="javascript:;">My SQL</a>
-                     <a href="javascript:;">PHP</a>
-                  </div>
-                  <button class="apply-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>Apply Now</span></button>
-               </div>
-            </div>
-            <!--  -->
-            <div class="freelauncer-profile float_left">
-               <div class="profile-img">
-                  <img src="images/p3.png" alt="profie">
-               </div>
-               <div class="profile-text ps-rel">
-                  <a href="jobs-details.html"><h6>Expert Bidder</h6></a>
-                  <a href="jobs-details.html"><small>Pro Meet Pvt Ltd <i class="fa fa-check" aria-hidden="true"></i></small></a>
-                  <div class="rating-sec">
-                     <div class="star">
-                        <ul>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                           <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
-                        </ul>
-                     </div>
-                     <div class="rating-btn">
-                        <a class="btn1" href="javascript:;">Featured</a>
-                        
-                     </div>
-                  </div>
-                  <div class="pro-add">
-                     <ul>
-                        <li> <span><i class="far fa-money-bill-alt"></i></span> $20 / Hour</li>
-                        <li> <span><i class="fa fa-clock-o" aria-hidden="true"></i></span> 8 months ago </li>
-                        <li> <span><i class="fas fa-map-marker-alt"></i></span> Brisbane</li>
-                        <li class="heart"> <span><i class="fas fa-heart"></i></span></li>
-                        
-                     </ul>
-                  </div>
-               </div>
-               <div class="pro-text">
-                  <p>Excepteur sint occaecat cupidatat non proident, saeunt in culpa qui officia deserunt mollit anim id est laborum. Seden utem perspiciatis undesieu omnis iste natus error…</p>
-               </div>
-               <div class="skill">
-                  <div class="skill-text">
-                     <p>Skills</p>
-                     <a href="javascript:;">HTML</a>
-                     <a href="javascript:;">Photoshop</a>
-                     <a href="javascript:;">Java</a>
-                     <a href="javascript:;">Ui / UX</a>
-                     <a href="javascript:;">Jquery</a>
-                     <a href="javascript:;">My SQL</a>
-                     <a href="javascript:;">PHP</a>
-                  </div>
-                  <button class="apply-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span>Apply Now</span></button>
-               </div>
-            </div>
-            <!--  -->
+            @endif
             <div class="freelauncer-profile float_left">
                <div class="profile-img">
                   <img src="images/p4.png" alt="profie">
@@ -718,15 +622,9 @@
             <!--  -->
             <div class="blog-main-wrapper float_left">
                <div class="custom-pegination">
-                  <ul>
-                     <li class="preious"> <a href="javascript:;"> <span>Previous</span> </a> </li>
-                     <li class="active"> <a href="javascript:;"> <span>1</span> </a> </li>
-                     <li> <a href="javascript:;"> <span>2</span> </a> </li>
-                     <li> <a href="javascript:;"> <span>3</span> </a> </li>
-                     <li> <a href="javascript:;"> <span>4</span> </a> </li>
-                     <li> <a href="javascript:;"> <span>5</span> </a> </li>
-                     <li class="preious active"> <a href="javascript:;"> <span>Next</span> </a> </li>
-                  </ul>
+                  @if(isset($jobs))
+                     {{ $jobs->links() }}
+                  @endif
                </div>
             </div>
          </div>
