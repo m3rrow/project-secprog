@@ -350,161 +350,175 @@
                         <div class="mb-3">
                             <div class="skills-list d-flex flex-wrap gap-2 mb-2">
                                 @if($user->skills)
-        const profilePicImg = document.getElementById('profilePicImg');
-        const profilePicInput = document.getElementById('profilePicInput');
+                                    @foreach(explode(',', $user->skills) as $skill)
+                                        <span class="badge rounded-pill bg-info">{{ trim($skill) }}</span>
+                                    @endforeach
+                                @else
+                                    <span class="text-muted">[Not Provided]</span>
+                                @endif
+                            </div>
+                            <input type="text" name="skills" class="form-control editable-field" placeholder="Separate skills with commas" value="{{ $user->skills }}">
+                        </div>
+                    </div>
 
-        let originalValues = {};
-        let originalImageSrc = profilePicImg.src;
+                    <!-- Action Buttons -->
+                    <div class="d-flex gap-2 justify-content-end edit-actions">
+                        <button type="button" class="btn btn-secondary btn-sm" id="cancelButton">Cancel</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-        function toggleEditMode(isEditing) {
-            if (isEditing) profileRow.classList.add('edit-mode');
-            else profileRow.classList.remove('edit-mode');
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const editProfileButton = document.getElementById('editProfileButton');
+    const cancelButton = document.getElementById('cancelButton');
+    const profileForm = document.getElementById('profileForm');
+    const profileRow = document.getElementById('profileRow');
+    const profilePicImg = document.getElementById('profilePicImg');
+    const profilePicInput = document.getElementById('profilePicInput');
+    const verificationStatus = document.getElementById('verificationStatus');
+
+    let originalValues = {};
+    let originalImageSrc = profilePicImg.src;
+
+    function toggleEditMode(isEditing) {
+        if (isEditing) {
+            profileRow.classList.add('edit-mode');
+        } else {
+            profileRow.classList.remove('edit-mode');
         }
+    }
 
-        editProfileButton.addEventListener('click', () => {
-            originalImageSrc = profilePicImg.src;
-            profileForm.querySelectorAll('input, textarea').forEach(input => {
-                if (input.type !== 'file') originalValues[input.name] = input.value;
-            });
-            toggleEditMode(true);
-        });
+    function checkVerificationStatus() {
+        const fullname = profileForm.querySelector('input[name="fullname"]').value;
+        const company_name = profileForm.querySelector('input[name="company_name"]').value;
+        const phone = profileForm.querySelector('input[name="phone"]').value;
+        const address = profileForm.querySelector('input[name="address"]').value;
 
-        cancelButton.addEventListener('click', () => {
-            profilePicImg.src = originalImageSrc;
-            profilePicInput.value = '';
-            profileForm.querySelectorAll('input, textarea').forEach(input => {
-                if (originalValues[input.name]) input.value = originalValues[input.name];
-            });
-            toggleEditMode(false);
-        });
+        if (fullname && company_name && phone && address) {
+            verificationStatus.innerHTML = '<i class="fas fa-check-circle me-1"></i>Verified';
+            verificationStatus.classList.remove('bg-warning', 'text-dark');
+            verificationStatus.classList.add('bg-success');
+        } else {
+            verificationStatus.innerHTML = '<i class="fas fa-exclamation-triangle me-1"></i>Not Verified';
+            verificationStatus.classList.remove('bg-success');
+            verificationStatus.classList.add('bg-warning', 'text-dark');
+        }
+    }
 
-        profilePicInput.addEventListener('change', (event) => {
-            if (event.target.files && event.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profilePicImg.src = e.target.result;
-                }
-                reader.readAsDataURL(event.target.files[0]);
+    editProfileButton.addEventListener('click', () => {
+        originalImageSrc = profilePicImg.src;
+        profileForm.querySelectorAll('input, textarea').forEach(input => {
+            if (input.type !== 'file') {
+                originalValues[input.name] = input.value;
             }
         });
+        toggleEditMode(true);
+    });
 
-        profileForm.addEventListener('submit', function(event) {
-            // Update form display values but don't update image preview
-            // Let the form submit and the page reload will show the actual saved image
-
-            // Update displayed values from form inputs
-            const aboutInput = profileForm.querySelector('textarea[name="about_me"]');
-            if (aboutInput) {
-                const displayElement = aboutInput.parentElement.querySelector('span.d-block');
-                if (displayElement) {
-                    displayElement.textContent = aboutInput.value || '[Not Provided]';
-                }
+    cancelButton.addEventListener('click', () => {
+        profilePicImg.src = originalImageSrc;
+        profilePicInput.value = '';
+        profileForm.querySelectorAll('input, textarea').forEach(input => {
+            if (originalValues[input.name]) {
+                input.value = originalValues[input.name];
             }
-
-            const skillsInput = profileForm.querySelector('input[name="skills"]');
-            const skillsDisplay = profileForm.querySelector('.skills-list');
-            if (skillsInput && skillsDisplay) {
-                skillsDisplay.innerHTML = '';
-                const skills = skillsInput.value.split(',').map(s => s.trim()).filter(Boolean);
-                if (skills.length > 0) {
-                    skills.forEach(skillText => {
-                        const badge = document.createElement('span');
-                        badge.className = 'badge rounded-pill bg-info';
-                        badge.textContent = skillText;
-                        skillsDisplay.appendChild(badge);
-                    });
-                } else {
-                    skillsDisplay.innerHTML = '<span class="text-muted">[Not Provided]</span>';
-                }
+        });
+        toggleEditMode(false);
+    });
+    
+    // File size validation function
+    function validateFileSize(fileInput, maxSizeMB, fieldName) {
+        if (fileInput.files && fileInput.files[0]) {
+            const file = fileInput.files[0];
+            const maxSizeBytes = maxSizeMB * 1024 * 1024;
+            
+            if (file.size > maxSizeBytes) {
+                alert(`${fieldName} is too large! Maximum allowed size is ${maxSizeMB}MB. Your file is ${(file.size / 1024 / 1024).toFixed(2)}MB.`);
+                fileInput.value = '';
+                return false;
             }
+        }
+        return true;
+    }
 
-            toggleEditMode(false);
-            // Form will submit normally via POST to the server
-            // Page reload will display the saved profile picture and files from database
-        }cument.getElementById('profilePicImg');
-        const profilePicInput = document.getElementById('profilePicInput');
+    profilePicInput.addEventListener('change', (event) => {
+        if (event.target.files && event.target.files[0]) {
+            if (!validateFileSize(event.target, 2, 'Profile picture')) {
+                profilePicImg.src = originalImageSrc;
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                profilePicImg.src = e.target.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    });
+
+    const cvInput = profileForm.querySelector('input[name="cv"]');
+    if (cvInput) {
+        cvInput.addEventListener('change', (event) => {
+            validateFileSize(event.target, 5, 'CV file');
+        });
+    }
+
+    const portfolioInput = profileForm.querySelector('input[name="portfolio"]');
+    if (portfolioInput) {
+        portfolioInput.addEventListener('change', (event) => {
+            validateFileSize(event.target, 10, 'Portfolio file');
+        });
+    }
+
+    const govIdInput = profileForm.querySelector('input[name="government_id"]');
+    if (govIdInput) {
+        govIdInput.addEventListener('change', (event) => {
+            validateFileSize(event.target, 2, 'Government ID');
+        });
+    }
+
+    profileForm.addEventListener('submit', function(event) {
+        // Validate all file inputs before submission
+        let isValid = true;
         
-        const verificationStatus = document.getElementById('verificationStatus');
-
-        let originalValues = {};
-        let originalImageSrc = profilePicImg.src;
-
-        function toggleEditMode(isEditing) {
-            if (isEditing) {
-                profileRow.classList.add('edit-mode');
-            } else {
-                profileRow.classList.remove('edit-mode');
-            }
+        if (profilePicInput.files && profilePicInput.files[0]) {
+            isValid = validateFileSize(profilePicInput, 2, 'Profile picture') && isValid;
         }
-
-        function checkVerificationStatus() {
-            const fullname = profileForm.querySelector('input[name="fullname"]').value;
-            const company_name = profileForm.querySelector('input[name="company_name"]').value;
-            const phone = profileForm.querySelector('input[name="phone"]').value;
-            const address = profileForm.querySelector('input[name="address"]').value;
-
-            if (fullname && company_name && phone && address) {
-                verificationStatus.innerHTML = '<i class="fas fa-check-circle me-1"></i>Verified';
-                verificationStatus.classList.remove('bg-warning', 'text-dark');
-                verificationStatus.classList.add('bg-success');
-            } else {
-                verificationStatus.innerHTML = '<i class="fas fa-exclamation-triangle me-1"></i>Not Verified';
-                verificationStatus.classList.remove('bg-success');
-                verificationStatus.classList.add('bg-warning', 'text-dark');
-            }
+        if (cvInput && cvInput.files && cvInput.files[0]) {
+            isValid = validateFileSize(cvInput, 5, 'CV file') && isValid;
         }
-
-        editProfileButton.addEventListener('click', () => {
-            originalImageSrc = profilePicImg.src;
-            profileForm.querySelectorAll('input, textarea').forEach(input => {
-                if (input.type !== 'file') {
-                    originalValues[input.name] = input.value;
-                }
-            });
-            toggleEditMode(true);
-        });
-
-        cancelButton.addEventListener('click', () => {
-            profilePicImg.src = originalImageSrc;
-            profilePicInput.value = '';
-            profileForm.querySelectorAll('input, textarea').forEach(input => {
-                if (originalValues[input.name]) {
-                    input.value = originalValues[input.name];
-                }
-            });
-            toggleEditMode(false);
-        });
+        if (portfolioInput && portfolioInput.files && portfolioInput.files[0]) {
+            isValid = validateFileSize(portfolioInput, 10, 'Portfolio file') && isValid;
+        }
+        if (govIdInput && govIdInput.files && govIdInput.files[0]) {
+            isValid = validateFileSize(govIdInput, 2, 'Government ID') && isValid;
+        }
         
-        profilePicInput.addEventListener('change', (event) => {
-            if (event.target.files && event.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profilePicImg.src = e.target.result;
-                }
-                reader.readAsDataURL(event.target.files[0]);
+        if (!isValid) {
+            event.preventDefault();
+            return false;
+        }
+
+        profileForm.querySelectorAll('input[type="text"], input[type="tel"]').forEach(input => {
+            const displayElement = input.closest('li').querySelector('.value');
+            if (displayElement) {
+                displayElement.textContent = input.value || '[Not Provided]';
             }
-        });
-
-        profileForm.addEventListener('submit', function(event) {
-            // Update form display values but don't update image preview
-            // Let the form submit and the page reload will show the actual saved image
-
-            profileForm.querySelectorAll('input[type="text"], input[type="tel"]').forEach(input => {
-                const displayElement = input.closest('li').querySelector('.value');
-                if (displayElement) {
-                    displayElement.textContent = input.value || '[Not Provided]';
-                }
-            });
-
-            checkVerificationStatus();
-
-            toggleEditMode(false);
-            // Form will submit normally via POST to the server
-            // Page reload will display the saved profile picture from database
         });
 
         checkVerificationStatus();
+        toggleEditMode(false);
     });
+
+    checkVerificationStatus();
+});
 </script>
 
 </body>
