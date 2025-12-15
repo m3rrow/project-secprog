@@ -44,7 +44,14 @@
                                  <li class="dekstop-login-btn">
                               @auth
                                  @php $profileRoute = (Auth::user()->role === 'freelancer') ? route('freelancer.profile') : route('user.profile'); @endphp
-                                 <a href="{{ $profileRoute }}"><i class="fa fa-user-o" aria-hidden="true"></i>{{ Auth::user()->name }}</a>
+                                 <a href="{{ $profileRoute }}">
+                                    @if(Auth::user()->profile_picture)
+                                       <img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover; display: inline-block; margin-right: 5px; vertical-align: middle;">
+                                    @else
+                                       <i class="fa fa-user-o" aria-hidden="true"></i>
+                                    @endif
+                                    {{ Auth::user()->name }}
+                                 </a>
                                  <a href="{{ route('logout') }}">/ Logout</a>
                               @else
                                        <a href="{{ route('login') }}"> <i class="fa fa-user-o" aria-hidden="true"></i> Login</a>
@@ -59,38 +66,6 @@
                                     <a href="sign-up.html"> <span><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.95 15.84h-11V.17h11v3.88h-1V1.17h-9v13.67h9v-2.83h1v3.83z"/><path d="M5 8h6v1H5zM11 5.96l4.4 2.54-4.4 2.54V5.96z"/></svg></span> Sign Up</a>
                                  </div>
                                   </li>
-
-                                 <li>
-                                    <div class="search_bar hidden-xs">
-                                       <div class="lv_search_bar" id="search_button">
-                                          <a href="javascript:;">
-                                             <span>
-                                                <svg version="1.1" id="Capa_21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                                                   <g>
-                                                      <g>
-                                                         <path d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474
-                                                            c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323
-                                                            c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848
-                                                            S326.847,409.323,225.474,409.323z"></path>
-                                                      </g>
-                                                   </g>
-                                                   <g>
-                                                      <g>
-                                                         <path d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328
-                                                            c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z"></path>
-                                                      </g>
-                                                   </g>
-                                                </svg>
-                                             </span>
-                                          </a>
-                                       </div>
-                                       <div id="search_open" class="lv_search_box" style="display: none;">
-                                          <input type="text" placeholder="Search here">
-                                          <button><i class="fa fa-search" aria-hidden="true"></i>
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </li>
                               </ul>
                  </div>
                 </div>
@@ -112,45 +87,28 @@
                          <div class="social-media-icons">
                             <ul>
                                <li class="login-btn">
-                                 <a href="javascript:;"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+                                 @auth
+                                    @if(Auth::user()->profile_picture)
+                                       <a href="javascript:;"><img src="{{ asset('storage/' . Auth::user()->profile_picture) }}" alt="Profile" style="width: 64px; height: 64px; border-radius: 50%; object-fit: cover;"></a>
+                                    @else
+                                       <a href="javascript:;"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+                                    @endif
+                                 @else
+                                    <a href="javascript:;"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+                                 @endauth
                                   <div class="user-text">
-                                    <a href="login.html"> <span><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.95 15.84h-11V.17h11v3.88h-1V1.17h-9v13.67h9v-2.83h1v3.83z"></path><path d="M5 8h6v1H5zM11 5.96l4.4 2.54-4.4 2.54V5.96z"></path></svg></span> Login</a>
-                                    
-                                    <a href="sign-up.html"> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32" xml:space="preserve"><path d="M16 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM23.942 32H8.058A4.062 4.062 0 0 1 4 27.942c0-6.616 5.383-12 12-12s12 5.384 12 12A4.062 4.062 0 0 1 23.942 32zM16 17.942c-5.514 0-10 4.486-10 10A2.06 2.06 0 0 0 8.058 30h15.884A2.06 2.06 0 0 0 26 27.942c0-5.514-4.486-10-10-10z"></path></svg></span> Sing Up</a>
+                                    @auth
+                                       @php $profileRoute = (Auth::user()->role === 'freelancer') ? route('freelancer.profile') : route('user.profile'); @endphp
+                                       <a href="{{ $profileRoute }}"> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32" xml:space="preserve"><path d="M16 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM23.942 32H8.058A4.062 4.062 0 0 1 4 27.942c0-6.616 5.383-12 12-12s12 5.384 12 12A4.062 4.062 0 0 1 23.942 32zM16 17.942c-5.514 0-10 4.486-10 10A2.06 2.06 0 0 0 8.058 30h15.884A2.06 2.06 0 0 0 26 27.942c0-5.514-4.486-10-10-10z"/></svg></span> Profile</a>
+                                       <a href="{{ route('logout') }}"> <span><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.95 15.84h-11V.17h11v3.88h-1V1.17h-9v13.67h9v-2.83h1v3.83z"></path><path d="M5 8h6v1H5zM11 5.96l4.4 2.54-4.4 2.54V5.96z"></path></svg></span> Logout</a>
+                                    @else
+                                       <a href="{{ route('login') }}"> <span><svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M10.95 15.84h-11V.17h11v3.88h-1V1.17h-9v13.67h9v-2.83h1v3.83z"></path><path d="M5 8h6v1H5zM11 5.96l4.4 2.54-4.4 2.54V5.96z"></path></svg></span> Login</a>
+                                       
+                                       <a href="{{ route('register') }}"> <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32" xml:space="preserve"><path d="M16 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM23.942 32H8.058A4.062 4.062 0 0 1 4 27.942c0-6.616 5.383-12 12-12s12 5.384 12 12A4.062 4.062 0 0 1 23.942 32zM16 17.942c-5.514 0-10 4.486-10 10A2.06 2.06 0 0 0 8.058 30h15.884A2.06 2.06 0 0 0 26 27.942c0-5.514-4.486-10-10-10z"></path></svg></span> Sign Up</a>
+                                    @endauth
                                  </div>
                               </li>
-                               <li>
-                                  <div class="search_bar hidden-xs">
-                                     <div class="lv_search_bar" id="search_button1">
-                                        <a href="javascript:;">
-                                           <span>
-                                              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                                                 <g>
-                                                    <g>
-                                                       <path d="M225.474,0C101.151,0,0,101.151,0,225.474c0,124.33,101.151,225.474,225.474,225.474
-                                                          c124.33,0,225.474-101.144,225.474-225.474C450.948,101.151,349.804,0,225.474,0z M225.474,409.323
-                                                          c-101.373,0-183.848-82.475-183.848-183.848S124.101,41.626,225.474,41.626s183.848,82.475,183.848,183.848
-                                                          S326.847,409.323,225.474,409.323z"></path>
-                                                    </g>
-                                                 </g>
-                                                 <g>
-                                                    <g>
-                                                       <path d="M505.902,476.472L386.574,357.144c-8.131-8.131-21.299-8.131-29.43,0c-8.131,8.124-8.131,21.306,0,29.43l119.328,119.328
-                                                          c4.065,4.065,9.387,6.098,14.715,6.098c5.321,0,10.649-2.033,14.715-6.098C514.033,497.778,514.033,484.596,505.902,476.472z"></path>
-                                                    </g>
-                                                 </g>
-                                              </svg>
-                                           </span>
-                                        </a>
-                                     </div>
-                                     <div id="search_open1" class="lv_search_box" style="display: none;">
-                                        <input type="text" placeholder="Search here">
-                                        <button><i class="fa fa-search" aria-hidden="true"></i>
-                                        </button>
-                                     </div>
-                                  </div>
-                               </li>
-                               
+
                             </ul>
                          </div>
                          <div class="d-flex">

@@ -1214,6 +1214,14 @@ header css
   padding-right: 4px;
   vertical-align: text-bottom;
 }
+.main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons .dekstop-login-btn a img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  vertical-align: middle;
+}
 .main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons .dekstop-login-btn a:hover {
   color: #0060aa;
 }
@@ -1237,8 +1245,8 @@ header css
   vertical-align: text-bottom;
 }
 .main-header-wrapper1 .sb-main-header1 .menu-item-wrapper3 .social-media-icons .login-btn img {
-  width: 34px;
-  height: 34px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   border: 2px solid #fff;
   margin-right: 8px;
@@ -1309,8 +1317,8 @@ header css
   vertical-align: text-bottom;
 }
 .main-header-wrapper1 .sb-main-header1 .mobile-menu-wrapper .social-media-icons ul .login-btn img {
-  width: 34px;
-  height: 34px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   border: 2px solid #fff;
   margin-right: 8px;
@@ -3154,7 +3162,7 @@ header css
 .inner-page-main-wrapper .freelauncer-profile .skill .apply-btn {
   width: 120px;
   height: 40px;
-  line-height: 30px;
+  line-height: 40px;
   border-radius: 30px;
   border: 1px solid #0060aa;
   margin-top: 20px;
@@ -3162,6 +3170,8 @@ header css
   color: #fff;
   overflow: hidden;
   position: relative;
+  text-align: center;
+  display: block;
 }
 .inner-page-main-wrapper .freelauncer-profile .skill .apply-btn:after {
   content: "";
@@ -7641,17 +7651,24 @@ header css
   display: flex;
 }
 .inner-page-main-wrapper .develop_main_wrapper .bid_button a {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid #00cc8d;
   background-color: #00cc8d;
   color: #fff;
   width: 200px;
   text-align: center;
   height: 50px;
-  line-height: 50px;
   border-radius: 30px;
   position: relative;
   overflow: hidden;
+}
+.inner-page-main-wrapper .develop_main_wrapper .bid_button a span {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
 }
 .inner-page-main-wrapper .develop_main_wrapper .bid_button a:after {
   content: "";

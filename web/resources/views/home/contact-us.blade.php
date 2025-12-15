@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="index1-slider-wrapper ps-rel" style="height: 250px !important; display: flex; align-items: center; justify-content: center;">
+<div class="index1-slider-wrapper ps-rel" style="height: 500px !important; padding: 0 !important; display: flex; align-items: center; justify-content: center;">
     <div class="video-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1;">
         <video autoplay muted loop playsinline poster="{{ asset('video/banner1.mp4') }}" style="width: 100%; height: 100%; object-fit: cover;">
             <source src="{{ asset('video/banner1.mp4') }}" type="video/mp4">

@@ -6,16 +6,11 @@
                             <div class="footer-logo">
                                 <a href="{{ url('/') }}"><img src="{{ asset('images/h3khire-logo.png') }}" alt="" style="max-width: 150px; height: auto;"></a>
                             </div>
-                            <p>Developed by a team of 6, maintained by a lazy person</p>
+                            <p>Connecting freelancers with meaningful projects worldwide.</p>
                             <ul>
-                                <li><a href="javascript:;"><i class="fas fa-map-marker-alt"></i>
-                                    No where</a>
-                                </li>
-                                
                                 <li><a href="javascript:;"><i class="fas fa-envelope"></i>
-                                    h3khire@support.com</a>
+                                    support@h3khire.com</a>
                                 </li>
-                                <li> <h4>+676767676767</h4> </li>
                             </ul>
                         </div>
                     </div>

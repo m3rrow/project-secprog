@@ -10,11 +10,22 @@ class JobController extends Controller
 {
     public function index()
     {
+        // Validate all input parameters
+        $validated = request()->validate([
+            'search' => 'nullable|string|max:255',
+            'category' => 'nullable|string|max:100',
+            'rate_type' => 'nullable|in:fixed,hourly',
+            'min_rate' => 'nullable|numeric|min:0|max:1000000',
+            'max_rate' => 'nullable|numeric|min:0|max:1000000',
+            'job_type' => 'nullable|string|max:100',
+            'location' => 'nullable|string|max:255',
+        ]);
+
         $query = Job::where('is_active', true);
 
         // Search functionality
-        if(request('search')) {
-            $search = request('search');
+        if($validated['search'] ?? null) {
+            $search = $validated['search'];
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
                   ->orWhere('description', 'like', "%{$search}%")
@@ -24,31 +35,31 @@ class JobController extends Controller
         }
 
         // Filter by category
-        if(request('category')) {
-            $query->where('category', 'like', '%' . request('category') . '%');
+        if($validated['category'] ?? null) {
+            $query->where('category', $validated['category']);
         }
 
         // Filter by rate type
-        if(request('rate_type')) {
-            $query->where('rate_type', request('rate_type'));
+        if($validated['rate_type'] ?? null) {
+            $query->where('rate_type', $validated['rate_type']);
         }
 
         // Filter by rate range
-        if(request('min_rate')) {
-            $query->where('rate', '>=', request('min_rate'));
+        if($validated['min_rate'] ?? null) {
+            $query->where('rate', '>=', $validated['min_rate']);
         }
-        if(request('max_rate')) {
-            $query->where('rate', '<=', request('max_rate'));
+        if($validated['max_rate'] ?? null) {
+            $query->where('rate', '<=', $validated['max_rate']);
         }
 
         // Filter by employment type
-        if(request('job_type')) {
-            $query->where('job_type', request('job_type'));
+        if($validated['job_type'] ?? null) {
+            $query->where('job_type', $validated['job_type']);
         }
 
         // Filter by location
-        if(request('location')) {
-            $query->where('location', 'like', '%' . request('location') . '%');
+        if($validated['location'] ?? null) {
+            $query->where('location', 'like', '%' . $validated['location'] . '%');
         }
 
         $jobs = $query->latest()->paginate(10);
@@ -62,27 +73,37 @@ class JobController extends Controller
 
     public function store(Request $request)
     {
+        // Authorize: Only freelancers can post services
+        if (Auth::user()->role !== 'freelancer') {
+            return redirect('/')->with('error', 'Only freelancers can post services');
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'scope' => 'nullable|string',
-            'category' => 'nullable|string|max:255',
+            'description' => 'nullable|string|max:5000',
+            'scope' => 'nullable|string|max:500',
+            'category' => 'nullable|string|max:100',
             'company' => 'nullable|string|max:255',
             'location' => 'nullable|string|max:255',
-            'rate' => 'nullable|numeric|min:0',
+            'rate' => 'nullable|numeric|min:0|max:1000000',
             'rate_type' => 'nullable|in:fixed,hourly',
-            'estimated_hours' => 'nullable|integer|min:1',
-            'skills' => 'nullable|string',
-            'job_type' => 'nullable|string|max:255',
+            'estimated_hours' => 'nullable|integer|min:1|max:10000',
+            'skills' => 'nullable|string|max:500',
+            'job_type' => 'nullable|string|max:100',
             'experience' => 'nullable|string|max:255',
         ]);
+
+        // Sanitize description to prevent XSS
+        if($validated['description'] ?? null) {
+            $validated['description'] = strip_tags($validated['description']);
+        }
 
         $validated['user_id'] = Auth::id();
         $validated['is_active'] = true;
 
         Job::create($validated);
 
-        return redirect()->route('jobs.index')->with('success', 'Service posted successfully');
+        return redirect()->route('freelancer.dashboard')->with('success', 'Service posted successfully');
     }
 
     public function show($id)
@@ -95,5 +116,76 @@ class JobController extends Controller
     {
         $job = Job::findOrFail($id);
         return view('jobs.checkout', ['job' => $job]);
+    }
+
+    /**
+     * Edit job listing page
+     */
+    public function edit($id)
+    {
+        $job = Job::findOrFail($id);
+
+        // Authorize: User must own this job
+        if ($job->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized');
+        }
+
+        return view('jobs.edit-job', ['job' => $job]);
+    }
+
+    /**
+     * Update existing job listing
+     */
+    public function update(Request $request, $id)
+    {
+        $job = Job::findOrFail($id);
+
+        // Authorize: User must own this job
+        if ($job->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized');
+        }
+
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string|max:5000',
+            'scope' => 'nullable|string|max:500',
+            'category' => 'nullable|string|max:100',
+            'company' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
+            'rate' => 'nullable|numeric|min:0|max:1000000',
+            'rate_type' => 'nullable|in:fixed,hourly',
+            'estimated_hours' => 'nullable|integer|min:1|max:10000',
+            'skills' => 'nullable|string|max:500',
+            'job_type' => 'nullable|string|max:100',
+            'experience' => 'nullable|string|max:255',
+        ]);
+
+        // Sanitize description
+        if($validated['description'] ?? null) {
+            $validated['description'] = strip_tags($validated['description']);
+        }
+
+        $job->update($validated);
+
+        return redirect()->route('jobs.show', $job->id)
+            ->with('success', 'Service updated successfully');
+    }
+
+    /**
+     * Delete job listing
+     */
+    public function destroy($id)
+    {
+        $job = Job::findOrFail($id);
+
+        // Authorize: User must own this job
+        if ($job->user_id !== Auth::id()) {
+            abort(403, 'Unauthorized');
+        }
+
+        $job->delete();
+
+        return redirect()->route('freelancer.dashboard')
+            ->with('success', 'Service deleted successfully');
     }
 }

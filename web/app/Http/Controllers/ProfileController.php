@@ -33,8 +33,8 @@ class ProfileController extends Controller
         
         // Validate input
         $validated = $request->validate([
-            'fullname' => 'nullable|string|max:255',
-            'phone' => 'nullable|string|max:20',
+            'fullname' => 'nullable|string|max:255|regex:/^[a-zA-Z\s]+$/',
+            'phone' => 'nullable|string|max:20|regex:/^[\d\+\-\s\(\)]+$/',
             'address' => 'nullable|string|max:255',
             'company_name' => 'nullable|string|max:255',
             'about_me' => 'nullable|string|max:1000',
@@ -43,6 +43,14 @@ class ProfileController extends Controller
             'cv' => 'nullable|file|mimes:pdf,doc,docx|max:5120',
             'portfolio' => 'nullable|file|mimes:pdf,zip,rar|max:10240',
             'government_id' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'fullname.regex' => 'Name can only contain letters and spaces.',
+            'phone.regex' => 'Phone number format is invalid.',
+            'profile_picture.max' => 'Profile picture must not exceed 2MB.',
+            'profile_picture.image' => 'Profile picture must be a valid image file.',
+            'cv.max' => 'CV file must not exceed 5MB.',
+            'portfolio.max' => 'Portfolio file must not exceed 10MB.',
+            'government_id.max' => 'Government ID must not exceed 2MB.',
         ]);
 
         // Handle profile picture upload

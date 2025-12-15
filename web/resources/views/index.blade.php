@@ -15,44 +15,45 @@
             <p>The most complete job portal software having over 70 million unique <br> visitors every day with verified.</p>
         </div>
         <div class="sldier-contact-form">
+            <form method="GET" action="{{ route('jobs.index') }}" id="homepage-search-form" style="display: contents;">
             <ul>
             <li>
                 <div class="text-field">
-                    <input type="text" placeholder="Search Here"> 
+                    <input type="text" name="search" placeholder="Search Services..."> 
                 </div>
             </li>
             <li> <div class="select-field"> 
-            <select>
+            <select name="category">
             <option selected="selected" value="">Select Category</option>
-            <option value="5-6">Art &amp; Craft</option>
-            <option value="7-9">Science</option>
-            <option value="10-13">Maths </option>
-            <option value="10-13">English </option>
+            <option value="Security Testing">Security Testing</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Penetration Testing">Penetration Testing</option>
+            <option value="Code Review">Code Review</option>
+            <option value="Infrastructure">Infrastructure</option>
             </select> </div>
             </li>
             <li> 
             <div class="select-field"> 
-            <select>
-            <option selected="selected" value="">Select Location</option>
-            <option value="5-6">Art &amp; Craft</option>
-            <option value="7-9">Science</option>
-            <option value="10-13">Maths </option>
-            <option value="10-13">English </option>
+            <select name="rate_type">
+            <option selected="selected" value="">Rate Type</option>
+            <option value="fixed">Fixed Price</option>
+            <option value="hourly">Hourly Rate</option>
             </select> 
             </div>
             </li>
             <li class="btn-from">
-            <a href="javascript:;"><span>Search</span></a>
+            <a href="javascript:;" onclick="document.getElementById('homepage-search-form').submit();"><span>Search</span></a>
             </li>
             </ul>
             <ul class="treding-list">
-            <li> <span><i class="fas fa-tags"></i></span> Trending Keyword:</li>
-            <li> <a href="javascript:;">UI Designer,</a> </li>
-            <li> <a href="javascript:;">Developer,</a> </li>
-            <li> <a href="javascript:;">it Company,</a> </li>
-            <li> <a href="javascript:;">Design,</a> </li>
-            <li> <a href="javascript:;">Call Center</a> </li>
+            <li> <span><i class="fas fa-tags"></i></span> Popular Services:</li>
+            <li> <a href="{{ route('jobs.index', ['search' => 'Penetration Testing']) }}">Penetration Testing,</a> </li>
+            <li> <a href="{{ route('jobs.index', ['search' => 'Security']) }}">Security Audit,</a> </li>
+            <li> <a href="{{ route('jobs.index', ['search' => 'Code Review']) }}">Code Review,</a> </li>
+            <li> <a href="{{ route('jobs.index', ['search' => 'API']) }}">API Testing,</a> </li>
+            <li> <a href="{{ route('jobs.index', ['search' => 'Web']) }}">Web Security</a> </li>
             </ul>
+            </form>
             </div>
         </div>
     </div>
@@ -90,626 +91,106 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="contentFive-1">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left job-card-clickable" data-job-id="1" style="cursor: pointer;">
-                                    <div class="trending-upper-text ps-rel">
-                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
-                                        <div class="icon-img"><img src="images/drive.png" alt="img"></div>
-                                         <h5>Senior PHP Developer</h5> 
-                                        <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                        <span>Google Info.</span>
-                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                        <div class="custom-btn"><span>Apply</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left job-card-clickable" data-job-id="2" style="cursor: pointer;">
-                                    <div class="trending-upper-text ps-rel">
-                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
-                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
-                                        <h5>Graphics Designer</h5>
-                                        <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                        <span>Google Info.</span>
-                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                        <div class="custom-btn"><span>Apply</span></div>
-                                    </div>
-                                 </div>
-                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                               <div class="trending-main-box float_left job-card-clickable" data-job-id="3" style="cursor: pointer;">
-                                    <div class="trending-upper-text ps-rel">
-                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
-                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
-                                        <h5>Product Manager</h5>
-                                        <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                        <span>Google Info.</span>
-                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                        <div class="custom-btn"><span>Apply</span></div>
+                            @forelse($featuredJobs ?? collect() as $job)
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="trending-main-box float_left">
+                                        <div class="trending-upper-text ps-rel">
+                                            <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                            <div class="icon-img"><img src="{{ asset('images/p1.png') }}" alt="img"></div>
+                                            <a href="{{ route('jobs.show', $job->id) }}"><h5>{{ $job->title }}</h5></a>
+                                            <p>{{ $job->category }}</p>
+                                        </div>
+                                        <div class="trending-lower-text">
+                                            <span>{{ $job->company ?? optional($job->user)->name ?? 'Provider' }}</span>
+                                            <a href="javascript:;"> <i class="fas fa-dollar-sign"></i> ${{ number_format($job->rate, 2) }} @if($job->rate_type == 'hourly')/hr @endif</a>
+                                            <p> <span><i class="fas fa-map-marker-alt"></i></span> {{ $job->location ?? 'Remote' }} </p>
+                                            <a class="custom-btn" href="{{ route('jobs.checkout', $job->id) }}"><span>Hire Now</span></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left job-card-clickable" data-job-id="4" style="cursor: pointer;">
-                                    <div class="trending-upper-text ps-rel">
-                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
-                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
-                                        <h5>Sales Analytics</h5>
-                                        <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                        <span>Google Info.</span>
-                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                        <div class="custom-btn"><span>Apply</span></div>
-                                    </div>
+                            @empty
+                                <div class="col-12" style="text-align: center; padding: 40px;">
+                                    <p style="color: #666;">No services available at the moment.</p>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left job-card-clickable" data-job-id="5" style="cursor: pointer;">
-                                    <div class="trending-upper-text ps-rel">
-                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
-                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
-                                        <h5>Sales Analytics</h5>
-                                        <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                        <span>Google Info.</span>
-                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                        <div class="custom-btn"><span>Apply</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left job-card-clickable" data-job-id="6" style="cursor: pointer;">
-                                    <div class="trending-upper-text ps-rel">
-                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
-                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
-                                        <h5>Sales Analytics</h5>
-                                        <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                        <span>Google Info.</span>
-                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                        <div class="custom-btn"><span>Apply</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left job-card-clickable" data-job-id="7" style="cursor: pointer;">
-                                    <div class="trending-upper-text ps-rel">
-                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
-                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
-                                        <h5>Sales Analytics</h5>
-                                        <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                        <span>Google Info.</span>
-                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                        <div class="custom-btn"><span>Apply</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left job-card-clickable" data-job-id="8" style="cursor: pointer;">
-                                    <div class="trending-upper-text ps-rel">
-                                        <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
-                                        <div class="icon-img"><img src="images/drive1.png" alt="img"></div>
-                                        <h5>Sales Analytics</h5>
-                                        <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                        <span>Google Info.</span>
-                                        <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                        <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                        <div class="custom-btn"><span>Apply</span></div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforelse
                         </div>
                         </div>
                         <div class="tab-pane fade" id="contentFive-2">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Seniour PHP Developer</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                            @forelse($remoteJobs ?? collect() as $job)
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="trending-main-box float_left">
+                                        <div class="trending-upper-text ps-rel">
+                                            <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                            <div class="icon-img"><img src="{{ asset('images/p1.png') }}" alt="img"></div>
+                                            <a href="{{ route('jobs.show', $job->id) }}"><h5>{{ $job->title }}</h5></a>
+                                            <p>{{ $job->category }}</p>
+                                        </div>
+                                        <div class="trending-lower-text">
+                                            <span>{{ $job->company ?? optional($job->user)->name ?? 'Provider' }}</span>
+                                            <a href="javascript:;"> <i class="fas fa-dollar-sign"></i> ${{ number_format($job->rate, 2) }} @if($job->rate_type == 'hourly')/hr @endif</a>
+                                            <p> <span><i class="fas fa-map-marker-alt"></i></span> {{ $job->location ?? 'Remote' }} </p>
+                                            <a class="custom-btn" href="{{ route('jobs.checkout', $job->id) }}"><span>Hire Now</span></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive1.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Graphics Designer</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
+                            @empty
+                                <div class="col-12" style="text-align: center; padding: 40px;">
+                                    <p style="color: #666;">No remote services available.</p>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive2.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Product Manager</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive3.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive4.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive3.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive5.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforelse
                         </div>
                         </div>
                         <div class="tab-pane fade" id="contentFive-3">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Seniour PHP Developer</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                            @forelse($partTimeJobs ?? collect() as $job)
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="trending-main-box float_left">
+                                        <div class="trending-upper-text ps-rel">
+                                            <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                            <div class="icon-img"><img src="{{ asset('images/p1.png') }}" alt="img"></div>
+                                            <a href="{{ route('jobs.show', $job->id) }}"><h5>{{ $job->title }}</h5></a>
+                                            <p>{{ $job->category }}</p>
+                                        </div>
+                                        <div class="trending-lower-text">
+                                            <span>{{ $job->company ?? optional($job->user)->name ?? 'Provider' }}</span>
+                                            <a href="javascript:;"> <i class="fas fa-dollar-sign"></i> ${{ number_format($job->rate, 2) }} @if($job->rate_type == 'hourly')/hr @endif</a>
+                                            <p> <span><i class="fas fa-map-marker-alt"></i></span> {{ $job->location ?? 'Remote' }} </p>
+                                            <a class="custom-btn" href="{{ route('jobs.checkout', $job->id) }}"><span>Hire Now</span></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive1.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Graphics Designer</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
+                            @empty
+                                <div class="col-12" style="text-align: center; padding: 40px;">
+                                    <p style="color: #666;">No part-time services available.</p>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive2.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Product Manager</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive3.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive4.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive3.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive5.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforelse
                         </div>
                         </div>
                         <div class="tab-pane fade" id="contentFive-4">
                         <div class="row">
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Seniour PHP Developer</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
+                            @forelse($allJobs ?? collect() as $job)
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                    <div class="trending-main-box float_left">
+                                        <div class="trending-upper-text ps-rel">
+                                            <div class="heart"><a href="javascript:;"><i class="fas fa-heart"></i></a></div>
+                                            <div class="icon-img"><img src="{{ asset('images/p1.png') }}" alt="img"></div>
+                                            <a href="{{ route('jobs.show', $job->id) }}"><h5>{{ $job->title }}</h5></a>
+                                            <p>{{ $job->category }}</p>
+                                        </div>
+                                        <div class="trending-lower-text">
+                                            <span>{{ $job->company ?? optional($job->user)->name ?? 'Provider' }}</span>
+                                            <a href="javascript:;"> <i class="fas fa-dollar-sign"></i> ${{ number_format($job->rate, 2) }} @if($job->rate_type == 'hourly')/hr @endif</a>
+                                            <p> <span><i class="fas fa-map-marker-alt"></i></span> {{ $job->location ?? 'Remote' }} </p>
+                                            <a class="custom-btn" href="{{ route('jobs.checkout', $job->id) }}"><span>Hire Now</span></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive1.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Graphics Designer</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
+                            @empty
+                                <div class="col-12" style="text-align: center; padding: 40px;">
+                                    <p style="color: #666;">No services available.</p>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive2.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Product Manager</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive3.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive4.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive3.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                                <div class="trending-main-box float_left">
-                                    <div class="trending-upper-text ps-rel">
-                                    <div class="heart">
-                                        <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                                    </div>
-                                    <div class="icon-img">
-                                        <img src="images/drive5.png" alt="img">
-                                    </div>
-                                    <a href="jobs-details.html"><h5>Sales Analytics</h5></a>
-                                    <p> (1-2 Yrs Exp.) </p>
-                                    </div>
-                                    <div class="trending-lower-text">
-                                    <span>Google Info.</span>
-                                    <a href="javascript:;"> <i class="far fa-money-bill-alt"></i> $10 - $15 P.A. </a>
-                                    <p> <span><i class="fas fa-map-marker-alt"></i></span> 325, New Market, New York </p>
-                                    <a class="custom-btn" href="jobs-details.html"><span>Apply</span></a>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforelse
                         </div>
                         </div>
                     </div>
@@ -731,383 +212,6 @@
     </div>
 </div>
 <!-- index page service section  end-->
-<div class="professional-main-wrapper ps-rel float_left">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-            <div class="left-side">
-                <h2>The Best Way To Find a Profesional</h2>
-                <a href="javascript:;"> <span><i class="fas fa-plus-circle"></i> &nbsp; Post a Resume</span> </a>
-            </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
-            <div class="right-side">
-                <h2>Need a Job? Tell Us Your Story</h2>
-                <a href="post-project.html"> <span><i class="fas fa-plus-circle"></i> &nbsp; Create a Project</span> </a>
-            </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="category-main-wrapper float_left ptb-100">
-    <div class="container">
-        <div class="home1-section-heading1">
-            <h6>Poular Categories</h6>
-            <h4>Proffesional By Category</h4>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="jobs-listing-right-sidebar.html">
-                <div class="category-box">
-                <div class="category-icon">
-                    <span><i class="fas fa-code"></i></span>
-                    <p>Developer</p>
-                </div>
-                <div class="category-text">
-                    <h5>10</h5>
-                </div>
-            </div>
-            </a>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="jobs-listing-right-sidebar.html">
-                <div class="category-box">
-                <div class="category-icon">
-                    <span><i class="fas fa-laptop"></i></span>
-                    <p>Technology</p>
-                </div>
-                <div class="category-text">
-                    <h5>55</h5>
-                </div>
-            </div>
-            </a>
-            
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="jobs-listing-right-sidebar.html">
-                <div class="category-box">
-                <div class="category-icon">
-                    <span><i class="fas fa-chart-bar"></i></span>
-                    <p>Accounting</p>
-                </div>
-                <div class="category-text">
-                    <h5>18</h5>
-                </div>
-            </div>
-            </a>
-            
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="jobs-listing-right-sidebar.html">
-                <div class="category-box">
-                <div class="category-icon">
-                    <span><i class="fas fa-first-aid"></i></span>
-                    <p>Medical</p>
-                </div>
-                <div class="category-text">
-                    <h5>12</h5>
-                </div>
-            </div>
-            </a>
-            
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="jobs-listing-right-sidebar.html">
-                <div class="category-box">
-                <div class="category-icon">
-                    <span><i class="fas fa-landmark"></i></span>
-                    <p>Government</p>
-                </div>
-                <div class="category-text">
-                    <h5>30</h5>
-                </div>
-            </div>
-            </a>
-            
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="jobs-listing-right-sidebar.html">
-                <div class="category-box">
-                <div class="category-icon">
-                    <span><i class="far fa-newspaper"></i></span>
-                    <p>Media & News</p>
-                </div>
-                <div class="category-text">
-                    <h5>47</h5>
-                </div>
-            </div>
-            </a>
-            
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="jobs-listing-right-sidebar.html">
-                <div class="category-box">
-                <div class="category-icon">
-                    <span><i class="fas fa-utensils"></i></span>
-                    <p>Restaurants</p>
-                </div>
-                <div class="category-text">
-                    <h5>51</h5>
-                </div>
-            </div>
-            </a>
-            
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <a href="jobs-listing-right-sidebar.html">
-                <div class="category-box">
-                <div class="category-icon w-100 text-center">
-                    <span><i class="fas fa-bars"></i></span>
-                    <p>All Categories</p>
-                </div>
-            </div>
-            </a>
-            
-            </div>
-        </div>
-    </div>
-</div>
-<div class="freelauncer-main-wrapper float_left ptb-100">
-    <div class="container">
-        <div class="home1-section-heading1">
-            <h6>Browse Popular Profiles</h6>
-            <h4>Available Freelancers</h4>
-        </div>
-        <div class="freelauncer-profile float_left">
-            <div class="profile-img">
-            <img src="images/profile1.png" alt="profie">
-            </div>
-            <div class="profile-text ps-rel">
-            <a href="freelancer-listing-left-sidebar.html"><h6>John Smith</h6></a>
-            <a href="freelancer-listing-left-sidebar.html"><span>Senior Graphic & Web Designer</span></a>
-            <div class="skill">
-                <div class="skill-text">
-                    <p>Price</p>
-                    <span>$20 / Hour</span>
-                </div>
-                <div class="skill-text">
-                    <p>Experience</p>
-                    <span>2 Years</span>
-                </div>
-                <div class="skill-text">
-                    <p>Skills</p>
-                    <a href="javascript:;">HTML</a>
-                    <a href="javascript:;">Photoshop</a>
-                    <a href="javascript:;">Java</a>
-                    <a href="javascript:;">Ui / UX</a>
-                    <a href="javascript:;">+6 More</a>
-                </div>
-            </div>
-            <div class="rating-sec">
-                <div class="star">
-                    <ul>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
-                    </ul>
-                </div>
-                <div class="rating-btn">
-                    <a class="btn1" href="javascript:;">Featured</a>
-                    <a href="javascript:;">Full Time</a>
-                </div>
-                <div class="heart">
-                    <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!--  -->
-        <div class="freelauncer-profile float_left">
-            <div class="profile-img">
-            <img src="images/profile2.png" alt="profie">
-            </div>
-            <div class="profile-text ps-rel">
-            <a href="freelancer-listing-left-sidebar.html"><h6>David Smith</h6></a>
-            <a href="freelancer-listing-left-sidebar.html"><span>Senior Graphic & Web Designer</span></a>
-            <div class="skill">
-                <div class="skill-text">
-                    <p>Price</p>
-                    <span>$20 / Hour</span>
-                </div>
-                <div class="skill-text">
-                    <p>Experience</p>
-                    <span>2 Years</span>
-                </div>
-                <div class="skill-text">
-                    <p>Skills</p>
-                    <a href="javascript:;">HTML</a>
-                    <a href="javascript:;">Photoshop</a>
-                    <a href="javascript:;">Java</a>
-                    <a href="javascript:;">Ui / UX</a>
-                    <a href="javascript:;">+6 More</a>
-                </div>
-            </div>
-            <div class="rating-sec">
-                <div class="star">
-                    <ul>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
-                    </ul>
-                </div>
-                <div class="rating-btn">
-                    <a class="btn2" href="javascript:;">New</a>
-                    <a class="btn3" href="javascript:;">Part Time</a>
-                </div>
-                <div class="heart">
-                    <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!--  -->
-        <div class="freelauncer-profile float_left">
-            <div class="profile-img">
-            <img src="images/profile3.png" alt="profie">
-            </div>
-            <div class="profile-text ps-rel">
-            <a href="freelancer-listing-left-sidebar.html"><h6>Serina Lee</h6></a>
-            <a href="freelancer-listing-left-sidebar.html"><span>Senior Graphic & Web Designer</span></a>
-            <div class="skill">
-                <div class="skill-text">
-                    <p>Price</p>
-                    <span>$20 / Hour</span>
-                </div>
-                <div class="skill-text">
-                    <p>Experience</p>
-                    <span>2 Years</span>
-                </div>
-                <div class="skill-text">
-                    <p>Skills</p>
-                    <a href="javascript:;">HTML</a>
-                    <a href="javascript:;">Photoshop</a>
-                    <a href="javascript:;">Java</a>
-                    <a href="javascript:;">Ui / UX</a>
-                    <a href="javascript:;">+6 More</a>
-                </div>
-            </div>
-            <div class="rating-sec">
-                <div class="star">
-                    <ul>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
-                    </ul>
-                </div>
-                <div class="rating-btn">
-                    <a class="btn4" href="javascript:;">Hot</a>
-                    <a href="javascript:;">Full Time</a>
-                </div>
-                <div class="heart">
-                    <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!--  -->
-        <div class="freelauncer-profile float_left">
-            <div class="profile-img">
-            <img src="images/profile4.png" alt="profie">
-            </div>
-            <div class="profile-text ps-rel">
-            <a href="freelancer-listing-left-sidebar.html"><h6>Martha Smith</h6></a>
-            <a href="freelancer-listing-left-sidebar.html"><span>Senior Graphic & Web Designer</span></a>
-            <div class="skill">
-                <div class="skill-text">
-                    <p>Price</p>
-                    <span>$20 / Hour</span>
-                </div>
-                <div class="skill-text">
-                    <p>Experience</p>
-                    <span>2 Years</span>
-                </div>
-                <div class="skill-text">
-                    <p>Skills</p>
-                    <a href="javascript:;">HTML</a>
-                    <a href="javascript:;">Photoshop</a>
-                    <a href="javascript:;">Java</a>
-                    <a href="javascript:;">Ui / UX</a>
-                    <a href="javascript:;">+6 More</a>
-                </div>
-            </div>
-            <div class="rating-sec">
-                <div class="star">
-                    <ul>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
-                    </ul>
-                </div>
-                <div class="rating-btn">
-                    <a class="btn1" href="javascript:;">Featured</a>
-                    <a class="btn3" href="javascript:;">Part Time</a>
-                </div>
-                <div class="heart">
-                    <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!--  -->
-        <div class="freelauncer-profile float_left">
-            <div class="profile-img">
-            <img src="images/profile5.png" alt="profie">
-            </div>
-            <div class="profile-text ps-rel">
-            <a href="freelancer-listing-left-sidebar.html"><h6>Nick John</h6></a>
-            <a href="freelancer-listing-left-sidebar.html"><span>Senior Graphic & Web Designer</span></a>
-            <div class="skill">
-                <div class="skill-text">
-                    <p>Price</p>
-                    <span>$20 / Hour</span>
-                </div>
-                <div class="skill-text">
-                    <p>Experience</p>
-                    <span>2 Years</span>
-                </div>
-                <div class="skill-text">
-                    <p>Skills</p>
-                    <a href="javascript:;">HTML</a>
-                    <a href="javascript:;">Photoshop</a>
-                    <a href="javascript:;">Java</a>
-                    <a href="javascript:;">Ui / UX</a>
-                    <a href="javascript:;">+6 More</a>
-                </div>
-            </div>
-            <div class="rating-sec">
-                <div class="star">
-                    <ul>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="fas fa-star"></i></a> </li>
-                        <li> <a href="javascript:;"><i class="far fa-star"></i></a> </li>
-                    </ul>
-                </div>
-                <div class="rating-btn">
-                    <a class="btn1" href="javascript:;">Featured</a>
-                    <a href="javascript:;">Full Time</a>
-                </div>
-                <div class="heart">
-                    <a href="javascript:;"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!--  -->
-        <div class="view-frofile-btn float_left text-center">
-            <a href="javascript:;"> <span>View All Profiles</span> </a>
-        </div>
-    </div>
-</div>
 <div class="million-jobs-main-wrapper ptb-100 float_left">
     <div class="container">
         <div class="row">

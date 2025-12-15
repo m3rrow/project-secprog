@@ -6,7 +6,17 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
-    return view('index');
+    $allJobs = \App\Models\Job::where('is_active', true)->latest()->get();
+    $featuredJobs = $allJobs->take(8);
+    $remoteJobs = $allJobs->where('location', 'Remote')->take(8);
+    $partTimeJobs = $allJobs->where('job_type', 'part-time')->take(8);
+    
+    return view('index', [
+        'allJobs' => $allJobs,
+        'featuredJobs' => $featuredJobs,
+        'remoteJobs' => $remoteJobs,
+        'partTimeJobs' => $partTimeJobs,
+    ]);
 });
 
 Route::get('freelancer-profile', function(){
@@ -31,9 +41,8 @@ Route::get('support', function () {
 
 use App\Http\Controllers\JobController;
 
+// Public job viewing routes
 Route::get('jobs', [JobController::class, 'index'])->name('jobs.index');
-Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
-Route::post('jobs', [JobController::class, 'store'])->name('jobs.store');
 Route::get('jobs/{id}', [JobController::class, 'show'])->name('jobs.show');
 Route::get('jobs/{id}/checkout', [JobController::class, 'checkout'])->name('jobs.checkout');
 
@@ -94,6 +103,13 @@ Route::middleware('auth')->group(function () {
     // Legacy routes (kept for backward compatibility)
     Route::get('user/profile', [ProfileController::class, 'show'])->name('user.profile');
     Route::get('freelancer/profile', [ProfileController::class, 'show'])->name('freelancer.profile');
+    
+    // Protected job management routes - only for authenticated freelancers
+    Route::get('jobs/create', [JobController::class, 'create'])->name('jobs.create');
+    Route::post('jobs', [JobController::class, 'store'])->middleware('throttle:10,1')->name('jobs.store');
+    Route::get('jobs/{id}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+    Route::post('jobs/{id}', [JobController::class, 'update'])->name('jobs.update');
+    Route::post('jobs/{id}/delete', [JobController::class, 'destroy'])->name('jobs.destroy');
     
     // Freelancer dashboard - only for authenticated users with role 'freelancer'
     Route::get('freelancer/dashboard', function () {

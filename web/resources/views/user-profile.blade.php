@@ -165,6 +165,14 @@
         .edit-mode .edit-actions { display: flex; justify-content: flex-end; gap: 0.75rem; }
         .edit-mode .default-actions { display: none; }
         
+        /* Skills style */
+        .skills-list .badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.4em 0.8em;
+            font-size: 0.85rem;
+        }
+
         /* Modal Styles */
         .modal-content { border-radius: 1rem; border: none; }
         .modal-body .form-control {
@@ -201,9 +209,10 @@
                     </div>
                     
                     <h5>{{ $user->name }}</h5>
+                    <span class="text-muted d-block mb-2" style="font-size: 0.9rem;">{{ $user->company_name ?? 'Individual' }}</span>
 
-                    <span class="badge rounded-pill bg-warning text-dark verification-badge" id="verificationStatus">
-                        <i class="fas fa-exclamation-triangle me-1"></i>Not Verified
+                    <span class="badge rounded-pill bg-success verification-badge" id="verificationStatus">
+                        <i class="fas fa-check-circle me-1"></i>Verified
                     </span>
                     
                     <div class="default-actions">
@@ -263,86 +272,156 @@
                                 <span class="value">{{ $user->phone ?? '[Not Provided]' }}</span>
                                 <input type="tel" name="phone" class="form-control editable-field" value="{{ $user->phone }}">
                             </li>
-                             <li>
+                            <li>
                                 <span class="label">Address</span> 
                                 <span class="value">{{ $user->address ?? '[Not Provided]' }}</span>
                                 <input type="text" name="address" class="form-control editable-field" value="{{ $user->address }}">
                             </li>
                         </ul>
                     </div>
-                    
-                    <!-- Security Section -->
+
+                    <!-- Verification -->
                     <div class="profile-section">
-                        <h5>Security</h5>
-                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
-                            Change Password
-                        </button>
+                        <h5>Verification Documents</h5>
+                        <ul class="list-unstyled info-list">
+                            <li>
+                                <span class="label">Curriculum Vitae (CV)</span> 
+                                <span class="value">
+                                    @if($user->cv)
+                                        <a href="{{ url('storage/' . $user->cv) }}" target="_blank" class="text-primary">
+                                            <i class="fas fa-download me-1"></i>Download
+                                        </a>
+                                    @else
+                                        [Not Provided]
+                                    @endif
+                                </span>
+                                <div class="editable-field">
+                                    <input type="file" name="cv" class="form-control" accept=".pdf,.doc,.docx">
+                                    <small class="text-muted d-block mt-1">PDF, DOC or DOCX (Max 5MB)</small>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="label">Portfolio</span> 
+                                <span class="value">
+                                    @if($user->portfolio)
+                                        <a href="{{ url('storage/' . $user->portfolio) }}" target="_blank" class="text-primary">
+                                            <i class="fas fa-download me-1"></i>Download
+                                        </a>
+                                    @else
+                                        [Not Provided]
+                                    @endif
+                                </span>
+                                <div class="editable-field">
+                                    <input type="file" name="portfolio" class="form-control" accept=".pdf,.zip,.rar">
+                                    <small class="text-muted d-block mt-1">PDF, ZIP or RAR (Max 10MB)</small>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="label">Government ID</span> 
+                                <span class="value">
+                                    @if($user->government_id)
+                                        <a href="{{ url('storage/' . $user->government_id) }}" target="_blank" class="text-primary">
+                                            <i class="fas fa-eye me-1"></i>View
+                                        </a>
+                                    @else
+                                        [Not Provided]
+                                    @endif
+                                </span>
+                                <div class="editable-field">
+                                    <input type="file" name="government_id" class="form-control" accept=".jpg,.jpeg,.png">
+                                    <small class="text-muted d-block mt-1">JPG or PNG (Max 2MB)</small>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    
-                    <!-- Edit Mode Action Buttons -->
-                    <div class="mt-4 edit-actions">
-                        <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="saveChangesButton">Save Changes</button>
+
+                    <!-- About Me Section -->
+                    <div class="profile-section">
+                        <h5>About Me</h5>
+                        <div class="mb-3">
+                            <span class="d-block mb-2">{{ $user->about_me ?? '[Not Provided]' }}</span>
+                            <textarea name="about_me" class="form-control editable-field" rows="3" placeholder="Tell something about yourself...">{{ $user->about_me }}</textarea>
+                        </div>
                     </div>
 
-                </div>
-            </div>
-            </form>
-        </div>
-
-    </div>
-</div>
-
-<!-- Change Password Modal -->
-<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="passwordChangeForm" action="{{ route('profile.change-password') }}" method="POST">
-          @csrf
-          <div class="mb-3">
-            <label for="current_password" class="form-label">Current Password</label>
-            <input type="password" class="form-control" id="current_password" name="current_password" required>
-            @error('current_password')
-              <div class="text-danger small mt-1">{{ $message }}</div>
-            @enderror
-          </div>
-          <div class="mb-3">
-            <label for="new_password" class="form-label">New Password</label>
-            <input type="password" class="form-control" id="new_password" name="new_password" required>
-            @error('new_password')
-              <div class="text-danger small mt-1">{{ $message }}</div>
-            @enderror
-            <small class="text-muted d-block mt-2">Password must be at least 8 characters and contain uppercase, lowercase, number, and special character.</small>
-          </div>
-          <div class="mb-3">
-            <label for="new_password_confirmation" class="form-label">Confirm New Password</label>
-            <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" form="passwordChangeForm" class="btn btn-primary">Save Password</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const editProfileButton = document.getElementById('editProfileButton');
-        const cancelButton = document.getElementById('cancelButton');
-        const profileForm = document.getElementById('profileForm');
-        const profileRow = document.getElementById('profileRow');
-        
+                    <!-- Skills Section -->
+                    <div class="profile-section">
+                        <h5>Skills</h5>
+                        <div class="mb-3">
+                            <div class="skills-list d-flex flex-wrap gap-2 mb-2">
+                                @if($user->skills)
         const profilePicImg = document.getElementById('profilePicImg');
+        const profilePicInput = document.getElementById('profilePicInput');
+
+        let originalValues = {};
+        let originalImageSrc = profilePicImg.src;
+
+        function toggleEditMode(isEditing) {
+            if (isEditing) profileRow.classList.add('edit-mode');
+            else profileRow.classList.remove('edit-mode');
+        }
+
+        editProfileButton.addEventListener('click', () => {
+            originalImageSrc = profilePicImg.src;
+            profileForm.querySelectorAll('input, textarea').forEach(input => {
+                if (input.type !== 'file') originalValues[input.name] = input.value;
+            });
+            toggleEditMode(true);
+        });
+
+        cancelButton.addEventListener('click', () => {
+            profilePicImg.src = originalImageSrc;
+            profilePicInput.value = '';
+            profileForm.querySelectorAll('input, textarea').forEach(input => {
+                if (originalValues[input.name]) input.value = originalValues[input.name];
+            });
+            toggleEditMode(false);
+        });
+
+        profilePicInput.addEventListener('change', (event) => {
+            if (event.target.files && event.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePicImg.src = e.target.result;
+                }
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        });
+
+        profileForm.addEventListener('submit', function(event) {
+            // Update form display values but don't update image preview
+            // Let the form submit and the page reload will show the actual saved image
+
+            // Update displayed values from form inputs
+            const aboutInput = profileForm.querySelector('textarea[name="about_me"]');
+            if (aboutInput) {
+                const displayElement = aboutInput.parentElement.querySelector('span.d-block');
+                if (displayElement) {
+                    displayElement.textContent = aboutInput.value || '[Not Provided]';
+                }
+            }
+
+            const skillsInput = profileForm.querySelector('input[name="skills"]');
+            const skillsDisplay = profileForm.querySelector('.skills-list');
+            if (skillsInput && skillsDisplay) {
+                skillsDisplay.innerHTML = '';
+                const skills = skillsInput.value.split(',').map(s => s.trim()).filter(Boolean);
+                if (skills.length > 0) {
+                    skills.forEach(skillText => {
+                        const badge = document.createElement('span');
+                        badge.className = 'badge rounded-pill bg-info';
+                        badge.textContent = skillText;
+                        skillsDisplay.appendChild(badge);
+                    });
+                } else {
+                    skillsDisplay.innerHTML = '<span class="text-muted">[Not Provided]</span>';
+                }
+            }
+
+            toggleEditMode(false);
+            // Form will submit normally via POST to the server
+            // Page reload will display the saved profile picture and files from database
+        }cument.getElementById('profilePicImg');
         const profilePicInput = document.getElementById('profilePicInput');
         
         const verificationStatus = document.getElementById('verificationStatus');

@@ -29,11 +29,6 @@
                             <label for="hours_required" style="display: block; margin-bottom: 5px;"><strong>Hours Required</strong></label>
                             <input type="number" id="hours_required" class="form-control duration-input" value="{{ $job->estimated_hours ?? 1 }}" min="1" placeholder="Enter number of hours" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                         </div>
-                        @else
-                        <div style="margin-top: 15px; margin-bottom: 15px;">
-                            <label for="quantity" style="display: block; margin-bottom: 5px;"><strong>Quantity</strong></label>
-                            <input type="number" id="quantity" class="form-control duration-input" value="1" min="1" placeholder="Quantity" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                        </div>
                         @endif
 
                         <div style="display: flex; gap: 15px; margin-bottom: 15px;">
@@ -43,7 +38,7 @@
                             </div>
                             <div style="flex: 1;">
                                 <label for="end_date" style="display: block; margin-bottom: 5px;"><strong>Expected Completion</strong></label>
-                                <input type="date" id="end_date" class="form-control" readonly style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background-color: #f0f0f0;">
+                                <input type="date" id="end_date" class="form-control" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                             </div>
                         </div>
 
