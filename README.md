@@ -4,7 +4,7 @@ A full-stack web application project for secure programming built with Laravel b
 
 ## Project Overview
 
-SecProg is a freelancing/job marketplace platform designed with security best practices in mind. The project demonstrates secure programming concepts across multiple layers of the application stack.
+H3kHire is a freelancing/job marketplace platform designed with security best practices in mind. The project demonstrates secure programming concepts across multiple layers of the application stack.
 
 ## Project Structure
 
