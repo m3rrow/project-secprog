@@ -236,3 +236,5 @@ For issues or questions, refer to:
 ---
 
 **Last Updated**: December 2025
+
+**Maintained by aethrna and team**
