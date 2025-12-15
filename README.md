@@ -1,4 +1,4 @@
-# SecProg Project
+# H3kHire
 
 A full-stack web application project for secure programming built with Laravel backend, modern frontend, and comprehensive database schema.
 
